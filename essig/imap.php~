@@ -1,0 +1,10 @@
+<?php
+
+$imapstream = imap_open("{imap.one.com@:993}", "test@pascalsommer.ch", "Nosvctxk");
+
+echo "Stream open, " . imap_num_msg($imapstream) . " messages here.<br>";
+
+$structure = imap_fetchstructure($imapstream,)
+
+imap_close($imapstream);
+?>
