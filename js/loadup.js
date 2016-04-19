@@ -1,17 +1,17 @@
 $(document).ready(function(){
 
-  $vh = $('header').height();
-  $vw = $('header').width();
+  var vh = $('header').height();
+  var vw = $('header').width();
 
-  $picheight = $vh;
+  picheight = vh;
 
-  if($vh*1920<$vw*1101){
-    $picheight=$vw*1101/1920;
+  if(vh*1920<vw*1101){
+    picheight=vw*1101/1920;
   }
 
   $('header').css({
-    "height":$vh,
-    "background-size":"auto "+ $picheight + "px"
+    "height":vh,
+    "background-size":"auto "+ picheight + "px"
   });
   
 });

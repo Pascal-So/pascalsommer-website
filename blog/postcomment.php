@@ -3,14 +3,11 @@
   //ini_set('display_startup_errors', 1);
   //error_reporting(E_ALL);
 
-
-  $mysql_username = "root";//"pascalsommer_ch";
-  $mysql_password = "";//"Nosvctxk";
-  $mysql_database = "pascalsommer_ch";
-
   if(!isset($_POST["name"]) || !isset($_POST["content"]) || !isset($_POST["post"])){
     exit();
   }
+
+  include'phpCommon.php';
 
 
   $conn = new mysqli("localhost", $mysql_username, $mysql_password, $mysql_database);
