@@ -49,10 +49,8 @@ h1 {
 mark {
   background: #ff0;
   color: #000; }
-
 small {
   font-size: 80%; }
-
 sub,
 sup {
   font-size: 75%;
@@ -140,4 +138,4 @@ table {
   border-spacing: 0; }
 td,
 th {
-  padding: 0; }
+    padding: 0; }
