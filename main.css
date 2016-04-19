@@ -213,7 +213,6 @@ nav {
   width: 400px;
   height: 225px;
   margin: 10px 20px;
-  background: #000;
   background-size: cover; }
   #work #videos div:hover {
     transform: scale(1.02, 1.02);
