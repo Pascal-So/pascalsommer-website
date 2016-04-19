@@ -1,19 +1,21 @@
 <?php
 
-if(!isset($_POST["start"]) || !isset($_POST["end"])){
+
+if(!isset($_POST["start"]) || !isset($_POST["nr"])){
 	exit();
 }
 
 $start = intval($_POST["start"]);
-$end = intval($_POST["end"]);
+$nr = intval($_POST["nr"]);
 
 $entries = scandir("entries", 1);
 $nrEntries = count($entries) -2;
 
-if($start > $end || $start<0 || $start>=$nrEntries){
+if($nr<1 || $start<0 || $start>=$nrEntries){
 	exit();
 }
-$end = min($end, $nrEntries-1);
+
+$nr = min($nr, $nrEntries-$start);
 
 $mysql_username = "root";//"pascalsommer_ch";
 $mysql_password = "";//"Nosvctxk";
@@ -23,7 +25,7 @@ $month = array("", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"
 
 $conn = new mysqli("localhost", $mysql_username, $mysql_password, $mysql_database);
 
-for($i = $start+2; $i<=$end+2; $i++){
+for($i = $start; $i<$start+$nr; $i++){
 	printPost($entries[$i]);
 }
 
