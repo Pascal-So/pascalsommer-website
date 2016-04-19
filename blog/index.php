@@ -36,8 +36,8 @@ if(isset($_GET["start"])){
   <br>
   
   <nav>
-    <span id="workLink"><a href="http://pascalsommer.ch#work">WORK</a></span>
-    <span id="aboutLink"><a href="http://pascalsommer.ch#about">ABOUT ME</a></span>
+    <span id="workLink"><a href="../#work">WORK</a></span>
+    <span id="aboutLink"><a href="../#about">ABOUT ME</a></span>
     <span id="blogLink"><a href="#blog">BLOG</a></span>
   </nav>
 </header>
