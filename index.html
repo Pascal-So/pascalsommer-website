@@ -1,90 +1,55 @@
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<title>Pascal Sommer</title>
+	<meta name="description" content="My personal Blog about Photography">
+	<meta name="keywords" content="Pascal Sommer,Photography,Photos">
+	<meta name="author" content="Pascal Sommer">
 
-  <title>Pascal Sommer</title>
+	<link rel="stylesheet" href="style.css"/>
+	<link rel="stylesheet" type="text/css" href="base.css">
 
-  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="normalize.css">
-  <script src="js/jquery-2.1.4.min.js"></script>
-  <script src="js/loadup.js"></script>
-  <script src="js/scroll.js"></script>
-  <script src="js/mediaViewer.js"></script>
 </head>
 
-<body>
-<header>
-  <div id="title">
-    <div id="titleText">
-      <span>PASCAL SOMMER</span>
-      <p>PHOTOGRAPHY</p>
-    </div>
-  
-  </div>
-  <br>
-  
-  <nav>
-    <span id="workLink"><a href="#work">WORK</a></span>
-    <span id="aboutLink"><a href="#about">ABOUT ME</a></span>
-    <span id="blogLink"><a href="blog#blog">BLOG</a></span>
-  </nav>
+<body class="alignCenter">
+
+<header class="mb8">
+	<h1 class="f1 ma0 mt5">Pascal Sommer<br>Photography</h1>
+	<h2 class="f3 ma0 mt3 uppercase"><a href="#blog" class="link">Blog</a></h2>
+	<h2 class="f3 ma0 mt1 uppercase"><a href="about.html" class="link">About</a></h2>
+	<h2 class="f3 ma0 mt1 uppercase"><a href="http://codelis.ch" class="link">Projects</a></h2>
+	<p class="mt2">
+		<a href="https://github.com/Pascal-So" class="ma1"><img alt="Social Media Icon Github"src="img/github.svg"></a>
+		<a href="http://twitter.com/sommerpascal" class="ma1"><img alt="Social Media Icon Twitter"src="img/twitter.svg"></a>
+		<a href="https://www.youtube.com/user/PascalSommerMovies" class="ma1"><img alt="Social Media Icon Youtube"src="img/youtube.svg"></a>
+	</p>
 </header>
 
-<div id="work">
-  <span id="workTitle">WORK</span>
-  <div id="pview">
-    <div id="closebutton">x</div>
-    <div class="photonav" id="backbutton"></div>
-    <div id="phot"></div>
-    <div class="photonav" id="forwardbutton"></div>
-  </div>
-  <div id="photos">
-    <div id="p01"></div>
-    <div id="p02"></div>
-    <div id="p03"></div>
-    <div id="p04"></div>
-    <div id="p05"></div>
-    <div id="p06"></div>
-    <div id="p07"></div>
-    <div id="p08"></div>
-    <div id="p09"></div>
-    <div id="p10"></div>
-    <div id="p11"></div>
-    <div id="p12"></div>
-  </div>
-    
-  <div id="videos">
-    <div id="vid1bt"><iframe id="vid1" src="https://www.youtube.com/embed/gbmKA97eo18" frameborder="0" allowfullscreen></iframe></div>
-    <div id="vid2bt"><iframe id="vid2" src="https://www.youtube.com/embed/JeB4hQ0L1Ww" frameborder="0" allowfullscreen></iframe></div>
-  </div>
-  
-  
-</div>
-<div id="about">
-  <span id="aboutTitle">ABOUT ME</span>
-  <div id="profilePic"></div>
-  <p id="aboutText1">Photography has been an interesting topic for me for at least the past 4 years. After getting my first camera I started learning the craft simply by practising it myself. I mostly shoot portraits and events, as well as landscapes, animals, etc. I am currently using a Sony a7sII, a 1977 Minolta XD7, a 1939 Balda Juwella and a Canon EOS 600d with six different lenses and a flash:</p>
-  <p id="gearList">Sigma 17-70mm f/2.8-4.0 DC OS HSM<br>
-Canon EF 70-300mm f/4-5.6 IS USM<br>
-Canon EF-S 18-55mm f/3.5-5.6 IS II<br>
-Minolta MD Zoom 75 - 150mm 1:4<br>
-Minolta MD 50mm 1:1.7<br>
-Minolta MC W.Rokkor 28mm 1:2.5<br>
-Canon Speedlite 430EX II</p>
-  <p id="aboutText2">All the editing of my pictures is done in Lightroom and Photoshop.</p>
-  <p id="contact">Contact me at:</p>
-  <a href="mailto:p@pascalsommer.ch" id="maillink">p@pascalsommer.ch</a>
-</div>
 
-<div id="footer">
-  <div id="overlay">
-    <p>copyright</p>
-    <span>Pascal Sommer | 2016</span>
-  </div>
-</div>
+<hr>
+
+<section id="blog" class="mt5">
+
+	<article>
+		<h2 class="f2 ma0 mt2 mb1">Иннополис</h2>
+		<h3 class="f5 ma0 mb3">20.01.2016</h3>
+		<a href="photodetail.php">
+			<img src="img/ino.jpg" class="blogPic">
+			<p class="f5 mb3 mt0 alignRight">0&nbsp;<img src="img/cmt.png"></p>
+		</a>
+		<a href="photodetail.php">
+			<img src="img/ino2.jpg" class="blogPic">
+			<p class="f5 mb3 mt0 alignRight">0&nbsp;<img src="img/cmt.png"></p>
+		</a>
+	</article>
+	
+</section>
+<!-- 
+<div id="overlay" class="darken" style="display: block">
+	<div class="zoom-img-container"></div>
+</div> -->
 
 </body>
 </html>
