@@ -14,8 +14,9 @@ function get_photos_array_by_post($post_id){
 function get_photo($photo_id){
 	$db = new dbConn();
 
-	$res = $db->query("SELECT photos.id, photos.path, COALESCE(photos.description, '') AS description, posts.title as post_title
-					   FROM photos INNER JOIN posts ON posts.id = photos.post_id WHERE photos.id = ?", $photo_id);
+	$res = $db->query("
+		SELECT photos.id, photos.path, COALESCE(photos.description, '') AS description, posts.title as post_title, post_id
+		FROM photos INNER JOIN posts ON posts.id = photos.post_id WHERE photos.id = ?", $photo_id);
 
 	if(count($res) == 0){
 		return -1;
@@ -113,7 +114,7 @@ function generate_pic_html($pic, $prev_id, $next_id){
 	<?php } ?>
 
 	<!-- link to main menu -->
-	<a href="../" class="f5 ma2" style="position: relative; bottom: -3px;"> <img src="img/menu.png"></a>
+	<a href="../#post_<?php echo $pic["post_id"] ?>" class="f5 ma2" style="position: relative; bottom: -3px;"> <img src="img/menu.png"></a>
 
 	<?php if($next_id != -1){ // link to next pic ?>
 	<a href="?id=<?php echo $next_id ?>" class="f5 ma2"> <img src="img/rArrow.png"></a>

@@ -21,10 +21,14 @@ function checkcomment(){
 	return name_ok && comment_ok;
 }
 
+function scrollTo(target){
+	$('html, body').animate({
+        scrollTop: target.offset().top
+    }, 150);
+}
+
 function scrollToLink(link, target){
 	link.click(function() {
-	    $('html, body').animate({
-	        scrollTop: target.offset().top
-	    }, 200);
+	    scrollTo(target);
 	});
 }

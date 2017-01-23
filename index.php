@@ -1,3 +1,9 @@
+<?php 
+
+
+?>
+
+
 <html>
 <head>
 	<meta charset="utf-8">
@@ -10,6 +16,16 @@
 
 	<link rel="stylesheet" href="style.css"/>
 	<link rel="stylesheet" type="text/css" href="base.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript" src="post_loader.js"></script>
+
+	<script type="text/javascript">
+		$(function(){
+			scrollToLink($("#link-blog"), $("#blog"));
+		});
+	</script>
 
 </head>
 
@@ -17,7 +33,7 @@
 
 <header class="mb8">
 	<h1 class="f1 ma0 mt5">Pascal Sommer<br>Photography</h1>
-	<h2 class="f3 ma0 mt3 uppercase"><a href="#blog" class="link">Blog</a></h2>
+	<h2 class="f3 ma0 mt3 uppercase"><a href="#blog" id="link-blog" class="link">Blog</a></h2>
 	<h2 class="f3 ma0 mt1 uppercase"><a href="about.html" class="link">About</a></h2>
 	<h2 class="f3 ma0 mt1 uppercase"><a href="http://codelis.ch" class="link">Projects</a></h2>
 	<p class="mt2">

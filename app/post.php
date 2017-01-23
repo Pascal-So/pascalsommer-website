@@ -45,7 +45,7 @@ function generate_post_html($post, $pics){
 	// $pics is array of $pic data with added 
 	// field "nr_comments" on each pic.
 ?>
-	<article>
+	<article id="post_<?php echo $post["id"] ?>">
 		<h2 class="f2 ma0 mt2 mb1"><?php echo htmlspecialchars($post["title"]) ?></h2>
 		<h3 class="f5 ma0 mb3"><?php echo htmlspecialchars($post["created"]) ?></h3>
 
