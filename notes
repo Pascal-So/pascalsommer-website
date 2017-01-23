@@ -13,7 +13,6 @@ id int(11) not null auto_increment primary key,
 post_id int(11) not null references posts (id),
 path varchar(1024) not null,
 description text,
-created timestamp not null
 
 
 table comments
