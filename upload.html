@@ -6,30 +6,64 @@
 	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 	<title>Upload post</title>
 
-	<link rel="stylesheet" href="style.css"/>
+	<link rel="stylesheet" href="base.css"/>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
-<body>
+<body class="alignCenter">
 
 <script type="text/javascript">
+	function slugify(input){
+		var output = "";
+		var dash_in_last_char = true; // don't use dash in beginning
+
+		input = input.toLowerCase();
+
+		for(var c of input){
+			if(c.match(/[a-z0-9]/)){
+				dash_in_last_char = false;
+				output += c;
+			}else if(c == "'"){
+				// ignore this char, don't put line
+			}else{
+				dash_in_last_char = true;
+				output += '-';
+			}
+		}
+
+		if(output.slice(-1) == '-'){
+			// remove trailing dash
+			output = output.slice(0, -1);
+		}
+
+		return output;
+	}
+
 	function generate_slug(){
-		var title = $("#tx-title").val();
+		var tx_title = $("#tx-title");
+		var tx_slug = $("#tx-slug");
 
-		var slug = title.replace(/[^a-zA-Z0-9]/, "-");
+		tx_slug.removeClass("invalidinput");
 
-		$("#tx-slug").val(slug);
+		var input = tx_title.val();
+		var slug = slugify(input);
+		tx_slug.val(slug);
+
+
 	}
 </script>
 
-<input type="text" id="tx-title" name="title" onchange="generate_slug()">
-<input type="text" id="tx-slug"  name="slug">
+<h1 class="f1">Upload post</h1>
+
+<label class="f5" for="tx-title">Title</label><br>
+<input class="mt1 mb3" type="text" id="tx-title" name="title" oninput="generate_slug()"><br>
+<label class="f5" for="tx-slug">Slug</label><br>
+<input class="mt1 mb3" type="text" id="tx-slug"  name="slug">
 
 
 
 
 <form action="upload.php" method="post">
-	<input type="text" name="title">
 	<input multiple type="file" accept="image/*" name="files">
 </form>
 

@@ -127,6 +127,10 @@ a:hover{
 }
 
 
+.invalidinput{
+	background-color: #380500;
+}
+
 
 @media(max-width: 1400px){
 	.flex{
