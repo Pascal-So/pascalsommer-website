@@ -10,7 +10,13 @@ function set_post_request_ongoing(){
 
 function reset_post_request_state(){
 	post_request_ongoing = false;
-	$("#bt_load_posts").show();
+	
+	if($("#no_more_posts").length == 0){
+		// only show load_posts button if there are more posts left
+		$("#bt_load_posts").show();
+	}
+
+
 	$("#loading").hide();
 }
 

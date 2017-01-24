@@ -28,7 +28,7 @@ function generate_comment_html($comment){
 	?>
 	<div class="card ma1">
 		<h3 class="f5 ma0"><?php echo htmlspecialchars($comment["name"]) ?> - <?php echo htmlspecialchars($comment["created"]) ?></h3>
-		<p class="f5 alignLeft ma0 mt2"><?php echo htmlspecialchars($comment["comment"]) ?></p>
+		<p class="f5 alignLeft ma0 mt2"><?php echo nl2br(trim(htmlspecialchars($comment["comment"]))) ?></p>
 	</div><br>
 	<?php
 }

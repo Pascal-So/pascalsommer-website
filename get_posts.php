@@ -52,6 +52,22 @@ load_posts($ids);
 // will be used by the js to request additional posts. 
 $last_loaded = end($ids);
 
+
 ?>
 
+<!-- These divs are used as messages to the js on client side -->
+
 <div id="last_loaded" class="hidden"><?php echo $last_loaded ?></div>
+
+
+<?php
+
+
+$nr_results = count($ids);
+if($nr_results == 0){
+	?>
+	<div id="no_more_posts" class="hidden"></div>
+	<?php
+}
+
+?>
