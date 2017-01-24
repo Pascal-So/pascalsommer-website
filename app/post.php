@@ -3,7 +3,7 @@
 include("dbConn.php");
 
 
-function get_post_ids_before($id, $nr){
+function get_post_ids_before($nr, $id){
 	$db = new dbConn();
 
 	$res = $db->query("
@@ -11,6 +11,18 @@ function get_post_ids_before($id, $nr){
 			WHERE (created, id) < ((SELECT created FROM posts WHERE id = ?), ?)
 			ORDER BY created DESC, id DESC LIMIT ?"
 		, $id, $id, $nr);
+
+	return $res;
+}
+
+function get_posts_ids_until($id){
+	$db = new dbConn();
+
+	$res = $db->query("
+			SELECT id FROM posts 
+			WHERE (created, id) >= ((SELECT created FROM posts WHERE id = ?), ?)
+			ORDER BY created DESC, id DESC"
+		, $id, $id);
 
 	return $res;
 }
@@ -28,16 +40,12 @@ function get_post_data($id){
 }
 
 
-function get_newest_post_id(){
+function get_newest_post_ids($nr){
 	$db = new dbConn();
 
-	$res = $db->query("SELECT id FROM posts ORDER BY created DESC, id DESC LIMIT 1");
+	$res = $db->query("SELECT id FROM posts ORDER BY created DESC, id DESC LIMIT ?", $nr);
 
-	if(count($res) == 0){
-		return -1;
-	}
-
-	return $res[0]["id"];
+	return $res;
 }
 
 

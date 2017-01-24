@@ -5,7 +5,7 @@ include_once('dbConn.php');
 function get_photos_array_by_post($post_id){
 	$db = new dbConn();
 
-	$res = $db->query("SELECT photos.id, photos.path, COALESCE(photos.description, ''), count(comments.photo_id) AS description FROM photos LEFT JOIN comments ON comments.photo_id = photos.id GROUP BY comments.photo_id WHERE photos.post_id = ?", $post_id);
+	$res = $db->query("SELECT photos.id, photos.path, COALESCE(photos.description, '') AS description, COUNT(comments.photo_id) AS nr_comments FROM photos LEFT JOIN comments ON comments.photo_id = photos.id GROUP BY comments.photo_id WHERE photos.post_id = ?", $post_id);
 
 	return $res;
 }
