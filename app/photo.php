@@ -5,7 +5,7 @@ include_once('dbConn.php');
 function get_photos_array_by_post($post_id){
 	$db = new dbConn();
 
-	$res = $db->query("SELECT photos.id, photos.path, COALESCE(photos.description, '') AS description, COUNT(comments.id) AS nr_comments FROM photos  LEFT JOIN comments ON comments.photo_id = photos.id WHERE photos.post_id = ? GROUP BY comments.photo_id", $post_id);
+	$res = $db->query("SELECT photos.id, photos.path, COALESCE(photos.description, '') AS description, COUNT(comments.id) AS nr_comments FROM photos  LEFT JOIN comments ON comments.photo_id = photos.id WHERE photos.post_id = ? GROUP BY photos.id", $post_id);
 
 	return $res;
 }
@@ -124,6 +124,8 @@ function generate_pic_html($pic, $prev_id, $next_id){
 
 	<span style="display: inline-block; width: 30px"></span>
 	<a href="#comments" class="f5 ma2" id="bt_comments"><?php echo $pic["nr_comments"] ?>&nbsp;<img src="img/cmt.png"></a>
+
+	<p class="f5 mt3 mb3"><?php echo nl2br(trim(htmlspecialchars($pic["description"]))) ?></p>
 
 	<?php
 }

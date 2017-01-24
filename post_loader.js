@@ -35,9 +35,9 @@ $(function(){
 			load_up_to(id);
 		}
 	}else{ // did not specify post_id
-		if(content_area.html() == ""){
+		//if(content_area.html() == ""){
 			load_initial(nr_posts_to_load);
-		}
+		//}
 	}
 
 	$("#bt_load_posts").click(function(){
