@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<title>Upload post</title>
+
+	<link rel="stylesheet" href="style.css"/>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+	function generate_slug(){
+		var title = $("#tx-title").val();
+
+		var slug = title.replace(/[^a-zA-Z0-9]/, "-");
+
+		$("#tx-slug").val(slug);
+	}
+</script>
+
+<input type="text" id="tx-title" name="title" onchange="generate_slug()">
+<input type="text" id="tx-slug"  name="slug">
+
+
+
+
+<form action="upload.php" method="post">
+	<input type="text" name="title">
+	<input multiple type="file" accept="image/*" name="files">
+</form>
+
+</body>
+</html>

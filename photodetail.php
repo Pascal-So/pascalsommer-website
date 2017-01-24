@@ -27,7 +27,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Photo</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<title>Pascal Sommer Photography</title>
+	<meta name="description" content="My personal Blog about Photography">
+	<meta name="keywords" content="Pascal Sommer,Photography,Photos">
+	<meta name="author" content="Pascal Sommer">
+
+
 	<link rel="stylesheet" type="text/css" href="base.css">
 	<link rel="stylesheet" type="text/css" href="photodetail.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
