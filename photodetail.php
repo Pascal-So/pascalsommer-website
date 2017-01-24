@@ -1,5 +1,6 @@
 <?php 
 	include_once('app/photo.php');
+	include_once('app/comment.php');
 
 	$id = -1;
 	if(isset($_GET["id"])){
@@ -44,11 +45,13 @@
 <?php generate_pic_html($pic, $prev_id, $next_id); ?>
 
 <div id="comments" class="comments ma0 mt4">
+	<div id="comments_content">
 	<?php 
 	foreach ($comments as $comment) {
 		generate_comment_html($comment);
 	}
 	?>
+	</div>
 	<div class="card ma1">
 		<h3 class="f5 ma0">New Comment</h3>
 		<form action="" method="post" onsubmit="return checkcomment()" class="ma0 mt2">

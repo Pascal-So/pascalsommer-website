@@ -35,6 +35,20 @@ a:hover{
 	text-align: right;
 }
 
+.button{
+	display: inline-block;
+	width: 250px;
+	background-color: #080808;
+	border: 1px solid #444;
+	padding: 8px;
+	color: white;
+	border-radius: 0;
+}
+.button:hover{
+	background-color: #444;
+	cursor: pointer;
+}
+
 .flex{
 	display: flex;
 	flex-direction: row;
