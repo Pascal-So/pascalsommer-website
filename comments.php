@@ -3,7 +3,7 @@
 include_once("app/comment.php");
 
 if(isset($_POST["photo_id"]) && isset($_POST["name"]) && isset($_POST["comment"])){
-	post_comment($_POST["photo_id"], $_POST["name"], $_POST["comment"]);
+	post_comment(intval($_POST["photo_id"]), intval($_POST["name"]), intval($_POST["comment"]));
 }
 
 if(isset($_GET["photo_id"])){

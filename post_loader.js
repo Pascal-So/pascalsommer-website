@@ -1,15 +1,15 @@
 var nr_posts_to_load = 14;
 
-var request_ongoing = false;
+var post_request_ongoing = false;
 
-function set_request_ongoing(){
-	request_ongoing = true;
+function set_post_request_ongoing(){
+	post_request_ongoing = true;
 	$("#bt_load_posts").hide();
 	$("#loading").show();
 }
 
-function reset_request_state(){
-	request_ongoing = false;
+function reset_post_request_state(){
+	post_request_ongoing = false;
 	$("#bt_load_posts").show();
 	$("#loading").hide();
 }
@@ -34,7 +34,7 @@ $(function(){
 	}
 
 	$("#bt_load_posts").click(function(){
-		if(request_ongoing){
+		if(post_request_ongoing){
 			// need this check in addition to the one in `request()`, because
 			// this function has the side effect of deleting the last_loaded_div
 			return;
@@ -67,10 +67,10 @@ function insert_post_data(replace, data){
 }
 
 function request(id, nr, callback){
-	if(request_ongoing){
+	if(post_request_ongoing){
 		return;
 	}
-	set_request_ongoing();
+	set_post_request_ongoing();
 
 	function send_request(){
 		$.get( "get_posts.php?id=" + id.toString() + "&nr=" + nr.toString())
@@ -81,7 +81,7 @@ function request(id, nr, callback){
 				alert("Error while loading post data. Please try again.");
 			})
 			.always(function(){
-				setTimeout(reset_request_state, 200);
+				setTimeout(reset_post_request_state, 200);
 			});
 	}
 
@@ -90,7 +90,8 @@ function request(id, nr, callback){
 
 function load_up_to(id){
 	request(id, 0, function(data){
-		insert_post_data(true, data);	
+		insert_post_data(true, data);
+		scrollTo($("#post_" + id.toString()));
 	});
 }
 
