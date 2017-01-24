@@ -54,7 +54,7 @@
 	</div>
 	<div class="card ma1">
 		<h3 class="f5 ma0">New Comment</h3>
-		<form action="" method="post" onsubmit="return checkcomment()" class="ma0 mt2">
+		<form action="comments.php" method="post" onsubmit="return checkcomment()" class="ma0 mt2">
 			<label for="tx-name" class="f5">Name: </label><br>
 			<input type="text" id="tx-name" name="name" class="ma0 mt1 mb1 textinput"><br>
 			<br>
