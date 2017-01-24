@@ -87,7 +87,13 @@ class DBConn{
 
 		$res = $stm->get_result();
 
-		return $res->fetch_all(MYSQLI_ASSOC);
+		//print_r($args);
+
+		if($res){
+			return $res->fetch_all(MYSQLI_ASSOC);
+		}else{
+			return array();
+		}
 	}
 }
 

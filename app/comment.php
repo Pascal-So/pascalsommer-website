@@ -13,9 +13,9 @@ function get_comments_array_by_photo($photo_id){
 function get_nr_comments_by_photo($photo_id){
 	$db = new dbConn();
 
-	$res = $db->query("SELECT COUNT(*) FROM comments WHERE photo_id = ?", $photo_id);
+	$res = $db->query("SELECT COUNT(*) AS nr_comments FROM comments WHERE photo_id = ?", $photo_id);
 
-	return $res[0];
+	return $res[0]["nr_comments"];
 }
 
 function post_comment($photo_id, $name, $comment){

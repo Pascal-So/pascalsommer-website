@@ -37,7 +37,7 @@
 
 
 	<link rel="stylesheet" type="text/css" href="base.css">
-	<link rel="stylesheet" type="text/css" href="photodetail.css">
+	<link rel="stylesheet" type="text/css" href="view.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 	<script type="text/javascript" src="main.js"></script>
@@ -54,7 +54,7 @@
 <?php generate_pic_html($pic, $prev_id, $next_id); ?>
 
 <div id="comments" class="comments ma0 mt4">
-	<div id="comments_content">
+	<div id="comments_body">
 	<?php 
 	foreach ($comments as $comment) {
 		generate_comment_html($comment);

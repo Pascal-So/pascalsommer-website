@@ -17,10 +17,11 @@ function reset_post_request_state(){
 $(function(){
 	var content_area = $("#blog");
 
-	var matches = window.location.hash.match(/^#post_\d+$/);
+	var matches = window.location.hash.match(/^#post_(\d+)$/);
 
 	if(matches){ // specified post_id (e.g. blog/#post_35)
 		var id = parseInt(matches[1]);
+
 		var post_element_id = window.location.hash;
 		if($( post_element_id ).length){ // requested post is already loaded
 			scrollTo($(post_element_id));

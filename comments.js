@@ -52,11 +52,14 @@ function check_and_send_comment(){
 
 	var comments_body = $("#comments_body");
 
-	$.post("comments.php?id=" + photo_id, {name: name, comment: comment, photo_id: photo_id})
+	$.post("comments.php?photo_id=" + photo_id, {name: name, comment: comment, photo_id: photo_id})
 		.done(function(data){
+			console.log(data);
+			console.log(comments_body);
 			comments_body.html(data);
 		})
-		.fail(function(){
+		.fail(function(err){
+			//console.log(err);
 			alert("Error while sending comment, please try again.");
 		})
 		.always(function(){

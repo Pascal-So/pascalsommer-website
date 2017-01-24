@@ -1,6 +1,7 @@
 <?php 
 
 include_once('app/post.php');
+include_once('app/photo.php');
 
 function load_posts($ids){
 	// takes array of ids, outputs html as side effect
@@ -27,13 +28,13 @@ $id_rows = array();
 
 if($nr == 0 && $id > 0){
 	// load from newest until this id
-	$id_rows = get_post_until($id);
+	$id_rows = get_posts_ids_until($id);
 }elseif($nr > 0 && $id == 0){
 	// initial - newest posts
 	$id_rows = get_newest_post_ids($nr);
 }elseif($nr > 0 && $id > 0){
 	// load `nr` additional posts **after** `id`
-	$id_rows = get_posts_before($nr, $id);
+	$id_rows = get_post_ids_before($nr, $id);
 }else{
 	// default action if nothing specified - load
 	// 10 newest posts
