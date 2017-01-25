@@ -1,0 +1,36 @@
+
+.thumbnail-div{
+	width: 250px;
+}
+.thumbnail-div:hover{
+	cursor: pointer;
+}
+.thumbnail-div textarea{
+	height: 100px;
+}
+.thumbnail-div *{
+	width: 100%;
+}
+.inline-block{
+	display: inline-block;
+}
+
+.thumbnail-active{
+	border: 2px solid green;
+}
+
+.thumbnail-inactive{
+	border: 2px solid red;
+}
+
+.narrow{
+	max-width: 500px;
+}
+
+.center{
+	margin: auto;
+}
+
+ul{
+	padding: 0;
+}

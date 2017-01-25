@@ -127,8 +127,22 @@ a:hover{
 }
 
 
+.textinput{
+	border: 1px solid #444;
+	background-color: #080808;
+	color: white;
+	font-size: 20px;
+	padding: 4px;
+}
+
 .invalidinput{
 	background-color: #380500;
+}
+
+
+
+.validinput{
+	background-color: #053800;
 }
 
 

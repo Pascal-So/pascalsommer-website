@@ -1,71 +1,117 @@
+<?php
+
+include_once("app/dbConn.php")
+
+// $is_logged_in = ...
+
+if(!$is_logged_in){
+	//die("user not logged in");
+	// add redirect instead
+}
+
+if(isset($_POST["check_slug"])){
+	$slug = $_POST["check_slug"];
+	$date = date("Y-m-d");
+	$combined_slug = $date . "-" . $slug;
+
+	$db = new dbConn();
+
+	$res = $db->query("SELECT id FROM posts WHERE slug = ?", $combined_slug);
+
+	if(count($res) > 0){
+		// not ok
+		echo 0;
+	}else{
+		// slug is ok
+		echo 1;
+	}
+
+	die();
+}
+
+if(isset($_POST["files"])){
+	// add photos to staging area
+
+	// ...
+
+	die();
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<title>Upload post</title>
 
 	<link rel="stylesheet" href="base.css"/>
+	<link rel="stylesheet" href="upload.css"/>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<script type="text/javascript" src="urlSlug.js"></script>
+	<script type="text/javascript" src="staging.js"></script>
 </head>
 <body class="alignCenter">
 
-<script type="text/javascript">
-	function slugify(input){
-		var output = "";
-		var dash_in_last_char = true; // don't use dash in beginning
-
-		input = input.toLowerCase();
-
-		for(var c of input){
-			if(c.match(/[a-z0-9]/)){
-				dash_in_last_char = false;
-				output += c;
-			}else if(c == "'"){
-				// ignore this char, don't put line
-			}else{
-				dash_in_last_char = true;
-				output += '-';
-			}
-		}
-
-		if(output.slice(-1) == '-'){
-			// remove trailing dash
-			output = output.slice(0, -1);
-		}
-
-		return output;
-	}
-
-	function generate_slug(){
-		var tx_title = $("#tx-title");
-		var tx_slug = $("#tx-slug");
-
-		tx_slug.removeClass("invalidinput");
-
-		var input = tx_title.val();
-		var slug = slugify(input);
-		tx_slug.val(slug);
 
 
-	}
-</script>
+<h1 class="f1 ma0 mt2 mb5">Upload post</h1>
 
-<h1 class="f1">Upload post</h1>
+<section class="mt4 mb8">
+	<h2 class="f3 mb2">Upload photos</h2>
 
-<label class="f5" for="tx-title">Title</label><br>
-<input class="mt1 mb3" type="text" id="tx-title" name="title" oninput="generate_slug()"><br>
-<label class="f5" for="tx-slug">Slug</label><br>
-<input class="mt1 mb3" type="text" id="tx-slug"  name="slug">
+	<form action="upload.php" method="post">
+		<input multiple type="file" accept="image/*" name="files">
+		<br>
+		<input type="submit" name="ok" value="Upload" class="button ma0 mt3 f5">
+	</form>
+
+</section>
+
+
+<section class="mt4 mb8">
+	<h2 class="f3 mt1 mb2">Staging area</h2>
+
+	<ul id="sortable" class="ma0">
+		<li class="ui-state-default inline-block ma1 mt2 thumbnail-div">
+			<img src="img/ino.jpg" class="ma0 thumbnail-active">
+			<br>
+			<textarea name="description" id="tx-description" class="ma0 textinput"></textarea>
+			<div class="info-id hidden">1</div>
+			<div class="info-active hidden">1</div>
+		</li>
+		<li class="ui-state-default inline-block ma1 mt2 thumbnail-div">
+			<img src="img/ino2.jpg" class="ma0 thumbnail-inactive">
+			<br>
+			<textarea name="description" id="tx-description" class="ma0 textinput"></textarea>
+			<div class="info-id hidden">2</div>
+			<div class="info-active hidden">0</div>
+		</li>
+	</ul>
+	<br>
+	<div class="button ma0 mt3 f5">Save descriptions and states</div><br><br>
+</section>
 
 
 
+<section class="mt4 mb8">
+	<h2 class="f3 mb2">Publish active photos</h2>
+	<br>
+	<label class="f5 inline-block" for="tx-title">Title</label><br>
+	<input class="mt1 mb3 textinput" type="text" id="tx-title" name="title" oninput="generate_slug()"><br>
+	<label class="f5 inline-block" for="tx-slug">Slug</label><br>
+	<input class="mt1 mb3 textinput" type="text" id="tx-slug"  name="slug" oninput="slug_changed()">
+	<br>
+	<div class="button ma0 mt3 f5">PUBLISH POST</div><br><br>
+</section>
 
-<form action="upload.php" method="post">
-	<input multiple type="file" accept="image/*" name="files">
-</form>
+
 
 </body>
 </html>
