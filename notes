@@ -29,5 +29,5 @@ table staging
 
 id int(11) not null auto_increment primary key,
 path varchar(1024) not null,
-description text
+description text,
 active bool not null default 0

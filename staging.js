@@ -23,13 +23,42 @@ $(function(){
     	toggle_active($(this).parent());
     });
 
+    $("#bt-save").click(function (){
+        extract_data();
+    });
+
 });
 
 
-function extract_data(){
-
+function get_picture_data(){
+    return $(".thumbnail-div")
+        .map(function(){
+            return {
+                id: $(this).children(".info-id").html(),
+                active: $(this).children(".info-active").html() == 1;
+                description: $(this).children("textarea").val();
+            }
+        });
 }
 
-function extract_active_ids(){
-    
+function extract_data(){
+    // ignores the order, is only used for saving active/inactive and description data.
+
+    var data = JSON.stringify(get_picture_data());
+}
+
+function extract_order(){
+    // only takes in to account the active pictures.
+
+    var pic_ids = get_picture_data()
+        .filter(function(el) {
+            return el.active;
+        })
+        .map(function (el){
+            return el.id;
+        });
+
+    var data = JSON.stringify(pic_ids);
+
+    $.post()
 }

@@ -1,6 +1,6 @@
 <?php
 
-include_once("app/dbConn.php")
+include_once("app/dbConn.php");
 
 // $is_logged_in = ...
 
@@ -8,6 +8,9 @@ if(!$is_logged_in){
 	//die("user not logged in");
 	// add redirect instead
 }
+
+
+// check slug, returns bool if slug is ok as 0 or 1
 
 if(isset($_POST["check_slug"])){
 	$slug = $_POST["check_slug"];
@@ -29,13 +32,119 @@ if(isset($_POST["check_slug"])){
 	die();
 }
 
-if(isset($_POST["files"])){
+// save states
+
+if(isset($_POST["save_states"])){
+	$states = json_decode($_POST["save_states"]);
+
+	if($states == NULL){
+		die("invalid order format");
+	}
+
+	$db = new dbConn();
+
+	for($states as $state){
+		$db->query("UPDATE photos SET ...")
+	}
+}
+
+
+// publish post
+if(isset($_POST["post_title"]) && isset($_POST["slug"]) && isset($_POST["order"])){
+	// $_POST["order"] is a json array
+	$date = date("Y-m-d");
+	$combined_slug = $date . "-" . $_POST["slug"];
+	$title = $_POST["slug"];
+
+	$order = json_decode($_POST["order"]);
+	if($order == NULL){
+		die("invalid order format");
+	}
+	// need to reverse because pics are shown from newest to oldest
+	$order = array_reverse($order);
+
+
+	$db = new dbConn();
+
+	$db->query("INSERT INTO posts (title, slug) VALUES (?, ?)", $title, $combined_slug);
+
+	$post_id = $db->insert_id;
+
+	for($order as $id){
+		$db->query("
+			INSERT INTO photos (post_id, path, description) VALUES 
+			(
+				?, 
+				(SELECT path FROM staging WHERE id = ?), 
+				(SELECT description FROM staging WHERE id = ?)
+			)
+			", $post_id, $id, $id);
+	}
+}
+
+// upload pictures to staging area
+
+if(isset($_FILES["pictures"])){
 	// add photos to staging area
 
-	// ...
+	function generate_collision_avoiding_name($name){
+		if(preg_match('/^(.*)_(\d+).(\w+)$/', $name, $matches)){
+			$base = $matches[1][0];
+			$num = intval($matches[2][0]);
+			$ext = $matches[3][0];
+			return $base . '_' . (string)($num + 1) . '.' . $ext;
+		}elseif(preg_match('/^(.*).(\w+)$/', $name, $matches)){
+				$base = $matches[1][0];
+				$ext = $matches[2][0];
+				return $base . '_1.' . $ext;
+		}else{
+			return $name . "_1";
+		}
+	}
 
-	die();
+	function array_transpose($array) {
+	    if (!is_array($array)) return false;
+	    $return = array();
+	    foreach($array as $key => $value) {
+	        if (!is_array($value)) return $array;
+            foreach ($value as $key2 => $value2) {
+                $return[$key2][$key] = $value2;
+            }
+	    }
+	    return $return;
+	} 
+
+	function move_file($file){
+		$tmp_name = $file["tmp_name"];
+
+		$basename = $file["name"];
+
+		$target_dir = "staging_area/";
+
+		$target_filename = $basename;
+
+		while(file_exists($target_dir . $target_filename)){
+			$target_filename = generate_collision_avoiding_name($target_filename);
+		}
+
+		$target = $target_dir . $target_filename;
+
+		if(!move_uploaded_file($tmp_name, $target)){
+			die("error when moving file $basename");
+		}
+
+		$db = new dbConn();
+
+		$db->query("INSERT INTO staging (path, active) VALUES (?, 1)", $target);
+	}
+
+	$transposed_files = array_transpose($_FILES);
+
+	array_map("move_file", $transposed_files);
 }
+
+
+
 
 ?>
 
@@ -66,8 +175,8 @@ if(isset($_POST["files"])){
 <section class="mt4 mb8">
 	<h2 class="f3 mb2">Upload photos</h2>
 
-	<form action="upload.php" method="post">
-		<input multiple type="file" accept="image/*" name="files">
+	<form action="upload.php" method="post" enctype="multipart/form-data">
+		<input multiple="multiple" type="file" accept="image/*" name="pictures[]">
 		<br>
 		<input type="submit" name="ok" value="Upload" class="button ma0 mt3 f5">
 	</form>
@@ -83,6 +192,7 @@ if(isset($_POST["files"])){
 			<img src="img/ino.jpg" class="ma0 thumbnail-active">
 			<br>
 			<textarea name="description" id="tx-description" class="ma0 textinput"></textarea>
+			<div class="button">Delete</div>
 			<div class="info-id hidden">1</div>
 			<div class="info-active hidden">1</div>
 		</li>
@@ -90,12 +200,13 @@ if(isset($_POST["files"])){
 			<img src="img/ino2.jpg" class="ma0 thumbnail-inactive">
 			<br>
 			<textarea name="description" id="tx-description" class="ma0 textinput"></textarea>
+			<div class="button">Delete</div>
 			<div class="info-id hidden">2</div>
 			<div class="info-active hidden">0</div>
 		</li>
 	</ul>
 	<br>
-	<div class="button ma0 mt3 f5">Save descriptions and states</div><br><br>
+	<div class="button ma0 mt3 f5" id="bt-save">Save descriptions and states</div><br><br>
 </section>
 
 
