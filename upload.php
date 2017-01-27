@@ -1,6 +1,7 @@
 <?php
 
 include_once("app/dbConn.php");
+include_once("app/staging.php");
 
 session_start();
 
@@ -42,13 +43,11 @@ if(isset($_POST["check_slug"])){
 
 if(isset($_POST["delete_pic"])){
 	$id = intval($_POST["delete_pic"]);
-	if($id == 0){
-		die("invalid format");
+
+	$res = delete_staged_pic($id);
+	if(!$res){
+		die("Error");
 	}
-
-	$db = new dbConn();
-
-	$db->query("DELETE FROM staged WHERE id = ?", $id);
 
 	die();
 }
@@ -61,19 +60,9 @@ if(isset($_POST["save_states"])){
 	if($states == NULL){
 		die("invalid format");
 	}
+	save_states($states);
 
-	$db = new dbConn();
-
-	$index = 1;
-
-	for($states as $state){
-		$db->query("
-			UPDATE staging SET active = ?, description = ?, order = ? 
-			WHERE id = ?", 
-			$state["active"], $state["description"], $index, $state["id"]);
-
-		$index++;
-	}
+	die();
 }
 
 
@@ -87,7 +76,7 @@ if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 	// attempt to create directory where the pics will be moved
 	$path = "posts/" . $combined_slug;
 	if(!mkdir($path)){
-		die("error while creating dir.");
+		die("Error while creating dir ${path}.");
 	}
 
 	// create the entry in post table
@@ -104,7 +93,7 @@ if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 		$new_path = $path . $basename;
 
 		if(!rename($old_path, $new_path)){
-			echo "<h1>Left file ${basename} in ${old_path}, fix manually and adjust `path` value in `photos` table.</h1>";
+			echo "<h1 class='f1'>Error when moving file: Left file ${basename} in ${old_path}, fix manually and adjust `path` value in `photos` table.</h1>";
 			$new_path = $old_path;
 		}
 
@@ -120,81 +109,27 @@ if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 // upload pictures to staging area
 
 if(isset($_FILES["pictures"])){
-	// add photos to staging area
-
-	function generate_collision_avoiding_name($name){
-		if(preg_match('/^(.*)_(\d+).(\w+)$/', $name, $matches)){
-			$base = $matches[1][0];
-			$num = intval($matches[2][0]);
-			$ext = $matches[3][0];
-			return $base . '_' . (string)($num + 1) . '.' . $ext;
-		}elseif(preg_match('/^(.*).(\w+)$/', $name, $matches)){
-				$base = $matches[1][0];
-				$ext = $matches[2][0];
-				return $base . '_1.' . $ext;
-		}else{
-			return $name . "_1";
-		}
-	}
 
 	function array_transpose($array) {
-	    if (!is_array($array)) return false;
+		if (!is_array($array)) return false;
 	    $return = array();
 	    foreach($array as $key => $value) {
 	        if (!is_array($value)) return $array;
-            foreach ($value as $key2 => $value2) {
-                $return[$key2][$key] = $value2;
-            }
+	        foreach ($value as $key2 => $value2) {
+	            $return[$key2][$key] = $value2;
+	        }
 	    }
 	    return $return;
 	} 
 
-	function move_file($file){
-		$tmp_name = $file["tmp_name"];
-
-		$basename = $file["name"];
-
-		$target_dir = "staging_area/";
-
-		$target_filename = $basename;
-
-		while(file_exists($target_dir . $target_filename)){
-			$target_filename = generate_collision_avoiding_name($target_filename);
-		}
-
-		$target = $target_dir . $target_filename;
-
-		if(!move_uploaded_file($tmp_name, $target)){
-			die("error when moving file $basename");
-		}
-
-		$db = new dbConn();
-
-		$db->query("INSERT INTO staging (path, active) VALUES (?, 1)", $target);
-	}
-
 	$transposed_files = array_transpose($_FILES);
 
-	array_map("move_file", $transposed_files);
+	foreach($transposed_files as $file){
+		upload_file($file["tmp_name"], $file["name"]);
+	}
+
 }
 
-
-function generate_staged_item_html($pic){
-	$active_class = ($pic["active"] == 1) ? "thumbnail-active" : "thumbnail-inactive";
-
-	?>
-		<li class="ui-state-default inline-block ma1 mt2 thumbnail-div">
-			<img src=" <?php echo $pic["path"] ?> " class="ma0 <?php echo $active_class?>">
-			<br>
-			<textarea name="description" id="tx-description" class="ma0 textinput">
-				<?php echo br2nl(htmlspecialchars($pic["description"])) ?>
-			</textarea>
-			<div class="button bt-delete">Delete</div>
-			<div class="info-id hidden"><?php $pic["id"] ?></div>
-			<div class="info-active hidden"><?php $pic["active"] ?></div>
-		</li>
-	<?php
-}
 
 $db = new dbConn();
 

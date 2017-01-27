@@ -63,28 +63,32 @@ if(isset($_POST["delete_post"])){
 <body class="alignCenter">
 
 <script type="text/javascript">
-	$(function(){
-		$("#bt-delete-post").click(function(){
-			var post_id = $("#tx-post-id").val();
 
-			if(confirm("Do you really want to delete post " + post_id.toString() + "?")){
-				$.post("", {delete_post: post_id})
-					.done(function (data){
-						var ok = data == "1";
-						if(ok){
-							alert("Deleting was successful.");
-						}else{
-							alert("Post " + id.toString() + " does not exist.");
-						}
-					})
-					.fail(function(){
-						alert("Error when deleting post");
-					});
-			}else{
-				return;
-			}
-		})
+function delete_post(id) {
+	if(confirm("Do you really want to delete post " + post_id.toString() + "?")){
+		$.post("", {delete_post: post_id})
+			.done(function (data){
+				var ok = data == "1";
+				if(ok){
+					alert("Deleting was successful.");
+				}else{
+					alert("Post " + id.toString() + " does not exist.");
+				}
+			})
+			.fail(function(){
+				alert("Error when deleting post");
+			});
+	}else{
+		return;
+	}
+}
+
+$(function(){
+	$("#bt-delete-post").click(function(){
+		var post_id = $("#tx-post-id").val();
+		delete_post(post_id);
 	});
+});
 </script>
 
 <h1 class="f1 ma0 mt2 mb5">Delete Post</h1>
