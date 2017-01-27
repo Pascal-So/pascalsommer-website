@@ -84,20 +84,37 @@ if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 	$combined_slug = $date . "-" . $_POST["slug"];
 	$title = $_POST["slug"];
 
+	// attempt to create directory where the pics will be moved
+	$path = "posts/" . $combined_slug;
+	if(!mkdir($path)){
+		die("error while creating dir.");
+	}
+
+	// create the entry in post table
 	$db = new dbConn();
-
 	$db->query("INSERT INTO posts (title, slug) VALUES (?, ?)", $title, $combined_slug);
-
 	$post_id = $db->insert_id;
 
 	$pics = $db->query("SELECT path, description FROM staging WHERE active = 1 ORDER BY order DESC");
 
+	// move every pic, then add it to the pics table
 	for($pics as $pic){
+		$old_path = $pic["path"];
+		$basename = basename($old_path);
+		$new_path = $path . $basename;
+
+		if(!rename($old_path, $new_path)){
+			echo "<h1>Left file ${basename} in ${old_path}, fix manually and adjust `path` value in `photos` table.</h1>";
+			$new_path = $old_path;
+		}
+
 		$db->query("
 			INSERT INTO photos (post_id, path, description) VALUES 
 			(?,?,?)
-			", $post_id, $pic["path"], $pic["description"]);
+			", $post_id, $new_path, $pic["description"]);
 	}
+
+	$db->query("DELETE FROM order WHERE active = 1");
 }
 
 // upload pictures to staging area
