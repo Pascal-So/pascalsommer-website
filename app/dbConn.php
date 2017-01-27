@@ -18,6 +18,10 @@ class DBConn{
 		$this->db = $db;
 	}
 
+	function __destruct() {
+    	$this->db->close();
+   	}
+
 	private function refValues($arr){    
         $refs = array();
         foreach($arr as $key => $value)
@@ -86,6 +90,8 @@ class DBConn{
 		}
 
 		$res = $stm->get_result();
+
+		$stm->close();
 
 		//print_r($args);
 
