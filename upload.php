@@ -2,11 +2,17 @@
 
 include_once("app/dbConn.php");
 
-// $is_logged_in = ...
+session_start();
+
+function redirect($address){
+	header("Location: ".$address);
+	die();
+}
+
+$is_logged_in = isset($_SESSION["access_granted"]) && $_SESSION["access_granted"] == 1;
 
 if(!$is_logged_in){
-	//die("user not logged in");
-	// add redirect instead
+	redirect("login.php");
 }
 
 
