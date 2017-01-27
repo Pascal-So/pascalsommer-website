@@ -1,33 +1,34 @@
 
 
-table posts
+CREATE TABLE `posts` (
+	`id` int(11) NOT NULL auto_increment primary key,
+	`title` varchar(255) NOT NULL,
+	`slug` varchar(255) NOT NULL,
+	`created` timestamp NOT NULL,
+	UNIQUE KEY `slug` (`slug`)
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-id int(11) not null auto_increment primary key,
-title varchar(255) not null,
-slug varchar(255) not null,
-created timestamp not null
+CREATE TABLE `photos` (
+	`id` int(11) NOT NULL auto_increment primary key,
+	`post_id` int(11) NOT NULL references posts (id),
+	`path` varchar(1024) NOT NULL,
+	`description` text,
+	UNIQUE KEY `path` (`path`)
+)  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE `comments` (
+	`id` int(11) NOT NULL auto_increment primary key,
+	`photo_id` int(11) NOT NULL references photos (id),
+	`name` varchar(255) NOT NULL,
+	`comment` text NOT NULL,
+	`created` timestamp NOT NULL
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-table photos
-
-id int(11) not null auto_increment primary key,
-post_id int(11) not null references posts (id),
-path varchar(1024) not null,
-description text,
-
-
-table comments
-
-id int(11) not null auto_increment primary key,
-photo_id int(11) not null references photos (id),
-name varchar(255) not null,
-comment text not null,
-created timestamp not null
-
-
-table staging
-
-id int(11) not null auto_increment primary key,
-path varchar(1024) not null,
-description text,
-active bool not null default 0
+CREATE TABLE `staging` (
+	`id` int(11) NOT NULL auto_increment primary key,
+	`order` int(11) NOT NULL auto_increment,
+	`path` varchar(1024) NOT NULL,
+	`description` text,
+	`active` bool NOT NULL default 0
+	UNIQUE KEY `path` (`path`)
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
