@@ -58,10 +58,11 @@ function get_picture_data(){
         .map(function(){
             return {
                 id: $(this).children(".info-id").html(),
-                active: $(this).children(".info-active").html();
-                description: $(this).children("textarea").val();
-            }
-        });
+                active: $(this).children(".info-active").html(),
+                description: $(this).children("textarea").val()
+            };
+        })
+        .get();
 }
 
 function delete_pic(id, div){
@@ -80,4 +81,12 @@ function send_picture_data(){
     // ignores the order, is only used for saving active/inactive and description data.
 
     var data = JSON.stringify(get_picture_data());
+
+    $.post("", {save_states: data})
+        .done(function(ret){
+            console.log("saved data: " + data + "\nreturned:\n" + ret);
+        })
+        .fail(function(){
+            alert("Error while saving data, please reload page and try again.");
+        });
 }

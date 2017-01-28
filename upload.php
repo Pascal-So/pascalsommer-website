@@ -10,7 +10,7 @@ function redirect($address){
 	die();
 }
 
-$is_logged_in = isset($_SESSION["access_granted"]) && $_SESSION["access_granted"] == 1;
+$is_logged_in = true;// isset($_SESSION["access_granted"]) && $_SESSION["access_granted"] == 1;
 
 if(!$is_logged_in){
 	redirect("login.php");
@@ -55,7 +55,7 @@ if(isset($_POST["delete_pic"])){
 // save states
 
 if(isset($_POST["save_states"])){
-	$states = json_decode($_POST["save_states"]);
+	$states = json_decode($_POST["save_states"], true);
 
 	if($states == NULL){
 		die("invalid format");
@@ -84,10 +84,10 @@ if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 	$db->query("INSERT INTO posts (title, slug) VALUES (?, ?)", $title, $combined_slug);
 	$post_id = $db->insert_id;
 
-	$pics = $db->query("SELECT path, description FROM staging WHERE active = 1 ORDER BY order DESC");
+	$pics = $db->query("SELECT path, description FROM staging WHERE active = 1 ORDER BY ordering DESC");
 
 	// move every pic, then add it to the pics table
-	for($pics as $pic){
+	foreach($pics as $pic){
 		$old_path = $pic["path"];
 		$basename = basename($old_path);
 		$new_path = $path . $basename;
@@ -103,7 +103,7 @@ if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 			", $post_id, $new_path, $pic["description"]);
 	}
 
-	$db->query("DELETE FROM order WHERE active = 1");
+	$db->query("DELETE FROM staging WHERE active = 1");
 }
 
 // upload pictures to staging area
@@ -122,7 +122,7 @@ if(isset($_FILES["pictures"])){
 	    return $return;
 	} 
 
-	$transposed_files = array_transpose($_FILES);
+	$transposed_files = array_transpose($_FILES["pictures"]);
 
 	foreach($transposed_files as $file){
 		upload_file($file["tmp_name"], $file["name"]);
@@ -133,7 +133,7 @@ if(isset($_FILES["pictures"])){
 
 $db = new dbConn();
 
-$pics = $db -> query("SELECT id, path, description, active FROM staging ORDER BY order ASC");
+$pics = $db -> query("SELECT id, path, description, active FROM staging ORDER BY ordering ASC");
 
 ?>
 
@@ -178,7 +178,7 @@ $pics = $db -> query("SELECT id, path, description, active FROM staging ORDER BY
 
 	<ul id="sortable" class="ma0">
 		<?php
-		for($pics as $pic){
+		foreach($pics as $pic){
 			generate_staged_item_html($pic);
 		}
 		?>

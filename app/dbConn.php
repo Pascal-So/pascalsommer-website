@@ -68,7 +68,7 @@ class DBConn{
 			$getTypeLetter = function($a){
 				$type = gettype($a);
 				if(!in_array($type, array("string", "integer", "double"))){
-					die("QUERY ERROR: unknown type");
+					die("QUERY ERROR: unknown type: " . $type);
 				}
 				return substr($type, 0,1);
 			};

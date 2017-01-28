@@ -26,9 +26,8 @@ CREATE TABLE `comments` (
 
 CREATE TABLE `staging` (
 	`id` int(11) NOT NULL auto_increment primary key,
-	`order` int(11) NOT NULL auto_increment,
+	`ordering` int(11),
 	`path` varchar(1024) NOT NULL,
 	`description` text,
 	`active` bool NOT NULL default 0
-	UNIQUE KEY `path` (`path`)
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
