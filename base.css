@@ -98,6 +98,7 @@ a:hover{
 	text-transform: uppercase;
 }
 
+.ma05{margin: 5px;}
 .ma0{margin: 0px;}
 .ma1{margin: 10px;}
 .ma2{margin: 20px;}
@@ -106,6 +107,7 @@ a:hover{
 .ma5{margin: 50px;}
 
 
+.mt05{margin-top: 5px;}
 .mt0{margin-top: 0px;}
 .mt1{margin-top: 10px;}
 .mt2{margin-top: 20px;}
@@ -114,6 +116,7 @@ a:hover{
 .mt5{margin-top: 50px;}
 
 
+.mb05{margin-bottom: 5px;}
 .mb0{margin-bottom: 0px;}
 .mb1{margin-bottom: 10px;}
 .mb2{margin-bottom: 20px;}

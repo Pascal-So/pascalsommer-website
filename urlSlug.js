@@ -35,9 +35,10 @@ function check_slug(slug){
 
 	$.post("", {check_slug: slug})
 		.done(function(data){
+			//console.log("slug check returned data: ", data);
 			if(parseInt(data)){
 				// slug ok
-				//tx_slug.addClass("validinput");
+				tx_slug.addClass("validinput");
 			}else{
 				// slug not ok
 				tx_slug.addClass("invalidinput");

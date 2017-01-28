@@ -68,10 +68,12 @@ if(isset($_POST["save_states"])){
 
 // publish post
 if(isset($_POST["post_title"]) && isset($_POST["slug"])){
+
 	// $_POST["order"] is a json array
 	$date = date("Y-m-d");
 	$combined_slug = $date . "-" . $_POST["slug"];
-	$title = $_POST["slug"];
+	$title = $_POST["post_title"];
+
 
 	// attempt to create directory where the pics will be moved
 	$path = "posts/" . $combined_slug;
@@ -79,10 +81,14 @@ if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 		die("Error while creating dir ${path}.");
 	}
 
+	$path = $path . "/";
+
 	// create the entry in post table
 	$db = new dbConn();
 	$db->query("INSERT INTO posts (title, slug) VALUES (?, ?)", $title, $combined_slug);
-	$post_id = $db->insert_id;
+	$post_id = $db->get_insert_id();
+
+	echo "post id = " .$post_id . "\n";
 
 	$pics = $db->query("SELECT path, description FROM staging WHERE active = 1 ORDER BY ordering DESC");
 
@@ -97,6 +103,8 @@ if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 			$new_path = $old_path;
 		}
 
+
+
 		$db->query("
 			INSERT INTO photos (post_id, path, description) VALUES 
 			(?,?,?)
@@ -104,6 +112,8 @@ if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 	}
 
 	$db->query("DELETE FROM staging WHERE active = 1");
+
+	die();
 }
 
 // upload pictures to staging area
@@ -182,6 +192,8 @@ $pics = $db -> query("SELECT id, path, description, active FROM staging ORDER BY
 			generate_staged_item_html($pic);
 		}
 		?>
+
+		
 	</ul>
 	<br>
 	<div class="button ma0 mt3 f5" id="bt-save">Save descriptions and states</div><br><br>

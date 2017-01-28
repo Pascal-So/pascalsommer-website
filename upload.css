@@ -3,7 +3,7 @@
 	width: 250px;
 }
 .thumbnail-div:hover{
-	cursor: pointer;
+	cursor: move;
 }
 .thumbnail-div textarea{
 	height: 100px;
@@ -21,6 +21,14 @@
 
 .thumbnail-inactive{
 	border: 2px solid red;
+}
+
+.state-active{
+	background: #040;
+}
+
+.state-inactive{
+	background: #400;
 }
 
 .narrow{

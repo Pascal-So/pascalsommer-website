@@ -31,6 +31,11 @@ class DBConn{
 	    return $arr;
 	}
 
+	function get_insert_id(){
+		$id = $this->db->insert_id;
+		return $id;
+	}
+
 	function query(){
 		// query("select ? from usrs", "id");
 		

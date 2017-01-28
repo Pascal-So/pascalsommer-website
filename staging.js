@@ -1,25 +1,10 @@
 $(function(){
     $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
+    //$( "#sortable" ).disableSelection();
 
-    function toggle_active(element){ // element is the parent jquery element
-        var info_active_div = element.children(".info-active");
-        var current_state = parseInt(info_active_div.html());
-        var new_state = 1-current_state;
+    
 
-        var thumbnail = element.children("img");
-        if(new_state){
-            thumbnail.removeClass("thumbnail-inactive");
-            thumbnail.addClass("thumbnail-active");
-        }else{
-            thumbnail.removeClass("thumbnail-active");
-            thumbnail.addClass("thumbnail-inactive");
-        }
-
-        info_active_div.html((1-current_state).toString());
-    }
-
-    $(".thumbnail-div img").click(function(){
+    $(".bt-active").click(function(){
     	toggle_active($(this).parent());
     });
 
@@ -33,19 +18,39 @@ $(function(){
         send_picture_data();
     });
 
-    $("bt-publish").click(function(){
+    $("#bt-publish").click(function(){
         send_picture_data();
         publish();
     });
 
 });
 
+
+function toggle_active(element){ // `element` is the parent jquery element <li>
+    var info_active_div = element.children(".info-active");
+    var current_state = parseInt(info_active_div.html());
+    var new_state = 1-current_state;
+
+    var bt_state = element.children(".bt-active");
+    if(new_state){
+        bt_state.removeClass("state-inactive");
+        bt_state.addClass("state-active");
+    }else{
+        bt_state.removeClass("state-active");
+        bt_state.addClass("state-inactive");
+    }
+
+    info_active_div.html((1-current_state).toString());
+}
+
+
 function publish(){
-    var title = $("tx-title").val();
-    var slug = $("tx-slug").val();
+    var title = $("#tx-title").val();
+    var slug = $("#tx-slug").val();
 
     $.post("", {post_title: title, slug: slug})
-        .done(function(){
+        .done(function(data){
+            console.log(data);
             alert("upload successful");
         })
         .fail(function(){
@@ -84,7 +89,7 @@ function send_picture_data(){
 
     $.post("", {save_states: data})
         .done(function(ret){
-            console.log("saved data: " + data + "\nreturned:\n" + ret);
+            //console.log("saved data: " + data + "\nreturned:\n" + ret);
         })
         .fail(function(){
             alert("Error while saving data, please reload page and try again.");

@@ -4,8 +4,6 @@ include_once("dbConn.php");
 
 function save_states($states){
 
-	print_r($states);
-
 	$db = new dbConn();
 	
 	$index = 4;
@@ -94,18 +92,31 @@ function upload_file($tmp_name, $target_filename){
 
 
 function generate_staged_item_html($pic){
-	$active_class = ($pic["active"] == 1) ? "thumbnail-active" : "thumbnail-inactive";
+	$active_class = ($pic["active"] == 1) ? "state-active" : "state-inactive";
 
 	?>
 		<li class="ui-state-default inline-block ma1 mt2 thumbnail-div">
-			<img src=" <?php echo $pic["path"] ?> " class="ma0 <?php echo $active_class?>">
+			<img src=" <?php echo $pic["path"] ?> " class="ma0">
+			<div class="button bt-active  <?php echo $active_class ?>  mt05 mb05">Active state</div>
 			<br>
-			<textarea name="description" id="tx-description" class="ma0 textinput"><?php echo htmlspecialchars($pic["description"]) ?></textarea>
+			<textarea name="description" id="tx-description" class="ma0 textinput mb05"><?php echo htmlspecialchars($pic["description"]) ?></textarea>
 			<div class="button bt-delete">Delete</div>
 			<div class="info-id hidden"><?php echo $pic["id"] ?></div>
 			<div class="info-active hidden"><?php echo $pic["active"] ?></div>
 		</li>
 	<?php
+
+	/*
+	<li class="ui-state-default inline-block ma1 mt2 thumbnail-div">
+			<img src="img/ino.jpg" class="ma0">
+			<div class="button bt-active state-active mt05 mb05">Active state</div>
+			<br>
+			<textarea name="description" id="tx-description" class="ma0 textinput mb05"></textarea>
+			<div class="button bt-delete">Delete</div>
+			<div class="info-id hidden">1</div>
+			<div class="info-active hidden">1</div>
+		</li>
+		*/
 }
 
 ?>
