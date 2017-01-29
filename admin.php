@@ -35,7 +35,7 @@ if(isset($_POST["delete_post"])){
 
 	$pics_assoc = $db->query("SELECT id, path FROM photos WHERE post_id = ?", $id);
 
-	for($pics_assoc as $pic_assoc){
+	foreach($pics_assoc as $pic_assoc){
 		$pic_id = $pic_assoc["id"];
 		$pic_path = $pic_assoc["path"];
 
@@ -77,7 +77,7 @@ if(isset($_POST["delete_post"])){
 
 <script type="text/javascript">
 
-function delete_post(id) {
+function delete_post(post_id) {
 	if(confirm("Do you really want to delete post " + post_id.toString() + "?")){
 		$.post("", {delete_post: post_id})
 			.done(function (data){
@@ -85,7 +85,7 @@ function delete_post(id) {
 				if(ok){
 					alert("Deleting was successful.");
 				}else{
-					alert("Post " + id.toString() + " does not exist.");
+					alert(data);
 				}
 			})
 			.fail(function(){
@@ -107,7 +107,7 @@ $(function(){
 <h1 class="f1 ma0 mt2 mb5">Delete Post</h1>
 <br>
 <input class="textinput f5" type="number" name="post_id" id="tx-post-id"><br>
-<div class="button f5" id="bt-delete-post"></div>
+<div class="button f5 mt2" id="bt-delete-post">Delete</div>
 
 
 
