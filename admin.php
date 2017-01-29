@@ -24,20 +24,33 @@ if(isset($_POST["delete_post"])){
 
 	if($count[0]["count"] == 0){
 		// post doesn't exist;
-		die("0");
+		die("post doesn't exist");
 	}
+
+	$folder_path = $db->query("SELECT slug FROM posts WHERE id = ?", $id)[0]["slug"];
+
+
 
 	$db->query("DELETE FROM posts WHERE id = ?", $id);
 
-	$pic_ids_assoc = $db->query("SELECT id FROM photos WHERE post_id = ?", $id);
+	$pics_assoc = $db->query("SELECT id, path FROM photos WHERE post_id = ?", $id);
 
-	for($pic_ids_assoc as $pic_id_assoc){
-		$pic_id = $pic_id_assoc["id"];
+	for($pics_assoc as $pic_assoc){
+		$pic_id = $pic_assoc["id"];
+		$pic_path = $pic_assoc["path"];
+
+		unlink($pic_path); // delete pic from filesystem.
 
 		$db->query("DELETE FROM comments WHERE photo_id = ?", $pic_id);
 	}
 	
+
+
 	$db->query("DELETE FROM photos WHERE post_id = ?", $id);
+
+	if(!rmdir($folder_path)){
+		die("couldn't delete folder " . $folder_path); 
+	}
 
 	die("1"); // ok
 }
