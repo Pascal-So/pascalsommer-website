@@ -1,4 +1,4 @@
-
+-- the tables needed for the blog
 
 CREATE TABLE `posts` (
 	`id` int(11) NOT NULL auto_increment primary key,
@@ -30,4 +30,13 @@ CREATE TABLE `staging` (
 	`path` varchar(1024) NOT NULL,
 	`description` text,
 	`active` bool NOT NULL default 0
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- table needed for login system
+
+CREATE TABLE `users` (
+	`id` int(11) NOT NULL auto_increment primary key,
+	`username` varchar(128) NOT NULL,
+	`hash` varchar(512) NOT NULL,
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
