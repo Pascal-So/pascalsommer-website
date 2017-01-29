@@ -10,7 +10,7 @@ function redirect($address){
 	die();
 }
 
-$is_logged_in = true;// isset($_SESSION["access_granted"]) && $_SESSION["access_granted"] == 1;
+$is_logged_in = isset($_SESSION["access_granted"]) && $_SESSION["access_granted"] == 1;
 
 if(!$is_logged_in){
 	redirect("login.php");
@@ -26,9 +26,12 @@ if(isset($_POST["check_slug"])){
 
 	$db = new dbConn();
 
-	$res = $db->query("SELECT id FROM posts WHERE slug = ?", $combined_slug);
+	$res = $db->query("SELECT count(id) as count FROM posts WHERE slug = ?", $combined_slug);
 
-	if(count($res) > 0){
+	$nr = $res[0]["count"];
+
+
+	if($nr > 0){
 		// not ok
 		echo 0;
 	}else{

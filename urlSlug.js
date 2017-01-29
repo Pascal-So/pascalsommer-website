@@ -38,9 +38,11 @@ function check_slug(slug){
 			//console.log("slug check returned data: ", data);
 			if(parseInt(data)){
 				// slug ok
+				tx_slug.removeClass("invalidinput");
 				tx_slug.addClass("validinput");
 			}else{
 				// slug not ok
+				tx_slug.removeClass("validinput");
 				tx_slug.addClass("invalidinput");
 			}
 		})
