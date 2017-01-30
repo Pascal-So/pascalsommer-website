@@ -116,7 +116,7 @@ function generate_pic_html($pic, $prev_id, $next_id){
 	<?php } ?>
 
 	<!-- link to main menu -->
-	<a href="../#post_<?php echo $pic["post_id"] ?>" class="f5 ma2" style="position: relative; bottom: -3px;"> <img src="img/menu.png"></a>
+	<a href="./#post_<?php echo $pic["post_id"] ?>" class="f5 ma2" style="position: relative; bottom: -3px;"> <img src="img/menu.png"></a>
 
 	<?php if($next_id != -1){ // link to next pic ?>
 	<a href="?id=<?php echo $next_id ?>" class="f5 ma2"> <img src="img/rArrow.png"></a>

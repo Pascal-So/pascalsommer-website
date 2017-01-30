@@ -57,6 +57,8 @@ function check_and_send_comment(){
 			console.log(data);
 			console.log(comments_body);
 			comments_body.html(data);
+			tx_name.val("");
+			tx_comment.val("");
 		})
 		.fail(function(err){
 			//console.log(err);

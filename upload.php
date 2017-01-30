@@ -213,10 +213,14 @@ $pics = $db -> query("SELECT id, path, description, active FROM staging ORDER BY
 	<label class="f5 inline-block" for="tx-slug">Slug</label><br>
 	<input class="mt1 mb3 textinput" type="text" id="tx-slug"  name="slug" oninput="slug_changed()">
 	<br>
-	<div class="button ma0 mt3 f5" id="bt-publish">PUBLISH POST</div><br><br>
+	<div class="button ma0 mt3 f5" id="bt-publish">PUBLISH POST</div>
 </section>
 
+<hr>
 
+<a href="./"><div class="button ma0 mt3 f5">Return to blog</div></a>
+<br><br>
+<br><br>
 
 </body>
 </html>

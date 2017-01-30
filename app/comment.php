@@ -5,7 +5,7 @@ include_once('dbConn.php');
 function get_comments_array_by_photo($photo_id){
 	$db = new dbConn();
 
-	$res = $db->query("SELECT id, name, comment, DATE_FORMAT(created, '%d.%m.%Y') AS created FROM comments WHERE photo_id = ? ORDER BY created DESC", $photo_id);
+	$res = $db->query("SELECT id, name, comment, DATE_FORMAT(created, '%d.%m.%Y, %H:%i') AS created FROM comments WHERE photo_id = ? ORDER BY created DESC", $photo_id);
 
 	return $res;
 }
