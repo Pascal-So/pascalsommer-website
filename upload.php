@@ -21,12 +21,12 @@ if(!$is_logged_in){
 
 if(isset($_POST["check_slug"])){
 	$slug = $_POST["check_slug"];
-	$date = date("Y-m-d");
-	$combined_slug = $date . "-" . $slug;
+	//$date = date("Y-m-d");
+	//$combined_slug = $date . "-" . $slug;
 
 	$db = new dbConn();
 
-	$res = $db->query("SELECT count(id) as count FROM posts WHERE slug = ?", $combined_slug);
+	$res = $db->query("SELECT count(id) as count FROM posts WHERE slug = ?", $slug);
 
 	$nr = $res[0]["count"];
 
@@ -73,13 +73,14 @@ if(isset($_POST["save_states"])){
 if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 
 	// $_POST["order"] is a json array
-	$date = date("Y-m-d");
-	$combined_slug = $date . "-" . $_POST["slug"];
+	//$date = date("Y-m-d");
+	//$combined_slug = $date . "-" . $_POST["slug"];
+	$slug = $_POST["slug"];
 	$title = $_POST["post_title"];
 
 
 	// attempt to create directory where the pics will be moved
-	$path = "posts/" . $combined_slug;
+	$path = "posts/" . $slug;
 	if(!mkdir($path)){
 		die("Error while creating dir ${path}.");
 	}
@@ -88,7 +89,7 @@ if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 
 	// create the entry in post table
 	$db = new dbConn();
-	$db->query("INSERT INTO posts (title, slug) VALUES (?, ?)", $title, $combined_slug);
+	$db->query("INSERT INTO posts (title, slug) VALUES (?, ?)", $title, $slug);
 	$post_id = $db->get_insert_id();
 
 	echo "post id = " .$post_id . "\n";

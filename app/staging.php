@@ -82,7 +82,7 @@ function upload_file($tmp_name, $target_filename){
 
 
 	if(!move_uploaded_file($tmp_name, $target)){
-		die("error when moving file " . $target_filename);
+		die("Error: Could not move file ${target_filename} from ${tmp_name} to ${target}.");
 	}
 
 	$db = new dbConn();
