@@ -99,6 +99,7 @@ function load_up_to(id){
 	request(id, 0, function(data){
 		insert_post_data(true, data);
 		scrollTo($("#post_" + id.toString()));
+		$("#no_more_posts").remove();
 	});
 }
 
