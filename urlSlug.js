@@ -1,32 +1,14 @@
 function slugify(input){
-	var output = "";
-	var dash_in_last_char = true; // don't use dash as first char
 
-	input = input.toLowerCase();
+	return input
+		.toLowerCase()
+		.replace(/[^a-z0-9]/g, "-")
+		.replace(/-+/g, "-")
+		.replace(/^-/, "")
+		.replace(/-$/, "");
 
-	var len = input.length;
-	for(var i = 0; i < len; i++){
-		var c = input[i];
-		if(c.match(/[a-z0-9]/)){
-			dash_in_last_char = false;
-			output += c;
-		}else if(c == "'"){
-			// ignore this char, don't put line
-		}else{
-			if(!dash_in_last_char){
-				output += '-';
-			}
-			dash_in_last_char = true;
-		}
-	}
-
-	if(output.slice(-1) == '-'){
-		// remove trailing dash
-		output = output.slice(0, -1);
-	}
-
-	return output;
 }
+
 
 function check_slug(slug){
 	var tx_slug = $("#tx-slug");
@@ -63,7 +45,8 @@ function generate_slug(){
 
 function slug_changed() {
 	var tx_slug = $("#tx-slug");
-	var slug = tx_slug.val();
+	var slug = slugify(tx_slug.val());
+	tx_slug.val(slug);
 
 	check_slug(slug);
 }
