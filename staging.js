@@ -47,8 +47,13 @@ function toggle_active(element){ // `element` is the parent jquery element <li>
 function publish(){
     var title = $("#tx-title").val();
     var slug = $("#tx-slug").val();
+    var date = $("#tx-date").val();
 
-    $.post("", {post_title: title, slug: slug})
+    if(date.match(/^\s+$/)){
+        date = "";
+    }
+
+    $.post("", {post_title: title, slug: slug, date: date})
         .done(function(data){
             console.log(data);
             alert("upload successful");

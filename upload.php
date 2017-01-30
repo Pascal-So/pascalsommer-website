@@ -73,7 +73,11 @@ if(isset($_POST["save_states"])){
 if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 
 	// $_POST["order"] is a json array
-	//$date = date("Y-m-d");
+	$date = date("Y-m-d H-i-s");
+	if(isset($_POST["date"]) && $_POST["date"] != ""){
+		$date = $_POST["date"];
+	}
+
 	//$combined_slug = $date . "-" . $_POST["slug"];
 	$slug = $_POST["slug"];
 	$title = $_POST["post_title"];
@@ -89,7 +93,7 @@ if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 
 	// create the entry in post table
 	$db = new dbConn();
-	$db->query("INSERT INTO posts (title, slug) VALUES (?, ?)", $title, $slug);
+	$db->query("INSERT INTO posts (title, slug, created) VALUES (?, ?, ?)", $title, $slug, $date);
 	$post_id = $db->get_insert_id();
 
 	echo "post id = " .$post_id . "\n";
@@ -211,7 +215,9 @@ $pics = $db -> query("SELECT id, path, description, active FROM staging ORDER BY
 	<label class="f5 inline-block" for="tx-title">Title</label><br>
 	<input class="mt1 mb3 textinput" type="text" id="tx-title" name="title" oninput="generate_slug()"><br>
 	<label class="f5 inline-block" for="tx-slug">Slug</label><br>
-	<input class="mt1 mb3 textinput" type="text" id="tx-slug"  name="slug" oninput="slug_changed()">
+	<input class="mt1 mb3 textinput" type="text" id="tx-slug"  name="slug" oninput="slug_changed()"><br>
+	<label class="f5 inline-block" for="tx-date">Date</label><br>
+	<input class="mt1 mb3 textinput" type="text" id="tx-date"  name="date" oninput="">
 	<br>
 	<div class="button ma0 mt3 f5" id="bt-publish">PUBLISH POST</div>
 </section>
