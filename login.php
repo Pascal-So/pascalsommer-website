@@ -64,7 +64,7 @@ if(isset($_POST["crypt_usr"]) && isset($_POST["crypt_pwd"])){
 
 	<link rel="stylesheet" type="text/css" href="base.css">
 </head>
-<body>
+<body class="alignCenter">
 
 <script type="text/javascript">
 function onSend(){
