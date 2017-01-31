@@ -47,6 +47,49 @@
 	<script type="text/javascript">
 		$(function(){
 			scrollToLink($("#bt_comments"), $("#comments"));
+
+			// navigate to next / previous picture without affecting history
+			function goto_prev(){
+				var prev_link = $("#prev-link").attr("href");
+				window.location.replace(prev_link);
+			}
+			function goto_next(){
+				var next_link = $("#next-link").attr("href");
+				window.location.replace(next_link);
+			}
+
+			$(".pic").touchwipe({
+				wipeLeft: function() {goto_prev();},
+				wipeRight: function() {goto_next();}
+			});
+
+			$("#prev-link").click(function(e){
+				e.preventDefault();
+				goto_prev();
+			});
+
+			$("#next-link").click(function(e){
+				e.preventDefault();
+				goto_next();
+			});
+
+			// handle navigation by arrow keys
+			$(document).keydown(function(e) {
+				if( $("*:focus").is("textarea, input") ){
+					// don't detect arrow keys when typing input
+					return;
+				}
+			    switch(e.which) {
+			        case 37: // left
+			        	goto_prev();
+			        	break;
+			        case 39: // right
+			        	break;
+			        	goto_next();
+			        default: return; // exit this handler for other keys
+			    }
+			    e.preventDefault();
+			});
 		});
 	</script>
 </head>
