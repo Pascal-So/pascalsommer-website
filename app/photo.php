@@ -105,7 +105,7 @@ function get_next_photo_id($photo_id){
 
 function generate_pic_html($pic, $prev_id, $next_id){
 	?>
-	<h1 class="f4 ma2 uppercase"><?php echo htmlspecialchars($pic["post_title"]) ?></h1>
+	<a href="./<?php echo "#post_" . $pic["post_id"]?>"><h1 class="f4 ma2 uppercase"><?php echo htmlspecialchars($pic["post_title"]) ?></h1></a>
 
 	<img src="<?php echo $pic["path"] ?>" class="pic ma0 mb1" alt="<?php echo htmlspecialchars($pic["description"]) ?>" title="<?php echo htmlspecialchars($pic["description"]) ?>">
 

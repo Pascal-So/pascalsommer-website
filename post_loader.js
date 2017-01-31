@@ -23,11 +23,12 @@ function reset_post_request_state(){
 $(function(){
 	var content_area = $("#blog");
 
-	var matches = window.location.hash.match(/^#post_(\d+)_(\d+)$/);
+	var matches_photo = window.location.hash.match(/^#post_(\d+)_(\d+)$/);
+	var matches_post = window.location.hash.match(/^#post_(\d+)$/);
 
-	if(matches){ // specified post_id (e.g. blog/#post_35)
-		var id = parseInt(matches[1]);
-		var pic_id = parseInt(matches[2]);
+	if(matches_photo){ // specified photo_id (e.g. blog/#post_35_52)
+		var id = parseInt(matches_photo[1]);
+		var pic_id = parseInt(matches_photo[2]);
 
 		var post_element_id = window.location.hash;
 		if($( post_element_id ).length){ // requested post is already loaded
@@ -35,6 +36,16 @@ $(function(){
 		}else{ // need to load requested post
 			load_up_to(id, pic_id);
 		}
+	}else if(matches_post){ // specified post_id (e.g. blog/#post_35)
+		var id = parseInt(matches_post[1]);
+		
+		var post_element_id = window.location.hash;
+		if($( post_element_id ).length){ // requested post is already loaded
+			scrollTo($(post_element_id));
+		}else{ // need to load requested post
+			load_up_to(id, 0);
+		}
+
 	}else{ // did not specify post_id
 		//if(content_area.html() == ""){
 			load_initial(nr_posts_to_load);
@@ -99,7 +110,12 @@ function request(id, nr, callback){
 function load_up_to(id, pic_id){
 	request(id, 0, function(data){
 		insert_post_data(true, data);
-		setTimeout(function(){scrollTo($("#post_" + id.toString() + "_" + pic_id.toString()));}, 100);
+		var element_id = "#post_" + id.toString();
+		if(pic_id != 0){
+			element_id += "_" + pic_id.toString();
+		}
+
+		setTimeout(function(){scrollTo($(element_id));}, 100);
 		$("#no_more_posts").remove();
 	});
 }
