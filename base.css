@@ -129,6 +129,14 @@ a:hover{
 	background-color: rgba(0,0,0, 0.7);
 }
 
+.narrow{
+	max-width: 600px;
+}
+
+.center{
+	margin-left: auto;
+	margin-right: auto;
+}
 
 .textinput{
 	border: 1px solid #444;
@@ -171,6 +179,10 @@ a:hover{
 	}
 	.f5{
 		font-size: 16px;
+	}
+
+	.narrow{
+		max-width: 400px;
 	}
 }
 

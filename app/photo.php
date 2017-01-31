@@ -112,20 +112,20 @@ function generate_pic_html($pic, $prev_id, $next_id){
 	<br>
 
 	<?php if($prev_id != -1){ // link to previous pic ?>
-	<a href="?id=<?php echo $prev_id ?>" class="f5 ma2"> <img src="img/lArrow.png"></a>
+	<a href="?id=<?php echo $prev_id ?>" class="f5 ma2"> <img class="ma1" src="img/lArrow.png"></a>
 	<?php } ?>
 
 	<!-- link to main menu -->
-	<a href="./#post_<?php echo $pic["post_id"] ?>" class="f5 ma2" style="position: relative; bottom: -3px;"> <img src="img/menu.png"></a>
+	<a href="./<?php echo "#post_" . $pic["post_id"] . "_" . $pic["id"] ?>" class="f5 ma2" style="position: relative; bottom: -3px;"> <img class="ma1" src="img/menu.png"></a>
 
 	<?php if($next_id != -1){ // link to next pic ?>
-	<a href="?id=<?php echo $next_id ?>" class="f5 ma2"> <img src="img/rArrow.png"></a>
+	<a href="?id=<?php echo $next_id ?>" class="f5 ma2"> <img class="ma1" src="img/rArrow.png"></a>
 	<?php } ?>	
 
 	<span style="display: inline-block; width: 30px"></span>
-	<a href="#comments" class="f5 ma2" id="bt_comments"><?php echo $pic["nr_comments"] ?>&nbsp;<img src="img/cmt.png"></a>
+	<a href="#comments" class="f5 ma2" id="bt_comments"><?php echo $pic["nr_comments"] ?>&nbsp;<img class="ma1" src="img/cmt.png"></a>
 
-	<p class="f5 mt3 mb3"><?php echo nl2br(trim(htmlspecialchars($pic["description"]))) ?></p>
+	<p class="f5 mt3 mb3 narrow center"><?php echo nl2br(trim(htmlspecialchars($pic["description"]))) ?></p>
 
 	<?php
 }

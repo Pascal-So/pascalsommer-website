@@ -23,16 +23,17 @@ function reset_post_request_state(){
 $(function(){
 	var content_area = $("#blog");
 
-	var matches = window.location.hash.match(/^#post_(\d+)$/);
+	var matches = window.location.hash.match(/^#post_(\d+)_(\d+)$/);
 
 	if(matches){ // specified post_id (e.g. blog/#post_35)
 		var id = parseInt(matches[1]);
+		var pic_id = parseInt(matches[2]);
 
 		var post_element_id = window.location.hash;
 		if($( post_element_id ).length){ // requested post is already loaded
 			scrollTo($(post_element_id));
 		}else{ // need to load requested post
-			load_up_to(id);
+			load_up_to(id, pic_id);
 		}
 	}else{ // did not specify post_id
 		//if(content_area.html() == ""){
@@ -95,10 +96,10 @@ function request(id, nr, callback){
 	setTimeout(send_request, 40);
 }
 
-function load_up_to(id){
+function load_up_to(id, pic_id){
 	request(id, 0, function(data){
 		insert_post_data(true, data);
-		scrollTo($("#post_" + id.toString()));
+		scrollTo($("#post_" + id.toString() + "_" + pic_id.toString()));
 		$("#no_more_posts").remove();
 	});
 }

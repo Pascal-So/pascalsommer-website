@@ -53,14 +53,14 @@ function generate_post_html($post, $pics){
 	// $pics is array of $pic data with added 
 	// field "nr_comments" on each pic.
 ?>
-	<article id="post_<?php echo $post["id"] ?>">
+	<article id="<?php echo "post_" . $post["id"] ?>">
 		<h2 class="f2 ma0 mt2 mb1"><?php echo htmlspecialchars($post["title"]) ?></h2>
 		<h3 class="f5 ma0 mb3"><?php echo htmlspecialchars($post["created"]) ?></h3>
 
 		<?php foreach($pics as $pic){ ?>
 			<a href="view.php?id=<?php echo $pic["id"] ?>">
-				<img src="<?php echo $pic["path"] ?>" class="blogPic" alt="<?php echo htmlspecialchars($pic["description"]) ?>">
-				<p class="f5 mb3 mt0 alignRight"><?php echo $pic["nr_comments"] ?>&nbsp;<img src="img/cmt.png"></p>
+				<img id="<?php echo "post_" . $post["id"] . "_" . $pic["id"]?>" src="<?php echo $pic["path"] ?>" class="blogPic" alt="<?php echo htmlspecialchars($pic["description"]) ?>">
+				<p class="f5 mb3 mt05 alignRight"><?php echo $pic["nr_comments"] ?>&nbsp;<img src="img/cmt.png"></p>
 			</a>
 		<?php } ?>
 		

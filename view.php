@@ -29,7 +29,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<title>Pascal Sommer Photography</title>
 	<meta name="description" content="My personal Blog about Photography">
 	<meta name="keywords" content="Pascal Sommer,Photography,Photos">
@@ -42,6 +42,7 @@
 
 	<script type="text/javascript" src="main.js"></script>
 	<script type="text/javascript" src="comments.js"></script>
+	<script type="text/javascript" src="jquery.touchwipe.js"></script>
 
 	<script type="text/javascript">
 		$(function(){
