@@ -107,23 +107,23 @@ function generate_pic_html($pic, $prev_id, $next_id){
 	?>
 	<h1 class="f4 ma2 uppercase"><?php echo htmlspecialchars($pic["post_title"]) ?></h1>
 
-	<img src="<?php echo $pic["path"] ?>" class="pic ma0 mb1" alt="<?php echo htmlspecialchars($pic["description"]) ?>">
+	<img src="<?php echo $pic["path"] ?>" class="pic ma0 mb1" alt="<?php echo htmlspecialchars($pic["description"]) ?>" title="<?php echo htmlspecialchars($pic["description"]) ?>">
 
 	<br>
 
 	<?php if($prev_id != -1){ // link to previous pic ?>
-	<a id="prev-link" href="?id=<?php echo $prev_id ?>" class="f5 ma2"> <img class="ma1" src="img/lArrow.png"></a>
+	<a id="prev-link" href="?id=<?php echo $prev_id ?>" class="f5 pa2" title="previous photo"> <img class="" src="img/lArrow.png"></a>
 	<?php } ?>
 
 	<!-- link to main menu -->
-	<a href="./<?php echo "#post_" . $pic["post_id"] . "_" . $pic["id"] ?>" class="f5 ma2" style="position: relative; bottom: -3px;"> <img class="ma1" src="img/menu.png"></a>
+	<a href="./<?php echo "#post_" . $pic["post_id"] . "_" . $pic["id"] ?>" class="f5 pa2" style="position: relative; bottom: -3px;" title="return to overview"> <img class="" src="img/menu.png"></a>
 
 	<?php if($next_id != -1){ // link to next pic ?>
-	<a id="next-link" href="?id=<?php echo $next_id ?>" class="f5 ma2"> <img class="ma1" src="img/rArrow.png"></a>
+	<a id="next-link" href="?id=<?php echo $next_id ?>" class="f5 pa2" title="next photo"> <img class="" src="img/rArrow.png"></a>
 	<?php } ?>	
 
 	<span style="display: inline-block; width: 30px"></span>
-	<a href="#comments" class="f5 ma2" id="bt_comments"><?php echo $pic["nr_comments"] ?>&nbsp;<img class="ma1" src="img/cmt.png"></a>
+	<a href="#comments" class="f5 pa2" id="bt_comments" title="comments"><?php echo $pic["nr_comments"] ?>&nbsp;<img class="" src="img/cmt.png"></a>
 
 	<p class="f5 mt3 mb3 narrow center"><?php echo nl2br(trim(htmlspecialchars($pic["description"]))) ?></p>
 

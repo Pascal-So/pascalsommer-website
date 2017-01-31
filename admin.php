@@ -117,7 +117,15 @@ $(function(){
 	});
 
 	$(".bt-delete-comment").click(function(e){
-		var comment_id = parseInt($(e.target).children(".comment-id").html());
+		var target = $(e.target);
+
+		var author = target.children("h3").html();
+
+		if(!confirm("Do you really want to delete this comment by " + author + "?")){
+			return;
+		}
+
+		var comment_id = parseInt(target.children(".comment-id").html());
 
 		$.post("", {delete_comment: comment_id})
 			.done(function(data){

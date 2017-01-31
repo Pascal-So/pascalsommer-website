@@ -67,8 +67,8 @@
 			}
 
 			$(".pic").touchwipe({
-				wipeLeft: function() {goto_prev();},
-				wipeRight: function() {goto_next();}
+				wipeRight: function() {goto_prev();},
+				wipeLeft: function() {goto_next();}
 			});
 
 			$("#prev-link").click(function(e){
