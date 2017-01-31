@@ -99,7 +99,7 @@ function request(id, nr, callback){
 function load_up_to(id, pic_id){
 	request(id, 0, function(data){
 		insert_post_data(true, data);
-		scrollTo($("#post_" + id.toString() + "_" + pic_id.toString()));
+		setTimeout(function(){scrollTo($("#post_" + id.toString() + "_" + pic_id.toString()));}, 100);
 		$("#no_more_posts").remove();
 	});
 }

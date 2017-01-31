@@ -24,6 +24,17 @@ function post_comment($photo_id, $name, $comment){
 	$db->query("INSERT INTO comments (photo_id, name, comment) values (?, ?, ?)", $photo_id, $name, $comment);
 }
 
+function get_all_comments(){
+	$db = new dbConn();
+
+	return $db->query("
+		SELECT posts.title, comments.name, comments.comment, DATE_FORMAT(comments.created, '%d.%m.%Y, %H:%i') AS created
+		FROM comments
+		LEFT JOIN photos ON photos.id = comments.photo_id
+		LEFT JOIN posts ON posts.id = photos.post_id
+		ORDER BY comments.created DESC");
+}
+
 function generate_comment_html($comment){
 	?>
 	<div class="card ma1">

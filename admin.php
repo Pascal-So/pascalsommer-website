@@ -1,6 +1,7 @@
 <?php
 
 include_once("app/dbConn.php");
+include_once("app/comment.php");
 
 session_start();
 
@@ -55,6 +56,9 @@ if(isset($_POST["delete_post"])){
 	die("1"); // ok
 }
 
+
+$comments = get_all_comments();
+
 ?>
 
 
@@ -66,8 +70,9 @@ if(isset($_POST["delete_post"])){
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<title>Admin</title>
 
-	<link rel="stylesheet" href="base.css"/>
-	<link rel="stylesheet" href="upload.css"/>
+	<link rel="stylesheet" type="text/css" href="base.css"/>
+	<link rel="stylesheet" type="text/css" href="upload.css"/>
+	<link rel="stylesheet" type="text/css" href="view.css">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -104,13 +109,27 @@ $(function(){
 });
 </script>
 
-<h1 class="f1 ma0 mt2 mb5">Delete Post</h1>
+<h1 class="f1 ma0 mt1 mb5">Administration</h1>
+
+<h2 class="f2 ma0 mt2 mb5">Delete Post</h2>
 <br>
 <input class="textinput f5" type="number" name="post_id" id="tx-post-id"><br>
 <div class="button f5 mt2" id="bt-delete-post">Delete</div>
+<br>
+<br>
 
+<h2 class="f2 ma0 mt2 mb5">Comments</h2>
 
+<?php
+foreach($comments as $comment){
+	?>
+	<br>
+	<h3 class="f5 ma0">In <?php echo $comment["post"]?></h3>
 
+	<?php
+	generate_comment_html($comment);
+}
+?>
 
 </body>
 </html>
