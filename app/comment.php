@@ -28,7 +28,10 @@ function get_all_comments(){
 	$db = new dbConn();
 
 	return $db->query("
-		SELECT posts.title, comments.name, comments.comment, DATE_FORMAT(comments.created, '%d.%m.%Y, %H:%i') AS created
+		SELECT 
+			posts.title, photos.id, comments.id as comment_id, 
+			comments.name, comments.comment, 
+			DATE_FORMAT(comments.created, '%d.%m.%Y, %H:%i') AS created
 		FROM comments
 		LEFT JOIN photos ON photos.id = comments.photo_id
 		LEFT JOIN posts ON posts.id = photos.post_id

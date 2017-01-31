@@ -50,11 +50,19 @@
 
 			// navigate to next / previous picture without affecting history
 			function goto_prev(){
-				var prev_link = $("#prev-link").attr("href");
+				var prev_link_elem = $("#prev-link");
+				if(prev_link_elem.length == 0){
+					return;
+				}
+				var prev_link = prev_link_elem.attr("href");
 				window.location.replace(prev_link);
 			}
 			function goto_next(){
-				var next_link = $("#next-link").attr("href");
+				var next_link_elem = $("#next-link");
+				if(next_link_elem.length == 0){
+					return;
+				}
+				var next_link = next_link_elem.attr("href");
 				window.location.replace(next_link);
 			}
 
@@ -79,13 +87,14 @@
 					// don't detect arrow keys when typing input
 					return;
 				}
+				
 			    switch(e.which) {
 			        case 37: // left
 			        	goto_prev();
 			        	break;
 			        case 39: // right
-			        	break;
 			        	goto_next();
+			        	break;
 			        default: return; // exit this handler for other keys
 			    }
 			    e.preventDefault();

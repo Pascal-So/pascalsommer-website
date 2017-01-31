@@ -56,6 +56,15 @@ if(isset($_POST["delete_post"])){
 	die("1"); // ok
 }
 
+if(isset($_POST["delete_comment"])){
+	$id = intval($_POST["delete_comment"]);
+
+	$db = new dbConn();
+	$db->query("DELETE FROM comments WHERE id = ?", $id);
+
+	die();
+}
+
 
 $comments = get_all_comments();
 
@@ -90,11 +99,11 @@ function delete_post(post_id) {
 				if(ok){
 					alert("Deleting was successful.");
 				}else{
-					alert(data);
+					alert("Error: " + data);
 				}
 			})
 			.fail(function(){
-				alert("Error when deleting post");
+				alert("Networking error while deleting post");
 			});
 	}else{
 		return;
@@ -106,30 +115,55 @@ $(function(){
 		var post_id = $("#tx-post-id").val();
 		delete_post(post_id);
 	});
+
+	$(".bt-delete-comment").click(function(e){
+		var comment_id = parseInt($(e.target).children(".comment-id").html());
+
+		$.post("", {delete_comment: comment_id})
+			.done(function(data){
+				alert("Deleted commment. " + data);
+				location.reload();
+			})
+			.fail(function(){
+				alert("Netwokring error while deleting comment");
+			});
+	});
 });
 </script>
 
 <h1 class="f1 ma0 mt1 mb5">Administration</h1>
 
-<h2 class="f2 ma0 mt2 mb5">Delete Post</h2>
-<br>
-<input class="textinput f5" type="number" name="post_id" id="tx-post-id"><br>
-<div class="button f5 mt2" id="bt-delete-post">Delete</div>
-<br>
-<br>
 
 <h2 class="f2 ma0 mt2 mb5">Comments</h2>
 
 <?php
+
 foreach($comments as $comment){
 	?>
 	<br>
-	<h3 class="f5 ma0">In <?php echo $comment["post"]?></h3>
+	<h3 class="f5 ma0">In <a href="view.php?id=<?php echo $comment["id"]?>#comments"><?php echo $comment["title"]?></a>:</h3>
+
+	<?php generate_comment_html($comment);?>
+
+	<div class="button f5 mt0 mb4 bt-delete-comment"><div class="hidden comment-id"><?php echo $comment["comment_id"] ?></div>Delete</div>
 
 	<?php
-	generate_comment_html($comment);
 }
 ?>
+
+<br>
+<br>
+<h2 class="f2 ma0 mt5 mb5">Delete Post</h2>
+<br>
+<input class="textinput f5" type="number" name="post_id" id="tx-post-id"><br>
+<div class="button f5 mt2 mb8" id="bt-delete-post">Delete</div>
+
+<hr>
+
+<a href="./"><div class="button ma0 mt3 f5">Return to blog</div></a>
+<br><br>
+<br><br>
+
 
 </body>
 </html>
