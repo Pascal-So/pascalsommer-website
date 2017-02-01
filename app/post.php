@@ -2,6 +2,21 @@
 
 include("dbConn.php");
 
+function search_posts($pattern){
+	$db = new dbConn();
+
+	$search_string = "%${pattern}%";
+
+	$res = $db->query("
+		SELECT posts.id, posts.title FROM posts
+		LEFT JOIN photos ON photos.post_id = posts.id
+		WHERE posts.title LIKE ?
+			OR posts.slug LIKE ?
+			OR photos.description LIKE ?
+		", $search_string, $search_string, $search_string);
+
+	return $res;
+}
 
 function get_post_ids_before($nr, $id){
 	$db = new dbConn();

@@ -16,6 +16,12 @@ if(!$is_logged_in){
 	redirect("login.php");
 }
 
+if(isset($_POST["search_posts"])){
+	$data = search_posts($_POST["search_posts"]);
+
+	die(json_encode($data));
+}
+
 if(isset($_POST["delete_post"])){
 	$id = intval($_POST["delete_post"]);
 
