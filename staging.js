@@ -55,11 +55,10 @@ function publish(){
 
     $.post("", {post_title: title, slug: slug, date: date})
         .done(function(data){
-            console.log(data);
-            alert("upload successful");
+            alert(data);
         })
         .fail(function(){
-            alert("upload failed");
+            alert("upload failed due to networking errors");
         });
 }
 

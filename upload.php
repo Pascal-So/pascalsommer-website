@@ -17,26 +17,25 @@ if(!$is_logged_in){
 }
 
 
-// check slug, returns bool if slug is ok as 0 or 1
-
-if(isset($_POST["check_slug"])){
-	$slug = $_POST["check_slug"];
-	//$date = date("Y-m-d");
-	//$combined_slug = $date . "-" . $slug;
-
+function slug_ok($slug){
 	$db = new dbConn();
 
 	$res = $db->query("SELECT count(id) as count FROM posts WHERE slug = ?", $slug);
 
-	$nr = $res[0]["count"];
+	return $res[0]["count"] == 0;
+}
 
+// check slug, returns bool if slug is ok as 0 or 1
 
-	if($nr > 0){
-		// not ok
-		echo 0;
-	}else{
-		// slug is ok
+if(isset($_POST["check_slug"])){
+	$slug = $_POST["check_slug"];
+
+	$ok = slug_ok($slug);
+
+	if($ok){
 		echo 1;
+	}else{
+		echo 0;
 	}
 
 	die();
@@ -72,16 +71,17 @@ if(isset($_POST["save_states"])){
 // publish post
 if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 
-	// $_POST["order"] is a json array
 	$date = date("Y-m-d H-i-s");
 	if(isset($_POST["date"]) && $_POST["date"] != ""){
 		$date = $_POST["date"];
 	}
 
-	//$combined_slug = $date . "-" . $_POST["slug"];
 	$slug = $_POST["slug"];
 	$title = $_POST["post_title"];
 
+	if(!slug_ok($slug)){
+		die("Post with slug ${slug} already exists.");
+	}
 
 	// attempt to create directory where the pics will be moved
 	$path = "posts/" . $slug;
@@ -107,11 +107,9 @@ if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 		$new_path = $path . $basename;
 
 		if(!rename($old_path, $new_path)){
-			echo "<h1 class='f1'>Error when moving file: Left file ${basename} in ${old_path}, fix manually and adjust `path` value in `photos` table.</h1>";
+			echo "Error when moving file: Left file ${basename} in ${old_path}, fix manually and adjust `path` value in `photos` table.\n";
 			$new_path = $old_path;
 		}
-
-
 
 		$db->query("
 			INSERT INTO photos (post_id, path, description) VALUES 
@@ -121,7 +119,7 @@ if(isset($_POST["post_title"]) && isset($_POST["slug"])){
 
 	$db->query("DELETE FROM staging WHERE active = 1");
 
-	die();
+	die("Upload successful.");
 }
 
 // upload pictures to staging area
