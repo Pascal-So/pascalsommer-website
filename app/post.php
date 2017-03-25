@@ -74,7 +74,7 @@ function generate_post_html($post, $pics){
 
 		<?php foreach($pics as $pic){ ?>
 			<a href="view.php?id=<?php echo $pic["id"] ?>">
-				<img id="<?php echo "post_" . $post["id"] . "_" . $pic["id"]?>" src="<?php echo $pic["path"] ?>" class="blogPic" alt="<?php echo htmlspecialchars($pic["description"]) ?>">
+				<img id="<?php echo "post_" . $post["id"] . "_" . $pic["id"]?>" src="<?php echo $pic["path"] ?>" title="<?php echo htmlspecialchars($pic["description"]) ?>" class="blogPic" alt="<?php echo htmlspecialchars($pic["description"]) ?>">
 				<p class="f5 mb3 mt05 alignRight"><?php echo $pic["nr_comments"] ?>&nbsp;<img src="img/cmt.png"></p>
 			</a>
 		<?php } ?>
