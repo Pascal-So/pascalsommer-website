@@ -15,4 +15,9 @@ class Photo extends Model
     {
     	return $this->belongsTo('App\Post');
     }
+
+
+    // make all properties mass assignable
+
+    protected $guarded = [];
 }
