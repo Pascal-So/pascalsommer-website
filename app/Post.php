@@ -8,6 +8,6 @@ class Post extends Model
 {
     public function photos()
     {
-    	return $this->hasMany('App\Photo');
+    	return $this->hasMany(App\Photo::class);
     }
 }

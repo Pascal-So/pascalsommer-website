@@ -8,12 +8,12 @@ class Photo extends Model
 {
     public function comments()
     {
-    	return $this->hasMany('App\Comment');
+    	return $this->hasMany(App\Comment::class);
     }
 
     public function post()
     {
-    	return $this->belongsTo('App\Post');
+    	return $this->belongsTo(App\Post::class);
     }
 
 

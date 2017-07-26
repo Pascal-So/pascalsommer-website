@@ -8,6 +8,6 @@ class Comment extends Model
 {
     public function photo()
     {
-    	$this->belongsTo('App\Photo');
+    	$this->belongsTo(App\Photo::class);
     }
 }
