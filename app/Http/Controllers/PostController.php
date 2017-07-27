@@ -79,12 +79,13 @@ class PostController extends Controller
 
             if(!file_exists($staged_photo_path)){
                 // ERROR, file missing
-                Log::error("\"{$staged_photo_path}\" is mising while trying to create the post \"{$post_title}\". Aborting.");
+                $error_message = "\"{$staged_photo_path}\" is mising while trying to create the post \"{$post_title}\". Aborting.";
+                Log::error($error_message);
                 $all_files_exist = false;
                 
 
                 // Abort
-
+                
 
             }
         }
