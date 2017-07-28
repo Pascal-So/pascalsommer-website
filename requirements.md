@@ -93,7 +93,7 @@ These are sort of like use cases.
 
 * Main overview
 
-  Lists all published photos or results of filter if applied, grouped by posts. Contains link to [codelis.ch](http://codelis.ch/). Filter should be adjustable from this page.
+  Lists all published photos or results of filter if applied, grouped by posts. Contains link to [codelis.ch](http://codelis.ch/) and Twitter, Youtube, GitHub, Medium. Filter should be adjustable from this page.
 
   * About me
 
@@ -108,6 +108,12 @@ These are sort of like use cases.
   * Overview of all photos
 
     This would default to unpublished photos, but can show a list of all photos as well, with some filters
+
+    * Photo upload page
+
+    * Photo edit page
+
+      This will probably be the same as the single photo view for visitors, but without the comments, and with some visual indication that this isn't a live photo.
 
   * Tags create/edit/link page
 
@@ -138,3 +144,41 @@ The admin should see a delete button on the comments (will still be asked for co
 
 ### Visitor viewing page
 
+The tag and date filter should be easily visible, but not obstruct the 
+
+
+## Tables
+
+### Posts
+
+id
+
+title
+
+date, which can be in the future, to indicate, that the post will be published in the future automatically
+
+### Photos
+
+id
+
+post_id, this can be null to indicate that the photo is still in the staging area
+
+description
+
+path
+
+weight, to indicate the order in the post or staging area
+
+### Tags
+
+id
+
+parent_tag_id, can be null
+
+name
+
+### PhotosTags
+
+photo_id
+
+tag_id
