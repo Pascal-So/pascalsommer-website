@@ -19,7 +19,7 @@ class CreatePhotosTable extends Migration
 
             $table->string('path');
             $table->text('description');
-            $table->integer('post_id');
+            $table->integer('post_id')->nullable(); // can be null, means that the photo isn't live yet
             $table->integer('index_in_post'); // 1 to n, where 1 is the first photo in the post
         });
     }

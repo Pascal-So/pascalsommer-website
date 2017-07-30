@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->timestamps();
 
             $table->string('title');
-            $table->date('date');
+            $table->timestamp('publish_date');
         });
     }
 

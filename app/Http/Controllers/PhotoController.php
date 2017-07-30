@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class PhotoController extends Controller
 {
+
+    public function __construct()
+    {
+        // everything except viewing a photo is admin only
+        $this->middleware('auth', ['except' => 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,6 +53,7 @@ class PhotoController extends Controller
      */
     public function show(Photo $photo)
     {
+        
         return view('photos/show');
     }
 

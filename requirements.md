@@ -71,7 +71,7 @@ These are sort of like use cases.
 
 * Filter photos by tag or timerange
 
-  If possible allow user to filter for the intersection of multiple tags as well. Also, filtering for a tag should contain results with the subtags. Maybe suggest parent tags while filtering
+  If possible allow user to filter for the intersection of multiple tags as well. Also, filtering for a tag should contain results with the subtags.
 
 
 ## Non-functional requirements
@@ -93,7 +93,7 @@ These are sort of like use cases.
 
 * Main overview
 
-  Lists all published photos or results of filter if applied, grouped by posts. Contains link to [codelis.ch](http://codelis.ch/) and Twitter, Youtube, GitHub, Medium. Filter should be adjustable from this page.
+  Lists all published photos or results of filter if applied, grouped by posts. Contains link to [codelis.ch](http://codelis.ch/) and Twitter, Youtube, GitHub, Medium. Filter should be adjustable from this page. All tags as well as an archive overview should be listed somewhere on here.
 
   * About me
 
@@ -144,7 +144,7 @@ The admin should see a delete button on the comments (will still be asked for co
 
 ### Visitor viewing page
 
-The tag and date filter should be easily visible, but not obstruct the 
+The tag and date filter should be easily visible, but not obstruct the photos on the main page
 
 
 ## Tables
@@ -177,7 +177,7 @@ parent_tag_id, can be null
 
 name
 
-### PhotosTags
+### PhotoTag
 
 photo_id
 

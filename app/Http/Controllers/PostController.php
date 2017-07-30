@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Photo;
-use App\StagedPhoto;
 
 class PostController extends Controller
 {
@@ -42,53 +41,14 @@ class PostController extends Controller
         // validate request
 
         $this->validate($request, [
-            'title' => 'required|unique:posts|max:255',
-            'staged_photo_ids' => 'required',
-            'date' => 'required' // or maybe not
+            'post_title' => 'required|unique:posts|max:255',
+            'photo_ids' => 'required',
         ]);
 
 
-        // need to get the information from the request somehow, worry about that later..
-
-        $staged_photo_ids = [];
-        $post_title = '';
-        $post_date = '';
-
-
-        // get photo paths from config
-
-        $photos_path = Config::get('constants.paths.photos');
-        $staged_path = Config::get('constants.paths.staged');
-
-
-
-        // Load StagedPhotos from database..
-
-        $staged_photos = StagedPhoto::find($staged_photo_ids);
-
-        // .. and order them properly
-
-        $staged_photos = reorder_photos_by_index_array($staged_photos, $staged_photo_ids);
-
-
-        // Check if all the files exist before we move anything, because that's easier than
-        // setting up some kid of rollback
-
-        foreach ($staged_photos as $staged_photo) {
-            $staged_photo_path = $staged_path . $staged_photo->path;
-
-            if(!file_exists($staged_photo_path)){
-                // ERROR, file missing
-                $error_message = "\"{$staged_photo_path}\" is mising while trying to create the post \"{$post_title}\". Aborting.";
-                Log::error($error_message);
-                $all_files_exist = false;
-                
-
-                // Abort
-                
-
-            }
-        }
+        $photo_ids = $request->input('photo_ids');
+        $post_title = $request->input('post_title');
+        $publish_date = $request->input('publish_date', Carbon::now('UTC'));
 
 
         // create the model for the posts table
@@ -96,7 +56,7 @@ class PostController extends Controller
         $post = new Post;
 
         $post->title = $post_title;
-        $post->date = $post_date;
+        $post->publish_date = $publish_date;
 
         $post->save();
 
@@ -105,39 +65,23 @@ class PostController extends Controller
         $post_id = $post->id;
 
 
-        // All files are where they are supposed to be, we can safely start moving them and
-        // creating the entries in the Photos table
+        // Associate the photos with the post and set the order within the post
 
         $current_index_in_post = 1;
 
-        foreach ($staged_photos as $staged_photo) {
-
-            // move the photo to the photos folder
-
-            $old_path = $staged_path . $staged_photo->path;
-            $new_path = $photos_path . $staged_photo->path;
-
-            rename($old_path, $new_path);
+        foreach ($photo_ids as $photo_id) {
 
 
-            // create the entry to the Photos table
+            $photo = Photo::find($photo_id);
 
-            $photo = new Photo;
-
-            $photo->path = $staged_photo->path;
-            $photo->description = $staged_photo->description;
-            $photo->post_id = $post_id;
             $photo->index_in_post = $current_index_in_post;
+            $photo->post_id = $post_id;
 
             $photo->save();
 
             $current_index_in_post++;
         }
 
-
-        // delete the entries from the StagedPhotos table
-
-        StagedPhoto::destroy($staged_photo_ids);
 
         Log::info("Successfully created posts with title \"{$post_title}\" and id {$post_id}.");
 
