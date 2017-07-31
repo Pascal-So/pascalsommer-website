@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Photo;
+use App\Tag;
 use Illuminate\Http\Request;
 
-class PhotoController extends Controller
+class TagController extends Controller
 {
 
     public function __construct()
     {
-        // everything except viewing a photo is admin only
-        //$this->middleware('auth', ['except' => 'show']);
+        $this->middleware('auth');
     }
 
     /**
@@ -31,7 +30,7 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        return view('photos/create');
+        //
     }
 
     /**
@@ -42,45 +41,27 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-
-        if($request->hasFile('photos'))
-        {
-            foreach($request->file('photos') as $photo)
-            {
-                // store the file to the public directory
-
-                $filename = $photo->store('img/photos', 'public');
-
-                // create the entry to the database
-
-                $p = new Photo;
-                $p->path = $filename;
-
-                $p->save();
-            }
-        }
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Photo  $photo
+     * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function show(Photo $photo)
+    public function show(Tag $tag)
     {
-        
-        return view('photos/show');
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Photo  $photo
+     * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Photo $photo)
+    public function edit(Tag $tag)
     {
         //
     }
@@ -89,10 +70,10 @@ class PhotoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Photo  $photo
+     * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Photo $photo)
+    public function update(Request $request, Tag $tag)
     {
         //
     }
@@ -100,10 +81,10 @@ class PhotoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Photo  $photo
+     * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Photo $photo)
+    public function destroy(Tag $tag)
     {
         //
     }

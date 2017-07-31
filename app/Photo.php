@@ -22,6 +22,11 @@ class Photo extends Model
     	return $this->belongsTo(Post::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
 
     /**
      * Is this photo live, as in visible to the public?
@@ -33,6 +38,8 @@ class Photo extends Model
         {
             return false;
         }
+
+        // photo isn't staged, must therefore have a post associated
 
         return $this->post->isPublished();
     }
@@ -48,6 +55,8 @@ class Photo extends Model
         {
             return false;
         }
+
+        // photo isn't staged, must therefore have a post associated
 
         return !$this->post->isPublished();
     }

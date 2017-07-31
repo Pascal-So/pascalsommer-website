@@ -11,10 +11,12 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@SommerPascal">
 	<meta name="twitter:creator" content="@SommerPascal">
-	<meta name="twitter:title" content="Pascal Sommer Photography">
+	<meta name="twitter:title" content="@yield('title', 'Pascal Sommer Photography')">
 	<meta name="twitter:description" content="My personal Photography Blog. Mostly landscapes, animals and people, sometimes even portrait photography.">
-	<meta name="twitter:image" content="http://pascalsommer.ch/photography/img/PascalSommerLondon.jpg">
+	<meta name="twitter:image" content="@yield('twitter_image', 'http://pascalsommer.ch/photography/img/PascalSommerLondon.jpg')">
 
+
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 
 	<title>
 		@yield('title', 'Pascal Sommer Photography')
