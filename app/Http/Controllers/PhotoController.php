@@ -21,7 +21,9 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        $photos = Photo::get();
+
+        return view('photos/index', compact('photos'));
     }
 
     /**
@@ -59,6 +61,8 @@ class PhotoController extends Controller
                 $p->save();
             }
         }
+
+        return redirect('/');
 
     }
 
