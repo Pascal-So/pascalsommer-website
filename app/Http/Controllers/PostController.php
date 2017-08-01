@@ -41,13 +41,13 @@ class PostController extends Controller
         // validate request
 
         $this->validate($request, [
-            'post_title' => 'required|unique:posts|max:255',
+            'title' => 'required|unique:posts|max:255',
             'photo_ids' => 'required',
         ]);
 
 
         $photo_ids = $request->input('photo_ids');
-        $post_title = $request->input('post_title');
+        $post_title = $request->input('title');
         $publish_date = $request->input('publish_date', Carbon::now('UTC'));
 
 
@@ -129,7 +129,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $this->deleteCompletely();
+        Log::info("Deleted post with title \"{$post->title}\" and id {$post->id}.");
+        return redirect('/');
     }
 
 

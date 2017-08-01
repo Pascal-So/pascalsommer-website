@@ -21,7 +21,7 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        $photos = Photo::get();
+        $photos = Photo::staged()->ordered()->get();
 
         return view('photos/index', compact('photos'));
     }
@@ -75,18 +75,7 @@ class PhotoController extends Controller
     public function show(Photo $photo)
     {
         
-        return view('photos/show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Photo  $photo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Photo $photo)
-    {
-        //
+        return view('photos.show');
     }
 
     /**
@@ -109,6 +98,6 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        //
+        $photo->deleteCompletely();
     }
 }

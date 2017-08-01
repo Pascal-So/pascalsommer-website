@@ -50,4 +50,17 @@ class Post extends Model
     {
     	return $query->where('publish_date', '<=', $this->currentTime())->latest('publish_date');
     }
+
+    /**
+     * Delete the post and all its photos with the image files on the filesystem.
+     *
+     */
+    public function deleteCompletely()
+    {
+        foreach($this->photos as $photo)
+        {
+            $photo->deleteCompletely();
+        }
+        $this->delete();
+    }
 }

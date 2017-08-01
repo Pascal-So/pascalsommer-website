@@ -2,43 +2,49 @@
 
 @section("content")
 
+<div class="container">
 
+		<h1>Staged Photos</h1>
 
+		<ul class="list-group">
+			@foreach($photos as $photo)
 
-	<ul class="list-group">
-		@foreach($photos as $photo)
+				<li class="list-group-item row">
+					<div class="col-sm-4 form-group">
+						<a href="{{ asset($photo->path) }}"><img src="{{ asset($photo->path ) }}" alt="{{ $photo->description }} - Photo by Pascal Sommer" class="img-responsive img-rounded"</a>
+					</div>
 
-			<li class="list-group-item row">
-				<div class="col-md-4">
-					<a href="{{ asset($photo->path) }}"><img src="{{ asset($photo->path ) }}" alt="{{ $photo->description }} - Photo by Pascal Sommer" class="img-responsive img-rounded"></a>
-				</div>
+					<div class="col-sm-8">
+						<div class="card-block">
 
-				<div class="col-md-8 px-3">
-					<div class="card-block px-3">
-						<h4 class="card-title"><a href="{{ asset($photo->path) }}">{{ $photo->path }}</a></h4>
+							<form action="{{ action('PhotoController@update', $photo) }}" method='post'>
+								{{ csrf_field() }}
 
-						<p class="card-text">
-							@if($photo->description == "")
-								<em>No description given</em>
-							@else
-								{{ $photo->description }}
-							@endif
+								<div class="form-group">
+									<textarea class="form-control" rows="4">{{ $photo->description }}</textarea>
+								</div>
 
-						</p>
-
-						
-						<div class="btn-group">
-							<a href="#" class="btn btn-default">Move Up</a>
-							<a href="#" class="btn btn-default">Move Down</a>
-							<a href="{{ url('/photos/' . $photo->id . '/edit') }}" class="btn btn-primary">Edit</a>
+								<div class="form-group btn-toolbar">
+									<div class="btn-group">
+										<button type="submit" class="btn btn-primary">Save</button>
+									</div>
+									<div class="btn-group">
+										<a href="{{ action('PhotoController@destroy', $photo) }}" class="btn btn-danger">Delete</a>
+									</div>
+									<div class="btn-group">
+										<a href="#" class="btn btn-default">Up</a>
+										<a href="#" class="btn btn-default">Down</a>
+									</div>
+								</div>
+							</form>
+							
 						</div>
 					</div>
-	          </div>
-				{{-- <p class="text-right col-md-4">Some text here.. {{ $photo->description }}</p> --}}
+				</li>
 
-			</ul>
+			@endforeach
+		</ul>
 
-		@endforeach
-	</ul>
+	</div>
 
 @endsection

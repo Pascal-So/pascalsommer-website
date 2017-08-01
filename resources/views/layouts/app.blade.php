@@ -24,6 +24,8 @@
 </head>
 <body>
 
+@include('includes.adminbar')
+
 @yield('content')
 
 </body>

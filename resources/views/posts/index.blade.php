@@ -1,9 +1,16 @@
 @extends('layouts.app')
 
-@include('includes.header')
+
 
 @section('content')
+	<div class="container">
 
-	asdfa
+		@include('includes.header')
+
+		<a href="/login">login</a><br>
+		<a href="/logout">logout</a><br>
+		<a href="/photos">photos</a><br>
+		<a href="/comments">comments</a><br>
+	</div>
 
 @endsection

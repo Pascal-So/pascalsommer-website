@@ -63,11 +63,7 @@ These are sort of like use cases.
 
 * Post a comment on a photo
 
-  Maybe link to gravatar. This would require users to leave their email though, but it can be an optional field.
-
 * View comments and tags of a photo
-
-  Normal user shouldn't see email addresses of other users.
 
 * Filter photos by tag or timerange
 
@@ -152,33 +148,31 @@ The tag and date filter should be easily visible, but not obstruct the photos on
 ### Posts
 
 id
-
 title
-
 date, which can be in the future, to indicate, that the post will be published in the future automatically
 
 ### Photos
 
 id
-
 post_id, this can be null to indicate that the photo is still in the staging area
-
 description
-
 path
-
 weight, to indicate the order in the post or staging area
 
 ### Tags
 
 id
-
 parent_tag_id, can be null
-
 name
 
 ### PhotoTag
 
 photo_id
-
 tag_id
+
+### Comments
+
+id
+name
+content
+photo_id
