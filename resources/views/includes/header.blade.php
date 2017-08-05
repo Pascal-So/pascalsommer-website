@@ -1,4 +1,4 @@
-<header class="text-center jumbotron">
+<header class="text-center">
 	<h1 class="">Pascal Sommer<br>Photography</h1>
 	<h2 class=""><a href="#blog" id="link-blog" class="link">Blog</a></h2>
 	<h2 class=""><a href="about.html" class="link">About</a></h2>

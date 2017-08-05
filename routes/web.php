@@ -22,7 +22,7 @@ Route::get('posts/{post}/edit', 'PostController@edit');
 
 Route::get('photos', 'PhotoController@index');
 Route::post('photos', 'PhotoController@store');
-Route::get('photos/create', 'PhotoController@create');
+Route::get('photos/upload', 'PhotoController@upload');
 Route::get('photos/{photo}', 'PhotoController@show');
 Route::put('photos/{photo}', 'PhotoController@update');
 Route::delete('photos/{photo}', 'PhotoController@destroy');
@@ -46,5 +46,5 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 
 Route::get('admin', function(){
-	return "not implemented yet";
+	return view('admin.admin');
 })->name('admin');

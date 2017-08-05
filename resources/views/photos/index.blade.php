@@ -11,7 +11,7 @@
 
 				<li class="list-group-item row">
 					<div class="col-sm-4 form-group">
-						<a href="{{ asset($photo->path) }}"><img src="{{ asset($photo->path ) }}" alt="{{ $photo->description }} - Photo by Pascal Sommer" class="img-responsive img-rounded"</a>
+						<a href="{{ asset($photo->path) }}"><img src="{{ asset($photo->path ) }}" alt="{{ $photo->description }} - Photo by Pascal Sommer" class="img-responsive img-rounded"></a>
 					</div>
 
 					<div class="col-sm-8">
@@ -32,8 +32,8 @@
 										<a href="{{ action('PhotoController@destroy', $photo) }}" class="btn btn-danger">Delete</a>
 									</div>
 									<div class="btn-group">
-										<a href="#" class="btn btn-default">Up</a>
-										<a href="#" class="btn btn-default">Down</a>
+										<a href="#" class="btn btn-default" @if($loop->first) disabled="disabled" @endif >Up</a>
+										<a href="#" class="btn btn-default" @if($loop->last) disabled="disabled" @endif >Down</a>
 									</div>
 								</div>
 							</form>

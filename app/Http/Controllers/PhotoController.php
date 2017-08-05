@@ -27,13 +27,13 @@ class PhotoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for uploading photos.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function upload()
     {
-        return view('photos/create');
+        return view('photos/upload');
     }
 
     /**
