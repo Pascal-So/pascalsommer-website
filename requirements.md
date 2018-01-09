@@ -13,9 +13,8 @@ Site needs an admin account. Everyone else doesn't log in, posting comments does
 The focus is on photos.
 A photo can have a description and multiple comments.
 Multiple photos are grouped to a post.
-The photos don't have a title and publish date associated with them, only the post does.
+The photos don't have a title associated with them, only the post does.
 Photos can have tags associated with them. (many to many)
-Tags can be subsets of other tags, the graph of tags forms a forest.
 
 ## Functionalities
 
@@ -34,8 +33,6 @@ These are sort of like use cases.
 
 * Delete comments
 
-* Edit own comments
-
 * Receive a notification when a new comment is posted
 
 * Edit post
@@ -50,7 +47,7 @@ These are sort of like use cases.
 
 * Edit tag list
 
-* Add/remove parent relations between tags
+* Change name of a tag, keeping the existing relations
 
 
 ### Accessible to everyone
@@ -65,9 +62,9 @@ These are sort of like use cases.
 
 * View comments and tags of a photo
 
-* Filter photos by tag or timerange
+* Filter photos by tag
 
-  If possible allow user to filter for the intersection of multiple tags as well. Also, filtering for a tag should contain results with the subtags.
+  If possible allow user to filter for the intersection of multiple tags as well.
 
 
 ## Non-functional requirements
@@ -95,7 +92,7 @@ These are sort of like use cases.
 
   * Single photo view
 
-    Comments if possible not in a subpage, but tucked away at the bottom
+    Comments if possible not in a subpage, but below the photo
 
 * Admin area
 

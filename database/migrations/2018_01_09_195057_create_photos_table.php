@@ -15,12 +15,10 @@ class CreatePhotosTable extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('post_id');
+            $table->text('path');
+            $table->text('description');
             $table->timestamps();
-
-            $table->string('path');
-            $table->text('description')->nullable();
-            $table->integer('post_id')->nullable(); // can be null, means that the photo isn't live yet
-            $table->integer('index_in_post')->nullable(); // 1 to n, where 1 is the first photo in the post
         });
     }
 
