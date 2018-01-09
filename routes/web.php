@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PostController@index')
+	->name('home');
 
 Route::get('/photo/{photo}', 'PhotoController@view')
 	->name('viewphoto');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
