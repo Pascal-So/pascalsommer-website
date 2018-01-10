@@ -1,16 +1,18 @@
 body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  background-color: #171719;
+  background-color: #19191d;
   text-align: center;
   font-family: 'PT Mono', 'Courier New', Courier, monospace;
   font-weight: 400;
   color: #eee;
+  padding: 0;
+  margin: 0;
 }
 
 h1 {
-  font-size: 35px;
-  margin: 45px 0 30px 0;
+  font-size: 50px;
+  margin: 130px 0 30px 0;
 }
 
 h1,
@@ -21,6 +23,14 @@ h3 {
 
 a {
   outline: none;
+}
+
+a:visited {
+  color: #ccc;
+}
+
+ul {
+  list-style: none;
 }
 
 footer {
@@ -39,13 +49,13 @@ footer {
 }
 
 .photolink {
-  border: 2px solid #171719;
+  border: 2px solid #19191d;
   display: inline-block;
   margin: 5px 0 50px;
 }
 
 .photolink:hover {
-  border: 2px solid #eee;
+  border: 2px solid #b3b3b3;
 }
 
 .photo-large {
@@ -84,5 +94,61 @@ footer {
 .arrow-icon-small-placeholder {
   height: 10px;
   display: inline-block;
+}
+
+.alignright {
+  text-align: right;
+}
+
+.admin-nav {
+  background-color: #193d34;
+  padding: 15px;
+}
+
+.comment-form {
+  vertical-align: text-top;
+}
+
+.comment-form input,
+.comment-form textarea,
+.comment-form button {
+  border: 1px solid #19191d;
+  vertical-align: top;
+  border-left: 1px solid #b3b3b3;
+  border-bottom: 1px solid #b3b3b3;
+  background-color: transparent;
+  color: #eee;
+  padding: 5px;
+}
+
+.comment-form button {
+  padding: 10px 15px;
+  -webkit-transition: border-color 0.1s linear;
+  transition: border-color 0.1s linear;
+}
+
+.comment-form button:hover,
+.comment button:hover {
+  border: 1px solid #b3b3b3;
+  background-color: #202025;
+}
+
+.comment {
+  border-left: 1px solid #b3b3b3;
+  border-bottom: 1px solid #b3b3b3;
+  width: 400px;
+  margin: 20px 0;
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+}
+
+.comment button {
+  border: 1px solid #b3b3b3;
+  background-color: transparent;
+  color: #eee;
+  position: absolute;
+  right: -50px;
+  top: 0;
 }
 

@@ -3,12 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Post;
+use App\Comment;
 
 class Photo extends Model
 {
     public function post(){
 		return $this->belongsTo(Post::class);
 	}
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 
     public function prevPhoto(){
     	$before_in_post = $this->post->photos->where('weight', '<', $this->weight);

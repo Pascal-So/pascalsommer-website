@@ -1,4 +1,4 @@
-@extends('layouts.visitor')
+@extends('layouts.pascal')
 
 @section('content')
 
@@ -15,10 +15,10 @@
 
 @foreach($posts as $post)
 
-    <h2>{{ $post->title }} - {{ $post->date }}</h2>
+    <h2>{{ $post->formatTitle() }}</h2>
 
     @foreach($post->photos as $photo)
-        <a href="{{ route('viewphoto', ['photo' => $photo]) }}" class="photolink">
+        <a href="{{ route('viewPhoto', ['photo' => $photo]) }}" class="photolink">
             <img class="photo" src="{{ asset($photo->path) }}">
         </a>
         <br>

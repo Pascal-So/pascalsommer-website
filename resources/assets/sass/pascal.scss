@@ -1,0 +1,145 @@
+$body-bg: #19191d;
+$border-color: #b3b3b3;
+$text-color: #eee;
+
+$button-active-color: lighten($body-bg, 3%);
+
+body{
+    box-sizing: border-box;
+    background-color: $body-bg;
+    text-align: center;
+    font-family: 'PT Mono', 'Courier New', Courier, monospace;
+    font-weight: 400;
+    color: $text-color;
+    padding: 0;
+    margin: 0;
+}
+
+h1{
+    font-size: 50px;
+    margin: 130px 0 30px 0;
+}
+
+h1, h2, h3{
+    font-weight: normal;
+}
+
+a{
+    outline: none;
+}
+
+a:visited{
+	color: #ccc;
+}
+
+ul{
+	list-style: none;
+}
+
+footer{
+    text-align: right;
+}
+
+.icon{
+    max-width: 20px;
+    max-height: 20px;
+    margin: 0 5px;
+}
+
+.photo{
+    max-width: 900px;
+    display: block;
+}
+
+.photolink{
+    border: 2px solid $body-bg;
+    display: inline-block;
+    margin: 5px 0 50px;
+}
+
+.photolink:hover{
+    border: 2px solid $border-color;
+}
+
+
+.photo-large{
+	max-width: 1000px;
+}
+
+.flex-center-row{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.arrow-icon, .arrow-icon-placeholder{
+    width: 25px;
+    margin: 0 25px;
+}
+
+.arrow-icon-small, .arrow-icon-small-placeholder{
+    width: 15px;
+    margin: 0 25px;
+}
+
+.arrow-icon-placeholder, .arrow-icon-small-placeholder{
+    height: 10px;
+    display: inline-block
+}
+
+.alignright{
+	text-align: right;
+}
+
+.admin-nav{
+	background-color: #193d34;
+	padding: 15px;
+}
+
+.comment-form{
+	//border: 1px solid $border-color;
+	vertical-align: text-top;
+}
+
+.comment-form input, .comment-form textarea, .comment-form button{
+	border: 1px solid $body-bg;
+	vertical-align: top;
+	border-left: 1px solid $border-color;
+	border-bottom: 1px solid $border-color;
+	background-color: rgba(0,0,0,0);
+	color: $text-color;
+	padding: 5px;
+}
+
+.comment-form button{
+	padding: 10px 15px;
+	transition: border-color 0.1s linear;
+}
+
+.comment-form button:hover, .comment button:hover{
+	border: 1px solid $border-color;
+	//background-color: rgba(255,255,255,0.01);
+	background-color: $button-active-color;
+
+	//box-shadow: 0px 0px 0px 1px $border-color;
+}
+
+.comment{
+	border-left: 1px solid $border-color;
+	border-bottom: 1px solid $border-color;
+	width: 400px;
+	margin: 20px 0;
+	padding: 10px;
+	display: inline-block;
+	position: relative;
+}
+
+.comment button{
+	border: 1px solid $border-color;
+	background-color: rgba(0,0,0,0);
+	color: $text-color;
+	position: absolute;
+	right: -50px;
+	top: 0;
+}
