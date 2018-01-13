@@ -9,9 +9,9 @@
 <body>
 
 @auth
-	<nav class="alignright admin-nav">
-		<a href="{{ route('logout') }}">Logout</a>
-	</nav>
+    <nav class="alignright admin-nav">
+        <a href="{{ route('logout') }}">Logout</a>
+    </nav>
 @endauth
 
 @yield('content')
@@ -19,7 +19,7 @@
 <footer>
     © Pascal Sommer 2018 <br>
     @guest
-    	<a href="{{ route('login') }}">login</a>
+        <a href="{{ route('login') }}">login</a>
     @endguest
 </footer>
 

@@ -8,8 +8,8 @@ use App\Post;
 class PostController extends Controller
 {
     public function index(){
-    	$posts = Post::latest('date')->paginate(1);
+        $posts = Post::latest('date')->paginate(1);
 
-    	return view('index', compact('posts'));
+        return view('index', compact('posts'));
     }
 }

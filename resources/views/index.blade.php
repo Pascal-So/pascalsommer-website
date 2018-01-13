@@ -27,21 +27,21 @@
 @endforeach
 
 @if($posts->hasMorePages() || $posts->currentPage() != 1)
-	<p>
-		@if($posts->currentPage() > 1)
-			<a href="{{ $posts->previousPageUrl() }}"><img class="arrow-icon-small" src="{{ asset('img/icons/larrow.svg') }}"></a>
-		@else
-			<span class="arrow-icon-small-placeholder"></span>
-		@endif
-		
-		{{ $posts->currentPage() }}
+    <p>
+        @if($posts->currentPage() > 1)
+            <a href="{{ $posts->previousPageUrl() }}"><img class="arrow-icon-small" src="{{ asset('img/icons/larrow.svg') }}"></a>
+        @else
+            <span class="arrow-icon-small-placeholder"></span>
+        @endif
+        
+        {{ $posts->currentPage() }}
 
-		@if($posts->hasMorePages())
-			<a href="{{ $posts->nextPageUrl() }}"><img class="arrow-icon-small" src="{{ asset('img/icons/rarrow.svg') }}"></a>
-		@else
-			<span class="arrow-icon-small-placeholder"></span>
-		@endif
-	</p>
+        @if($posts->hasMorePages())
+            <a href="{{ $posts->nextPageUrl() }}"><img class="arrow-icon-small" src="{{ asset('img/icons/rarrow.svg') }}"></a>
+        @else
+            <span class="arrow-icon-small-placeholder"></span>
+        @endif
+    </p>
 @endif
 
 @endsection

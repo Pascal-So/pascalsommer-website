@@ -8,14 +8,14 @@ use App\Post;
 
 class PhotoController extends Controller
 {
-	public function index(){
-		$photos = Photo::latest()->get();
+    public function index(){
+        $photos = Photo::latest()->get();
 
-		return view('photo.index', compact('photos'));
-	}
+        return view('photo.index', compact('photos'));
+    }
 
     public function view(Photo $photo){
-    	return view('photo.view', compact('photo'));
+        return view('photo.view', compact('photo'));
     }
 
 

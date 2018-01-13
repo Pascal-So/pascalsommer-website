@@ -16,20 +16,20 @@
 */
 
 Route::get('/', 'PostController@index')
-	->name('home');
+    ->name('home');
 
 Route::middleware(['auth'])->group(function(){
-	Route::get('/posts', 'PostController@adminIndex')
-		->name('posts');
+    Route::get('/posts', 'PostController@adminIndex')
+        ->name('posts');
 
-	Route::get('/posts/{post}/edit', 'PostController@edit')
-		->name('editPost');
+    Route::get('/posts/{post}/edit', 'PostController@edit')
+        ->name('editPost');
 
-	Route::post('/posts/{post}', 'PostController@update')
-		->name('updatePost');
+    Route::post('/posts/{post}', 'PostController@update')
+        ->name('updatePost');
 
-	Route::get('/posts/{post}/delete', 'PostController@delete')
-		->name('deletePost');
+    Route::get('/posts/{post}/delete', 'PostController@delete')
+        ->name('deletePost');
 });
 
 /*
@@ -37,14 +37,14 @@ Route::middleware(['auth'])->group(function(){
 */
 
 Route::post('/photos/{photo}/comment', 'CommentController@postComment')
-	->name('postComment');
+    ->name('postComment');
 
 Route::middleware(['auth'])->group(function(){
-	Route::get('/comments', 'CommentController@adminIndex')
-		->name('comments');
+    Route::get('/comments', 'CommentController@adminIndex')
+        ->name('comments');
 
-	Route::get('/comments/{comment}/delete', 'CommentController@delete')
-		->name('deleteComment');
+    Route::get('/comments/{comment}/delete', 'CommentController@delete')
+        ->name('deleteComment');
 });
 
 
@@ -53,32 +53,32 @@ Route::middleware(['auth'])->group(function(){
 */
 
 Route::get('/photos/{photo}', 'PhotoController@view')
-	->name('viewPhoto');
+    ->name('viewPhoto');
 
 Route::middleware(['auth'])->group(function(){
-	Route::get('/photos', 'PhotoController@adminIndex')
-		->name('photos');
+    Route::get('/photos', 'PhotoController@adminIndex')
+        ->name('photos');
 
-	Route::get('/photos/{photo}/edit', 'PhotoController@edit')
-		->name('editPhoto');
+    Route::get('/photos/{photo}/edit', 'PhotoController@edit')
+        ->name('editPhoto');
 
-	Route::post('/photos/{photo}', 'PhotoController@update')
-		->name('updatePhoto');
+    Route::post('/photos/{photo}', 'PhotoController@update')
+        ->name('updatePhoto');
 
-	Route::get('/photos/{photo}/delete', 'PhotoController@delete')
-		->name('deletePhoto');
+    Route::get('/photos/{photo}/delete', 'PhotoController@delete')
+        ->name('deletePhoto');
 });
 
 
 Route::middleware(['auth'])->group(function(){
-	Route::get('/staging', 'PhotoController@staging')
-		->name('staiging');
+    Route::get('/staging', 'PhotoController@staging')
+        ->name('staiging');
 
-	Route::get('/upload', 'PhotoController@showUploadForm')
-		->name('uploadForm');
+    Route::get('/upload', 'PhotoController@showUploadForm')
+        ->name('uploadForm');
 
-	Route::post('/upload', 'PhotoController@upload')
-		->name('upload');
+    Route::post('/upload', 'PhotoController@upload')
+        ->name('upload');
 });
 
 
@@ -87,9 +87,9 @@ Route::middleware(['auth'])->group(function(){
 */
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->middleware('guest')
-	->name('login');
+    ->name('login');
 
 Route::post('/login', 'Auth\LoginController@login')->middleware('guest');
 
 Route::get('/logout', 'Auth\LoginController@logout')
-	->name('logout');
+    ->name('logout');
