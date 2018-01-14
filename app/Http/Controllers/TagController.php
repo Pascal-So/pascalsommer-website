@@ -9,7 +9,7 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::get();
+        $tags = Tag::withCount('photos')->get();
 
         return view('tag.index', compact('tags'));
     }
@@ -22,7 +22,7 @@ class TagController extends Controller
 
         $tag = new Tag;
         $tag->name = $request->name;
-        $tag->store();
+        $tag->save();
 
         return redirect()->route('tags');
     }
@@ -42,7 +42,7 @@ class TagController extends Controller
         ]);
 
         foreach($request->tags as $id => $tag){
-            Tag::where('id', $id)->update(['name' => $tag->name]);
+            Tag::where('id', $id)->update(['name' => $tag['name']]);
         }
 
         return redirect()->route('tags');

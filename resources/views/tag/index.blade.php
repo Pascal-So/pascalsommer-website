@@ -6,12 +6,16 @@
 
 @if($tags->count())
     <form method="POST" action="{{ route('updateAllTags') }}">
+        {{ csrf_field() }}
+
         <ul>
             @foreach($tags as $tag)
                 <li>
-                    <label for="tags[{{$tag->id}}][name]"></label>
-                    <input type="text" name="tags[{{$tag->id}}][name]">{{ $tag->name }}
-                    <button class="btn"><a href="{{ route('deleteTag', compact('tag')) }}">Delete</a></button>
+                    <input style="vertical-align: baseline" type="text" name="tags[{{$tag->id}}][name]" value="{{ $tag->name }}">
+                    <span>&nbsp;</span>
+                    <a style="vertical-align: baseline" class="btn" href="{{ route('deleteTag', compact('tag')) }}">Delete</a>
+                    <span>&nbsp;</span>
+                    <a href="{{ route('filtered', ['tags' => $tag->name]) }}">{{ $tag->photos_count }} photos</a>
                 </li>
             @endforeach
         </ul>

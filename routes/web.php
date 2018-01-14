@@ -110,6 +110,9 @@ Route::middleware(['auth'])->group(function(){
 /*
 |  Tag Routes
 */
+Route::get('/tag/{tags}', 'PhotoController@filtered')
+    ->name('filtered');
+
 Route::middleware(['auth'])->group(function(){
     Route::get('/tags', 'TagController@index')
         ->name('tags');

@@ -36,11 +36,10 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'path' => 'img/photos/pascalsommer_8.jpg',
-                'description' => 'photo 2, post 1',
+                'description' => 'photo 2, post 1, LKAB',
                 'post_id' => 1,
                 'weight' => 2,
             ],
-
             [
                 'path' => 'img/photos/pascalsommer_7.jpg',
                 'description' => 'photo 1, post 2',
@@ -48,6 +47,23 @@ class DatabaseSeeder extends Seeder
                 'weight' => 1,
             ],
         ]);
+
+        DB::table('tags')->insert([
+            [ 'name' => 'Animals' ],
+            [ 'name' => 'Architecture' ],
+            [ 'name' => 'Birds' ],
+            [ 'name' => 'Landscape' ],
+            [ 'name' => 'Sky' ],
+            [ 'name' => 'People' ],
+            [ 'name' => 'Transport' ],
+            [ 'name' => 'Infrastructure' ],
+            [ 'name' => 'Travel' ],
+            [ 'name' => 'Water' ],
+        ]);
+
+        App\Tag::where('name', 'Landscape')->first()->photos()->attach([1,2]);
+        App\Tag::where('name', 'Architecture')->first()->photos()->attach([2]);
+        App\Tag::where('name', 'Travel')->first()->photos()->attach([1,2,3]);
 
         DB::table('blacklist')->insert([
             [ 'regex' => '#http://www\.ttk-krasnodar\.ru#' ],

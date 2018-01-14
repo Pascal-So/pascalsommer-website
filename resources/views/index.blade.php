@@ -2,6 +2,7 @@
 
 @section('content')
 
+<br><br>
 <h1>Pascal Sommer</h1>
 
 <p>
@@ -18,30 +19,14 @@
     <h2>{{ $post->formatTitle() }}</h2>
 
     @foreach($post->photos as $photo)
-        <a href="{{ route('viewPhoto', ['photo' => $photo]) }}" class="photolink">
-            <img class="photo" src="{{ asset($photo->path) }}">
+        <a href="{{ route('viewPhoto', compact('photo')) }}" class="photolink">
+            <img class="photo" src="{{ asset($photo->path) }}" alt="{{ $photo->alttext() }}" title="{{ $photo->alttext() }}">
         </a>
         <br>
     @endforeach
 
 @endforeach
 
-@if($posts->hasMorePages() || $posts->currentPage() != 1)
-    <p>
-        @if($posts->currentPage() > 1)
-            <a href="{{ $posts->previousPageUrl() }}"><img class="arrow-icon-small" src="{{ asset('img/icons/larrow.svg') }}"></a>
-        @else
-            <span class="arrow-icon-small-placeholder"></span>
-        @endif
-        
-        {{ $posts->currentPage() }}
-
-        @if($posts->hasMorePages())
-            <a href="{{ $posts->nextPageUrl() }}"><img class="arrow-icon-small" src="{{ asset('img/icons/rarrow.svg') }}"></a>
-        @else
-            <span class="arrow-icon-small-placeholder"></span>
-        @endif
-    </p>
-@endif
+@include('layouts.pagination_nav', ['items' => $posts])
 
 @endsection
