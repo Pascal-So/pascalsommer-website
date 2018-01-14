@@ -22,6 +22,12 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/posts', 'PostController@adminIndex')
         ->name('posts');
 
+    Route::get('/posts/create', 'PostController@create')
+        ->name('createPosts');
+
+    Route::post('/posts', 'PostController@store')
+        ->name('storePosts');
+
     Route::get('/posts/{post}/edit', 'PostController@edit')
         ->name('editPost');
 
@@ -31,6 +37,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/posts/{post}/delete', 'PostController@delete')
         ->name('deletePost');
 });
+
 
 /*
 |  Comment Routes
@@ -45,6 +52,24 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/comments/{comment}/delete', 'CommentController@delete')
         ->name('deleteComment');
+});
+
+
+/*
+|  Blacklist Routes
+*/
+Route::middleware(['auth'])->group(function(){
+    Route::get('/blacklist', 'BlacklistController@index')
+        ->name('blacklist');
+
+    Route::post('/blacklist/store', 'BlacklistController@store')
+        ->name('storeBlacklist');
+
+    Route::get('/blacklist/{blacklist}/delete', 'BlacklistController@delete')
+        ->name('deleteBlacklist');
+
+    Route::post('/blacklist', 'BlacklistController@updateAll')
+        ->name('updateAllBlacklist');
 });
 
 
@@ -72,13 +97,31 @@ Route::middleware(['auth'])->group(function(){
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/staging', 'PhotoController@staging')
-        ->name('staiging');
+        ->name('staging');
 
     Route::get('/upload', 'PhotoController@showUploadForm')
         ->name('uploadForm');
 
     Route::post('/upload', 'PhotoController@upload')
         ->name('upload');
+});
+
+
+/*
+|  Tag Routes
+*/
+Route::middleware(['auth'])->group(function(){
+    Route::get('/tags', 'TagController@index')
+        ->name('tags');
+
+    Route::post('/tags/store', 'TagController@store')
+        ->name('storeTag');
+
+    Route::get('/tags/{tag}/delete', 'TagController@delete')
+        ->name('deleteTag');
+
+    Route::post('/tags', 'TagController@updateAll')
+        ->name('updateAllTags');
 });
 
 

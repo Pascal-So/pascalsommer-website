@@ -25,7 +25,7 @@
 <br>
 <br>
 
-@include('comment.list', ['comments' => $photo->comments->sortBy('created_at', 'desc')])
+@include('comment.list', ['comments' => $photo->comments->sortByDesc('created_at')])
 
 <br>
 <br>

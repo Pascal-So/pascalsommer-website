@@ -48,5 +48,14 @@ class DatabaseSeeder extends Seeder
                 'weight' => 1,
             ],
         ]);
+
+        DB::table('blacklist')->insert([
+            [ 'regex' => '#http://www\.ttk-krasnodar\.ru#' ],
+            [ 'regex' => '#http://создание-сайтов161\.рф#' ],
+            [ 'regex' => '#https://fotograf23\.ru#' ],
+            [ 'regex' => '#http://xn--.*\.xn#' ],
+            [ 'regex' => '#https://metal-moscow\.ru#' ],
+            [ 'regex' => '#[url=.*].*[/url].*[link=.*].*[/link]#' ],
+        ]);
     }
 }

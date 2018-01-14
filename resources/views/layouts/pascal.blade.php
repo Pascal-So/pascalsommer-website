@@ -10,6 +10,12 @@
 
 @auth
     <nav class="alignright admin-nav">
+        <a href="{{ route('home') }}">Home</a>
+        <a href="{{ route('uploadForm') }}">Upload</a>
+        <a href="{{ route('staging') }}">Staging</a>
+        <a href="{{ route('tags') }}">Tags</a>
+        <a href="{{ route('comments') }}">Comments</a>
+        <span>&nbsp;</span>
         <a href="{{ route('logout') }}">Logout</a>
     </nav>
 @endauth

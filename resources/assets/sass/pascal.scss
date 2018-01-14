@@ -1,8 +1,12 @@
-$body-bg: #19191d;
-$border-color: #b3b3b3;
+$body-bg: #19191c;
 $text-color: #eee;
 
-$button-active-color: lighten($body-bg, 3%);
+$border-color: #aaa;
+$darker-border-color: darken($body-bg, 4%);
+$button-active-color: lighten($body-bg, 4%);
+
+$link-color: #78b;
+$link-visited-color: #ccc;
 
 body{
     box-sizing: border-box;
@@ -25,11 +29,12 @@ h1, h2, h3{
 }
 
 a{
-    outline: none;
+    //outline: none;
+    color: $link-color;
 }
 
 a:visited{
-    color: #ccc;
+    color: $link-visited-color;
 }
 
 ul{
@@ -38,6 +43,7 @@ ul{
 
 footer{
     text-align: right;
+    padding: 10px;
 }
 
 .icon{
@@ -102,32 +108,20 @@ footer{
     vertical-align: text-top;
 }
 
-.comment-form input, .comment-form textarea, .comment-form button{
-    border: 1px solid $body-bg;
+input, textarea, .btn{
+    border: 2px solid $body-bg;
     vertical-align: top;
-    border-left: 1px solid $border-color;
-    border-bottom: 1px solid $border-color;
-    background-color: rgba(0,0,0,0);
+    border-right: 2px solid $darker-border-color;
+    border-bottom: 2px solid $darker-border-color;
+    background-color: $button-active-color;
     color: $text-color;
     padding: 5px;
 }
 
-.comment-form button{
-    padding: 10px 15px;
-    transition: border-color 0.1s linear;
-}
-
-.comment-form button:hover, .comment button:hover{
-    border: 1px solid $border-color;
-    //background-color: rgba(255,255,255,0.01);
-    background-color: $button-active-color;
-
-    //box-shadow: 0px 0px 0px 1px $border-color;
-}
 
 .comment{
-    border-left: 1px solid $border-color;
-    border-bottom: 1px solid $border-color;
+    border-right: 4px solid $darker-border-color;
+    border-bottom: 4px solid $darker-border-color;
     width: 400px;
     margin: 20px 0;
     padding: 10px;
@@ -136,10 +130,22 @@ footer{
 }
 
 .comment button{
-    border: 1px solid $border-color;
-    background-color: rgba(0,0,0,0);
-    color: $text-color;
+    // border: 1px solid $border-color;
+    // background-color: rgba(0,0,0,0);
+    // color: $text-color;
     position: absolute;
-    right: -50px;
+    right: -80px;
     top: 0;
+}
+
+
+.btn{
+    padding: 10px 15px;
+    transition: border-color 0.1s linear;   
+}
+
+.btn:hover{
+    border: 2px solid $border-color;
+    background-color: $button-active-color;
+
 }
