@@ -15,10 +15,10 @@ class CreatePhotosTable extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id');
+            $table->integer('post_id')->nullable();
             $table->integer('weight');
             $table->text('path');
-            $table->text('description');
+            $table->text('description')->default('');
             $table->timestamps();
         });
     }

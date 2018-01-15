@@ -71,6 +71,8 @@ class DatabaseSeeder extends Seeder
             [ 'regex' => '#https://fotograf23\.ru#' ],
             [ 'regex' => '#http://xn--.*\.xn#' ],
             [ 'regex' => '#https://metal-moscow\.ru#' ],
+            [ 'regex' => '#https://agrohoztorg\.ru#' ],
+            [ 'regex' => '#https://stekloforce\.ru#' ],
             [ 'regex' => '#[url=.*].*[/url].*[link=.*].*[/link]#' ],
         ]);
     }

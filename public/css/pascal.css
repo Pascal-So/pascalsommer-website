@@ -22,13 +22,13 @@ h3 {
 }
 
 a {
-  color: #78b;
+  color: #89b;
   -webkit-text-decoration: underline dotted;
           text-decoration: underline dotted;
 }
 
 a:visited {
-  color: #ccc;
+  color: #bbc;
 }
 
 ul {
@@ -36,7 +36,6 @@ ul {
 }
 
 footer {
-  text-align: right;
   padding: 10px;
 }
 
@@ -47,7 +46,7 @@ footer {
 }
 
 .photo {
-  max-width: 900px;
+  width: 900px;
   display: block;
 }
 
@@ -62,7 +61,8 @@ footer {
 }
 
 .photo-large {
-  max-width: 1000px;
+  width: 1000px;
+  vertical-align: middle;
 }
 
 .flex-center-row {
@@ -84,7 +84,7 @@ footer {
 .arrow-icon,
 .arrow-icon-placeholder {
   width: 25px;
-  margin: 0 25px;
+  margin: 40px 25px;
 }
 
 .arrow-icon-small,
@@ -151,5 +151,18 @@ textarea,
 .btn:hover {
   border: 2px solid #aaa;
   background-color: #232327;
+  cursor: default;
+}
+
+.tag {
+  background-color: #2c2c32;
+  padding: 5px 7px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 5px 0;
+}
+
+.hidden {
+  display: none;
 }
 

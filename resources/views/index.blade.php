@@ -12,7 +12,8 @@
     <a title="Youtube" href="https://youtube.com/pascalsommermovies"><img class="icon" src="{{ asset('img/icons/youtube.svg') }}"></a>
 </p>
 
-<br><br><br>
+<br>
+<br><br>
 
 @foreach($posts as $post)
 
@@ -28,5 +29,17 @@
 @endforeach
 
 @include('layouts.pagination_nav', ['items' => $posts])
+
+<br><br><br>
+
+<div>
+    <a class="btn" href="{{ route('about') }}">About</a>
+    <span>&nbsp;</span>
+    <a class="btn" href="{{ route('filtered') }}">Filter by Tags</a>
+    <span>&nbsp;</span>
+    @guest
+        <a class="btn" href="{{ route('login') }}">Login</a>
+    @endguest
+</div>
 
 @endsection

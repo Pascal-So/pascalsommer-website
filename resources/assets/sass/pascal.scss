@@ -1,3 +1,4 @@
+//$body-bg: rgb(19, 19, 19);
 $body-bg: #19191c;
 $text-color: #eee;
 
@@ -5,8 +6,10 @@ $border-color: #aaa;
 $darker-border-color: darken($body-bg, 4%);
 $button-active-color: lighten($body-bg, 4%);
 
-$link-color: #78b;
-$link-visited-color: #ccc;
+$tag-color: lighten($body-bg, 8%);
+
+$link-color: #89b;
+$link-visited-color: #bbc;
 
 body{
     box-sizing: border-box;
@@ -43,7 +46,6 @@ ul{
 }
 
 footer{
-    text-align: right;
     padding: 10px;
 }
 
@@ -54,7 +56,7 @@ footer{
 }
 
 .photo{
-    max-width: 900px;
+    width: 900px;
     display: block;
 }
 
@@ -70,7 +72,8 @@ footer{
 
 
 .photo-large{
-    max-width: 1000px;
+    width: 1000px;
+    vertical-align: middle;
 }
 
 .flex-center-row{
@@ -82,7 +85,7 @@ footer{
 
 .arrow-icon, .arrow-icon-placeholder{
     width: 25px;
-    margin: 0 25px;
+    margin: 40px 25px;
 }
 
 .arrow-icon-small, .arrow-icon-small-placeholder{
@@ -150,5 +153,17 @@ input, textarea, .btn{
 .btn:hover{
     border: 2px solid $border-color;
     background-color: $button-active-color;
+    cursor: default;
+}
 
+.tag{
+    background-color: $tag-color;
+    padding: 5px 7px;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 5px 0;
+}
+
+.hidden{
+    display: none;
 }

@@ -7,6 +7,7 @@
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
+        "jmauerhan/eloquent-sortable": "dev-master#1e2360420541dbf1854a8407b30bfa1d2d7ef7c7",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "simplepush/simplepush-php": "dev-master#5e216f2a32d847298c9faa94531c333ed635a147"
@@ -59,6 +60,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/Pascal-So/simplepush-php"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Pascal-So/eloquent-sortable"
         }
     ]
 }

@@ -110,8 +110,9 @@ Route::middleware(['auth'])->group(function(){
 /*
 |  Tag Routes
 */
-Route::get('/tag/{tags}', 'PhotoController@filtered')
-    ->name('filtered');
+Route::get('/tag/{tags?}', 'PhotoController@filtered')
+    ->name('filtered')
+    ->where('tags', '[A-Za-z]+(,[A-Za-z]+)*');
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/tags', 'TagController@index')
@@ -139,3 +140,6 @@ Route::post('/login', 'Auth\LoginController@login')->middleware('guest');
 
 Route::get('/logout', 'Auth\LoginController@logout')
     ->name('logout');
+
+Route::view('/about', 'about')
+    ->name('about');

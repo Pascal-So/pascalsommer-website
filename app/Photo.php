@@ -7,8 +7,20 @@ use App\Post;
 use App\Comment;
 use App\Tag;
 
-class Photo extends Model
+use JMauerhan\EloquentSortable\Sortable;
+use JMauerhan\EloquentSortable\SortableTrait;
+
+class Photo extends Model implements Sortable
 {
+    use SortableTrait;
+
+    public $sortable = [
+        'order_column_name' => 'weight',
+        'sort_when_creating' => true,
+        'sort_by_group_column' => 'photo_id',
+    ];
+    
+
     public function post()
     {
         return $this->belongsTo(Post::class);
@@ -55,7 +67,7 @@ class Photo extends Model
         return $after_in_post->sortBy('weight')->first();
     }
 
-    public function decreaseWeight()
+    /*public function decreaseWeight()
     {
         $in_post = $this->post->photos;
 
@@ -97,7 +109,7 @@ class Photo extends Model
 
         $this->save();
         $bigger->save();
-    }
+    }*/
 
     public function alttext()
     {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c47f9109ac30f26e8f6c02818d831d5",
+    "content-hash": "54d6bc3442a4b69d2c57f921eb9c9024",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -407,17 +407,76 @@
             "time": "2015-04-20T18:58:01+00:00"
         },
         {
-            "name": "laravel/framework",
-            "version": "v5.5.28",
+            "name": "jmauerhan/eloquent-sortable",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "cfafae1f2043208390a7c984e3070696f4969605"
+                "url": "https://github.com/Pascal-So/eloquent-sortable.git",
+                "reference": "1e2360420541dbf1854a8407b30bfa1d2d7ef7c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/cfafae1f2043208390a7c984e3070696f4969605",
-                "reference": "cfafae1f2043208390a7c984e3070696f4969605",
+                "url": "https://api.github.com/repos/Pascal-So/eloquent-sortable/zipball/1e2360420541dbf1854a8407b30bfa1d2d7ef7c7",
+                "reference": "1e2360420541dbf1854a8407b30bfa1d2d7ef7c7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.3.0|~5.4.0|~5.5.0",
+                "illuminate/support": "~5.3.0|~5.4.0|~5.5.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "orchestra/database": "~3.3.0|~3.4.0|3.5.0",
+                "orchestra/testbench": "~3.3.0|~3.4.0|3.5.0",
+                "phpunit/phpunit": "^5.7|^6.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JMauerhan\\EloquentSortable\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "JMauerhan\\EloquentSortable\\Test\\": "tests"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jessica Mauerhan",
+                    "email": "jessicamauerhan@gmail.com"
+                }
+            ],
+            "description": "Sortable behaviour for eloquent models",
+            "homepage": "https://github.com/jmauerhan/eloquent-sortable",
+            "keywords": [
+                "behaviour",
+                "eloquent",
+                "laravel",
+                "model",
+                "sort",
+                "sortable"
+            ],
+            "support": {
+                "source": "https://github.com/Pascal-So/eloquent-sortable/tree/master"
+            },
+            "time": "2018-01-15T16:52:26+00:00"
+        },
+        {
+            "name": "laravel/framework",
+            "version": "v5.5.29",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "c58b6ff96fb56cc92e24545870be13cdcfcbc43a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c58b6ff96fb56cc92e24545870be13cdcfcbc43a",
+                "reference": "c58b6ff96fb56cc92e24545870be13cdcfcbc43a",
                 "shasum": ""
             },
             "require": {
@@ -538,7 +597,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-12-26T16:24:40+00:00"
+            "time": "2018-01-15T14:07:47+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3991,6 +4050,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "jmauerhan/eloquent-sortable": 20,
         "simplepush/simplepush-php": 20
     },
     "prefer-stable": false,
