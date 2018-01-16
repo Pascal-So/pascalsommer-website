@@ -16,14 +16,32 @@ class Post extends Model
         return $this->hasMany(Photo::class)->orderBy('weight', 'asc');
     }
 
+    public function scopeBefore($query)
+    {
+        return $query->where('date', '<', $this->date)
+                     ->orWhere(function($query){
+                        $query->where('date', $this->date)
+                              ->where('id', '<', $this->id);
+                     });
+    }
+
+    public function scopeAfter($query)
+    {
+        return $query->where('date', '>', $this->date)
+                     ->orWhere(function($query){
+                        $query->where('date', $this->date)
+                              ->where('id', '>', $this->id);
+                     });
+    }
+
     public function prevPost()
     {
-        return Post::where('date', '<', $this->date)->orderBy('date')->get()->last();
+        return Post::before($this)->blogOrdered()->first();
     }
 
     public function nextPost()
     {
-        return Post::where('date', '>', $this->date)->orderBy('date')->get()->first();
+        return Post::after($this)->blogOrdered(true)->first();
     }
 
     public function formatTitle()
@@ -31,10 +49,11 @@ class Post extends Model
         return $this->title . " - " . $this->date;
     }
 
-
-    public function scopeBlogOrdered($query)
+    public function scopeBlogOrdered($query, bool $reverse = false)
     {
-        return $query->orderBy('date', 'desc')->orderBy('created_at', 'desc');
+        $dir = $reverse ? 'asc' : 'desc';
+
+        return $query->orderBy('date', $dir)->orderBy('id', $dir);
     }
 
     /**
@@ -86,7 +105,7 @@ class Post extends Model
      **/
     public function getPaginationPage():int
     {
-        $position = Post::where('date', '>', $this->date)->count();
+        $position = Post::after()->count();
         return $position / Post::$posts_per_page + 1;
     }
 

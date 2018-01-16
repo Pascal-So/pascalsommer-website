@@ -78,6 +78,12 @@ footer{
     width: 300px;
 }
 
+.photo-gallery{
+    max-width: 300px;
+    max-height: 200px;
+    margin: 10px 5px;
+}
+
 .photo-large{
     width: 1000px;
 }
@@ -181,6 +187,19 @@ input, textarea, .input, .btn{
     border-radius: 3px;
     display: inline-block;
     margin: 5px 0;
+}
+
+.tag-active{
+    background-color: lighten($tag-color, 20%);
+    color: $body-bg;
+    padding: 5px 7px;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 5px 0;
+}
+
+.tag-active a{
+    color: $body-bg;
 }
 
 a.tag, a.tag:visited,

@@ -17,10 +17,20 @@
 
 <br><br>
 
-<label>Remove Tags </label>
+<div id="tags">
+@foreach($tags as $tag)
+    @if($photo->tags->contains($tag))
+        <a class="tag-active" href="{{ route('removeTag', compact('photo', 'tag')) }}">{{ $tag->name }}</a>
+    @else
+        <a class="tag" href="{{ route('addTag', compact('photo', 'tag')) }}">{{ $tag->name }}</a>
+    @endif
+@endforeach
+</div>
+{{-- 
+<label id="tags">Remove Tags </label>
 
 @foreach($photo->tags as $tag)
-    <span class="tag">
+    <span class="tag-active">
         -&nbsp;<a href="{{ route('removeTag', compact('photo', 'tag')) }}">{{ $tag->name }}</a>
     </span>
 @endforeach
@@ -34,7 +44,7 @@
         +&nbsp;<a href="{{ route('addTag', compact('photo', 'tag')) }}">{{ $tag->name }}</a>
     </span>
 @endforeach
-
+ --}}
 <br><br>
 
 <form method="POST" action="{{ route('updatePhoto', compact('photo')) }}">

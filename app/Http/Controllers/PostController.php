@@ -68,7 +68,7 @@ class PostController extends Controller
     {
         $this->validatePost($request);
 
-        $post->update($request->only('name', 'date'));
+        $post->update($request->only('title', 'date'));
 
         $post->detachPhotos();
 

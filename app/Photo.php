@@ -47,13 +47,16 @@ class Photo extends Model implements Sortable
         return $query->doesntHave('post');
     }
 
-    public function scopeBlogOrdered($query)
+    public function scopeBlogOrdered($query, bool $reverse = false)
     {
+        $desc = $reverse ? 'asc' : 'desc';
+        $asc = $reverse ? 'desc' : 'asc';
+
         return $query->orderByRaw('CASE WHEN post_id IS NULL THEN 1 ELSE 2 END ASC')
                      ->leftJoin('posts as p', 'photos.post_id', '=', 'p.id')
-                     ->orderBy('p.date', 'desc')
-                     ->orderBy('p.created_at', 'desc')
-                     ->orderBy('weight', 'asc')
+                     ->orderBy('p.date', $desc)
+                     ->orderBy('p.id', $desc)
+                     ->orderBy('weight', $asc)
                        // the explicit select statement is necessary, because otherwise, the
                        // photo id gets overwritten by the post id.
                      ->select('photos.id', 'photos.path',

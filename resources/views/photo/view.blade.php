@@ -1,5 +1,9 @@
 @extends('layouts.pascal')
 
+@section('social_image', asset($photo->path))
+
+@section('social_description', $photo->description ?: config('constants.page_description'))
+
 @section('content')
 
 <h2>
@@ -14,13 +18,15 @@
     @if($photo->prevPhoto() == null)
         <div class="arrow-icon-placeholder"></div>
     @else
-        <a href="{{ route('viewPhoto', ['photo' => $photo->prevPhoto()]) }}"><img class="arrow-icon" src="{{ asset('img/icons/larrow.svg') }}"></a>
+        <a id="link-left" href="{{ route('viewPhoto', ['photo' => $photo->prevPhoto()]) }}"><img class="arrow-icon" src="{{ asset('img/icons/larrow.svg') }}"></a>
     @endif
+    <a href="{{ asset($photo->path) }}" target="blank">
     <img id="photo" class="photo-large" src="{{ asset($photo->path) }}" alt="{{ $photo->alttext() }}">
+    </a>
     @if($photo->nextPhoto() == null)
         <div class="arrow-icon-placeholder"></div>
     @else
-        <a href="{{ route('viewPhoto', ['photo' => $photo->nextPhoto()]) }}"><img class="arrow-icon" src="{{ asset('img/icons/rarrow.svg') }}"></a>
+        <a id="link-right" href="{{ route('viewPhoto', ['photo' => $photo->nextPhoto()]) }}"><img class="arrow-icon" src="{{ asset('img/icons/rarrow.svg') }}"></a>
     @endif
 </div>
 
@@ -61,5 +67,8 @@
 @if($photo->isPublic())
     @include('comment.form')
 @endif
+
+
+<script type="text/javascript" src="{{ asset('js/arrowNavigate.js')}}" defer></script>
 
 @endsection

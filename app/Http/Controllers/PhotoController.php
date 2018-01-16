@@ -71,7 +71,9 @@ class PhotoController extends Controller
     {
         $other_tags = Tag::whereNotIn('id', $photo->tags->pluck('id'))->get();
 
-        return view('photo.edit', compact('photo', 'other_tags'));
+        $tags = Tag::get();
+
+        return view('photo.edit', compact('photo', 'other_tags', 'tags'));
     }
 
     public function update(Photo $photo, Request $request)
@@ -80,7 +82,9 @@ class PhotoController extends Controller
             'description' => ['max:10000', new NoHTML],
         ]);
 
-        $photo->update($request->only('description', 'path'));
+        $photo->description = $request->description ?: '';
+
+        $photo->save();
 
         return redirect()->route('photos');
     }
@@ -130,28 +134,20 @@ class PhotoController extends Controller
     {
         $photo->tags()->attach($tag);
 
-        return redirect()->route('editPhoto', compact('photo'));
+        return redirect(route('editPhoto', compact('photo')) . '#tags');
     }
 
     public function removeTag(Photo $photo, Tag $tag)
     {
         $photo->tags()->detach($tag);
 
-        return redirect()->route('editPhoto', compact('photo'));
+        return redirect(route('editPhoto', compact('photo')) . '#tags');
     }
 
-    
-    // public function moveUp(Photo $photo)
-    // {
-    //     $photo->moveOrderUp();
+    public function gallery()
+    {
+        $photos = Photo::published()->blogOrdered()->paginate(2*3*4*5);
 
-    //     return redirect()->route('photos');
-    // }
-
-    // public function moveDown(Photo $photo)
-    // {
-    //     $photo->moveOrderDown();
-
-    //     return redirect()->route('photos');
-    // }
+        return view('photo.gallery', compact('photos'));
+    }
 }

@@ -80,9 +80,12 @@ Route::middleware(['auth'])->group(function(){
 Route::get('/photos/{photo}', 'PhotoController@view')
     ->name('viewPhoto');
 
+Route::get('/gallery', 'PhotoController@gallery')
+    ->name('gallery');
+
 Route::middleware(['auth'])->group(function(){
     Route::get('/photos', 'PhotoController@adminIndex')
-        ->name('photos');
+        ->name('photos');        
 
     Route::get('/staging', 'PhotoController@staging')
         ->name('staging');
@@ -110,11 +113,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/upload', 'PhotoController@upload')
         ->name('upload');
 
-    // Route::get('/photos/{photo}/movePhotoUp', 'PhotoController@moveUp')
-    //     ->name('movePhotoUp');
 
-    // Route::get('/photos/{photo}/movePhotoDown', 'PhotoController@moveDown')
-    //     ->name('movePhotoDown');
 });
 
 

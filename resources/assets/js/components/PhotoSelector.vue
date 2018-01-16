@@ -3,7 +3,7 @@
         <h2>Photos in Post</h2>
         <draggable class="dragArea" v-model="post_photos" :options="{put: true, pull: true, group: 'photos'}">
             <div class="box-sortable" v-for="photo in post_photos">
-                <a :href="asset_path + photo.path" target="blank">
+                <a :href="view_path + photo.id" target="blank">
                     <img class="photo-sortable" :src="asset_path + photo.path">
                 </a>
             </div>
@@ -11,7 +11,7 @@
         <h2>Staged Photos</h2>
         <draggable class="dragArea" v-model="staged_photos" :options="{handle: 'img', put: true, pull: true, group: 'photos'}">
             <div class="box-sortable" v-for="photo in staged_photos">
-                <a :href="asset_path + photo.path" target="blank">
+                <a :href="view_path + photo.id" target="blank">
                     <img class="photo-sortable" :src="asset_path + photo.path">
                 </a>
             </div>
@@ -29,6 +29,7 @@
     const staged_photos = JSON.parse($('#staged-photos').text());
 
     const asset_path = $('#asset-path').text();
+    const view_path = $('#view-path').text();
 
     export default {
         data() {
@@ -36,6 +37,7 @@
                 post_photos: post_photos,
                 staged_photos: staged_photos,
                 asset_path: asset_path,
+                view_path: view_path,
             };
         },
         components: {
