@@ -1,4 +1,3 @@
-//$body-bg: rgb(19, 19, 19);
 $body-bg: #19191c;
 $text-color: #eee;
 
@@ -132,7 +131,7 @@ input, textarea{
     font-size: 14px;
 }
 
-input, textarea, .btn{
+input, textarea, .input, .btn{
     border: 2px solid $body-bg;
     vertical-align: top;
     border-right: 2px solid $darker-border-color;

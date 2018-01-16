@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/pascal.css') }}">
 
     @auth
-        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
     @endauth
 
 </head>

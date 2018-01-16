@@ -109,6 +109,12 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('/upload', 'PhotoController@upload')
         ->name('upload');
+
+    // Route::get('/photos/{photo}/movePhotoUp', 'PhotoController@moveUp')
+    //     ->name('movePhotoUp');
+
+    // Route::get('/photos/{photo}/movePhotoDown', 'PhotoController@moveDown')
+    //     ->name('movePhotoDown');
 });
 
 

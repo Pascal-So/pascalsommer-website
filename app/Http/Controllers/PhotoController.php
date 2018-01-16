@@ -139,4 +139,19 @@ class PhotoController extends Controller
 
         return redirect()->route('editPhoto', compact('photo'));
     }
+
+    
+    // public function moveUp(Photo $photo)
+    // {
+    //     $photo->moveOrderUp();
+
+    //     return redirect()->route('photos');
+    // }
+
+    // public function moveDown(Photo $photo)
+    // {
+    //     $photo->moveOrderDown();
+
+    //     return redirect()->route('photos');
+    // }
 }

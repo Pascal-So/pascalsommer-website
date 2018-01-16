@@ -16,9 +16,7 @@
     @else
         <a href="{{ route('viewPhoto', ['photo' => $photo->prevPhoto()]) }}"><img class="arrow-icon" src="{{ asset('img/icons/larrow.svg') }}"></a>
     @endif
-    {{-- <a href="{{ asset($photo->path) }}" target="blank"> --}}
     <img id="photo" class="photo-large" src="{{ asset($photo->path) }}" alt="{{ $photo->alttext() }}">
-    {{-- </a> --}}
     @if($photo->nextPhoto() == null)
         <div class="arrow-icon-placeholder"></div>
     @else

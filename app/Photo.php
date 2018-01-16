@@ -52,6 +52,7 @@ class Photo extends Model implements Sortable
         return $query->orderByRaw('CASE WHEN post_id IS NULL THEN 1 ELSE 2 END ASC')
                      ->leftJoin('posts as p', 'photos.post_id', '=', 'p.id')
                      ->orderBy('p.date', 'desc')
+                     ->orderBy('p.created_at', 'desc')
                      ->orderBy('weight', 'asc')
                        // the explicit select statement is necessary, because otherwise, the
                        // photo id gets overwritten by the post id.

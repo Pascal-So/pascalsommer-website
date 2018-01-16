@@ -10,14 +10,14 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest('date')->paginate(Post::$posts_per_page);
+        $posts = Post::blogOrdered()->paginate(Post::$posts_per_page);
 
         return view('index', compact('posts'));
     }
 
     public function adminIndex()
     {
-        $posts = Post::latest('date')->get();
+        $posts = Post::blogOrdered()->get();
 
         return view('post.adminIndex', compact('posts'));
     }
@@ -26,7 +26,9 @@ class PostController extends Controller
     {
         $post = new Post;
 
-        return view('post.edit', compact('post'));
+        $staged = Photo::staged()->get();
+
+        return view('post.create', compact('post', 'staged'));
     }
 
     private function validatePost(Request $request)
@@ -43,14 +45,23 @@ class PostController extends Controller
     {
         $this->validatePost($request);
 
-        $this->attachPhotos($request->photos);
+        $post = new Post;
+
+        $post->title = $request->title;
+        $post->date = $request->date;
+
+        $post->save();
+
+        $post->attachPhotos($request->photos);
 
         return redirect()->route('posts');
     }
 
     public function edit(Post $post)
     {
-        return view('post.edit', compact('post'));
+        $staged = Photo::staged()->blogOrdered()->get();
+
+        return view('post.edit', compact('post', 'staged'));
     }
 
     public function update(Post $post, Request $request)
@@ -59,9 +70,9 @@ class PostController extends Controller
 
         $post->update($request->only('name', 'date'));
 
-        $this->detachPhotos();
+        $post->detachPhotos();
 
-        $this->attachPhotos($request->photos);
+        $post->attachPhotos($request->photos);
 
         return redirect()->route('posts');
     }
