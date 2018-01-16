@@ -47,7 +47,7 @@ footer {
 
 .photo {
   width: 900px;
-  display: block;
+  display: inline-block;
 }
 
 .photolink {
@@ -60,9 +60,12 @@ footer {
   border: 2px solid #aaa;
 }
 
+.photo-small {
+  width: 300px;
+}
+
 .photo-large {
   width: 1000px;
-  vertical-align: middle;
 }
 
 .flex-center-row {
@@ -105,7 +108,16 @@ footer {
 
 .admin-nav {
   background-color: #193d34;
-  padding: 15px;
+  padding: 0 15px;
+}
+
+.admin-nav a {
+  display: inline-block;
+  padding: 10px 3px;
+}
+
+.nav-link-active {
+  background-color: #142c27;
 }
 
 .comment-form {
@@ -150,8 +162,13 @@ textarea,
 
 .btn:hover {
   border: 2px solid #aaa;
-  background-color: #232327;
+  background-color: #2c2c32;
   cursor: default;
+}
+
+.btn:focus,
+#photos_upload_button:focus + label {
+  background-color: #27272c;
 }
 
 .tag {
@@ -164,5 +181,14 @@ textarea,
 
 .hidden {
   display: none;
+}
+
+.pretty-much-hidden {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 

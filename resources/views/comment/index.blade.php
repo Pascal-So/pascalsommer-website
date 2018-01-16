@@ -6,5 +6,8 @@
 
 @include('comment.list', ['comments' => $comments, 'admin_overview' => true])
 
+@if($comments->isEmpty())
+    <p>No comments.</p>
+@endif
 
 @endsection

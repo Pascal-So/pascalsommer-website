@@ -21,7 +21,11 @@
 
     @foreach($post->photos as $photo)
         <a href="{{ route('viewPhoto', compact('photo')) }}" class="photolink">
-            <img class="photo" src="{{ asset($photo->path) }}" alt="{{ $photo->alttext() }}" title="{{ $photo->alttext() }}">
+            <img class="photo" 
+                src="{{ asset($photo->path) }}" 
+                alt="{{ $photo->alttext() }}" 
+                title="{{ $photo->alttext() }}" 
+                id="photo_{{ $photo->id }}">
         </a>
         <br>
     @endforeach

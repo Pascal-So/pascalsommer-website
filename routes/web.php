@@ -23,10 +23,10 @@ Route::middleware(['auth'])->group(function(){
         ->name('posts');
 
     Route::get('/posts/create', 'PostController@create')
-        ->name('createPosts');
+        ->name('createPost');
 
     Route::post('/posts', 'PostController@store')
-        ->name('storePosts');
+        ->name('storePost');
 
     Route::get('/posts/{post}/edit', 'PostController@edit')
         ->name('editPost');
@@ -83,6 +83,12 @@ Route::get('/photos/{photo}', 'PhotoController@view')
 Route::middleware(['auth'])->group(function(){
     Route::get('/photos', 'PhotoController@adminIndex')
         ->name('photos');
+
+    Route::get('/photos/{photo}/addTag/{tag}', 'PhotoController@addTag')
+        ->name('addTag');
+
+    Route::get('/photos/{photo}/removeTag/{tag}', 'PhotoController@removeTag')
+        ->name('removeTag');
 
     Route::get('/photos/{photo}/edit', 'PhotoController@edit')
         ->name('editPhoto');

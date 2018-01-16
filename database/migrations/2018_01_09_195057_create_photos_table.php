@@ -18,7 +18,7 @@ class CreatePhotosTable extends Migration
             $table->integer('post_id')->nullable();
             $table->integer('weight');
             $table->text('path');
-            $table->text('description')->default('');
+            $table->text('description');
             $table->timestamps();
         });
     }

@@ -7,6 +7,8 @@ use App\Photo;
 
 class Post extends Model
 {
+    public static $posts_per_page = 2;
+
     public function photos(){
         return $this->hasMany(Photo::class)->orderBy('weight', 'asc');
     }
@@ -25,7 +27,7 @@ class Post extends Model
 
 
     /**
-     * Move all the photos from this post back to staging
+     * Move all the photos from this post back to staging.
      *
      **/
     private function detachPhotos()
@@ -58,5 +60,15 @@ class Post extends Model
         foreach($photo_ids as $photo_id){
             Photo::find($photo_id)->setHighestOrderNumber()->save();
         }
+    }
+
+    /**
+     * The page number on which the post will show up in the pagination.
+     *
+     **/
+    public function getPaginationPage():int
+    {
+        $position = Post::where('date', '>', $this->date)->count();
+        return $position / Post::$posts_per_page + 1;
     }
 }

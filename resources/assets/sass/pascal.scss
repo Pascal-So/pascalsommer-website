@@ -4,7 +4,9 @@ $text-color: #eee;
 
 $border-color: #aaa;
 $darker-border-color: darken($body-bg, 4%);
-$button-active-color: lighten($body-bg, 4%);
+$input-color: lighten($body-bg, 4%);
+$button-active-color: lighten($body-bg, 8%);
+$button-focus-color: lighten($body-bg, 6%);
 
 $tag-color: lighten($body-bg, 8%);
 
@@ -57,7 +59,7 @@ footer{
 
 .photo{
     width: 900px;
-    display: block;
+    display: inline-block;
 }
 
 .photolink{
@@ -70,10 +72,12 @@ footer{
     border: 2px solid $border-color;
 }
 
+.photo-small{
+    width: 300px;
+}
 
 .photo-large{
     width: 1000px;
-    vertical-align: middle;
 }
 
 .flex-center-row{
@@ -104,7 +108,16 @@ footer{
 
 .admin-nav{
     background-color: #193d34;
-    padding: 15px;
+    padding: 0 15px;
+}
+
+.admin-nav a{
+    display: inline-block;
+    padding: 10px 3px;
+}
+
+.nav-link-active{
+    background-color: #142c27;//#2b4f47;
 }
 
 .comment-form{
@@ -115,13 +128,12 @@ footer{
 input, textarea, .btn{
     border: 2px solid $body-bg;
     vertical-align: top;
-    border-right: 2px solid $darker-border-color;
+    border-right:        2px solid $darker-border-color;
     border-bottom: 2px solid $darker-border-color;
-    background-color: $button-active-color;
+    background-color: $input-color;
     color: $text-color;
     padding: 5px;
 }
-
 
 .comment{
     border-right: 4px solid $darker-border-color;
@@ -134,14 +146,10 @@ input, textarea, .btn{
 }
 
 .comment button{
-    // border: 1px solid $border-color;
-    // background-color: rgba(0,0,0,0);
-    // color: $text-color;
     position: absolute;
     right: -80px;
     top: 0;
 }
-
 
 .btn{
     padding: 10px 15px;
@@ -156,6 +164,10 @@ input, textarea, .btn{
     cursor: default;
 }
 
+.btn:focus, #photos_upload_button:focus + label{
+    background-color: $button-focus-color;
+}
+
 .tag{
     background-color: $tag-color;
     padding: 5px 7px;
@@ -166,4 +178,13 @@ input, textarea, .btn{
 
 .hidden{
     display: none;
+}
+
+.pretty-much-hidden{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }

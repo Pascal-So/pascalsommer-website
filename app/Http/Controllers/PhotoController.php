@@ -21,7 +21,13 @@ class PhotoController extends Controller
 
     public function view(Photo $photo)
     {
+        // not logged in users aren't allowed to see unpublished photos
+        if( ! $photo->isPublic() && ! \Auth::check()){
+            abort(404);
+        }
+
         return view('photo.view', compact('photo'));
+
     }
 
     public function filtered(string $tags = '')
@@ -56,21 +62,22 @@ class PhotoController extends Controller
 
     public function adminIndex()
     {
-        $photos = Photo::with(['posts', 'tags'])->get();
+        $photos = Photo::get();
 
-        return view('photo.adminIndex', compact($photos));
+        return view('photo.adminIndex', compact('photos'));
     }
 
     public function edit(Photo $photo)
     {
-        return view('photo.edit', compact($photo));
+        $other_tags = Tag::whereNotIn('id', $photo->tags->pluck('id'))->get();
+
+        return view('photo.edit', compact('photo', 'other_tags'));
     }
 
     public function update(Photo $photo, Request $request)
     {
         $request->validate([
             'description' => ['max:10000', new NoHTML],
-            'path' => 'required',
         ]);
 
         $photo->update($request->only('description', 'path'));
@@ -89,10 +96,10 @@ class PhotoController extends Controller
     {
         $photos = Photo::where('post_id', null)->get();
 
-        return view('photo.staging', compact($photos));
+        return view('photo.staging', compact('photos'));
     }
 
-    public function uploadForm()
+    public function showUploadForm()
     {
         return view('photo.uploadForm');
     }
@@ -105,15 +112,30 @@ class PhotoController extends Controller
         ]);
 
         foreach($request->photos as $photo){
-            $generated_name = Str::random(10) . '-' . $photo->getClientOriginalName();;
+            $generated_name = Str::random(10) . '-' . $photo->getClientOriginalName();
 
-            $filename = $this->storeAs(config('constants.photos_path'), $generated_name);
+            $filename = $photo->storeAs(config('constants.photos_path'), $generated_name);
 
             Photo::create([
                 'path' => $filename,
+                'description' => '',
             ]);
         }
 
         return redirect()->route('photos');
+    }
+
+    public function addTag(Photo $photo, Tag $tag)
+    {
+        $photo->tags()->attach($tag);
+
+        return redirect()->route('editPhoto', compact('photo'));
+    }
+
+    public function removeTag(Photo $photo, Tag $tag)
+    {
+        $photo->tags()->detach($tag);
+
+        return redirect()->route('editPhoto', compact('photo'));
     }
 }
