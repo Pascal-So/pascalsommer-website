@@ -8,6 +8,7 @@ use App\Post;
 use App\Tag;
 use App\Rules\NoHTML;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 
 class PhotoController extends Controller
@@ -37,7 +38,7 @@ class PhotoController extends Controller
         $unused_tags_arr = Tag::has('photos')->get()->pluck('name')->diff($tags_arr)->sort();
 
         // The has('tags') call is redundant, it's just here to get a query builder object we can work with
-        $query = Photo::has('tags');
+        $query = Photo::published();
 
         // This might get inefficient as the amount of tags filtered for grows, but that's ok,
         // because usually count($tags_arr) is just 1.
@@ -47,24 +48,23 @@ class PhotoController extends Controller
             });
         }
 
-        $query->join('posts as p', 'photos.post_id', '=', 'p.id')
-              ->orderBy('p.date', 'desc')
-              ->orderBy('weight', 'asc');
-        
-        // the explicit select statement is necessary, because otherwise, the photo id
-        // gets overwritten by the post id.
-        $query->select('photos.id', 'photos.path', 'photos.description');
-
-        $photos = $query->paginate(10);
+        $photos = $query->blogOrdered()->paginate(10);
 
         return view('photo.filtered', compact('tags_arr', 'photos', 'unused_tags_arr'));
     }
 
-    public function adminIndex()
+    public function adminIndex(bool $only_staging = false)
     {
-        $photos = Photo::get();
+        $photos_query = $only_staging ? Photo::staged() : Photo::query();
 
-        return view('photo.adminIndex', compact('photos'));
+        $photos = $photos_query->blogOrdered()->get();
+
+        return view('photo.adminIndex', compact('photos', 'only_staging'));
+    }
+
+    public function staging()
+    {
+        return $this->adminIndex(true);
     }
 
     public function edit(Photo $photo)
@@ -87,16 +87,17 @@ class PhotoController extends Controller
 
     public function delete(Photo $photo)
     {
+        $public = $photo->isPublic();
+
+        $post = $photo->post;
+
         $photo->delete();
 
+        if($public && $post->photos->isEmpty()){
+            $post->delete();
+        }
+
         return redirect()->back();
-    }
-
-    public function staging()
-    {
-        $photos = Photo::where('post_id', null)->get();
-
-        return view('photo.staging', compact('photos'));
     }
 
     public function showUploadForm()

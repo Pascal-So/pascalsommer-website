@@ -19,7 +19,7 @@
 
     <h2>{{ $post->formatTitle() }}</h2>
 
-    @foreach($post->photos as $photo)
+    @foreach($post->photos()->blogOrdered()->get() as $photo)
         <a href="{{ route('viewPhoto', compact('photo')) }}" class="photolink">
             <img class="photo" 
                 src="{{ asset($photo->path) }}" 

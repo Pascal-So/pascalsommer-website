@@ -39,12 +39,26 @@ class Photo extends Model implements Sortable
 
     public function scopePublished($query)
     {
-        return $query->whereNot('post_id', null);
+        return $query->has('post');
     }
 
     public function scopeStaged($query)
     {
-        return $query->where('post_id', null);
+        return $query->doesntHave('post');
+    }
+
+    public function scopeBlogOrdered($query)
+    {
+        return $query->orderByRaw('CASE WHEN post_id IS NULL THEN 1 ELSE 2 END ASC')
+                     ->leftJoin('posts as p', 'photos.post_id', '=', 'p.id')
+                     ->orderBy('p.date', 'desc')
+                     ->orderBy('weight', 'asc')
+                       // the explicit select statement is necessary, because otherwise, the
+                       // photo id gets overwritten by the post id.
+                     ->select('photos.id', 'photos.path',
+                              'photos.description', 'photos.weight',
+                              'photos.post_id', 'photos.created_at',
+                              'photos.updated_at');
     }
 
     public function prevPhoto()
@@ -127,5 +141,12 @@ class Photo extends Model implements Sortable
     public function descriptionHTML():string
     {
         return nl2br(htmlspecialchars($this->description));
+    }
+
+    public function delete()
+    {
+        //Storage::delete($this->path);
+
+        return parent::delete();
     }
 }

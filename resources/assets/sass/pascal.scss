@@ -13,6 +13,8 @@ $tag-color: lighten($body-bg, 8%);
 $link-color: #89b;
 $link-visited-color: #bbc;
 
+$errors-color: #933;
+
 body{
     box-sizing: border-box;
     background-color: $body-bg;
@@ -45,6 +47,7 @@ a:visited{
 
 ul{
     list-style: none;
+    padding-left: 0;
 }
 
 footer{
@@ -125,10 +128,14 @@ footer{
     vertical-align: text-top;
 }
 
+input, textarea{
+    font-size: 14px;
+}
+
 input, textarea, .btn{
     border: 2px solid $body-bg;
     vertical-align: top;
-    border-right:        2px solid $darker-border-color;
+    border-right: 2px solid $darker-border-color;
     border-bottom: 2px solid $darker-border-color;
     background-color: $input-color;
     color: $text-color;
@@ -145,17 +152,18 @@ input, textarea, .btn{
     position: relative;
 }
 
-.comment button{
+.comment .btn{
     position: absolute;
-    right: -80px;
+    left: -100px;
     top: 0;
 }
 
-.btn{
+.btn, .btn:visited{
     padding: 10px 15px;
     transition: border-color 0.1s linear;
     text-decoration: none;
     display: inline-block;
+    color: $link-visited-color;
 }
 
 .btn:hover{
@@ -176,6 +184,11 @@ input, textarea, .btn{
     margin: 5px 0;
 }
 
+a.tag, a.tag:visited,
+.tag a, .tag a:visited{
+    color: $link-color;
+}
+
 .hidden{
     display: none;
 }
@@ -187,4 +200,23 @@ input, textarea, .btn{
     overflow: hidden;
     position: absolute;
     z-index: -1;
+}
+
+.error-panel{
+    background-color: $errors-color;
+    display: inline-block;
+    text-align: left;
+    padding: 0 15px;
+    border-right: 4px solid $darker-border-color;
+    border-bottom: 4px solid $darker-border-color;
+}
+
+.error-panel p{
+    margin-bottom: 6px;
+}
+
+.error-panel ul{
+    margin-top: 0;
+    list-style: square;
+    padding-left: 16px;
 }

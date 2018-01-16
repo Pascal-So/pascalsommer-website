@@ -17,23 +17,23 @@ class PostController extends Controller
 
     public function adminIndex()
     {
-        $posts = Post::latest('date');
+        $posts = Post::latest('date')->get();
 
-        return view('post.adminIndex', compact($posts));
+        return view('post.adminIndex', compact('posts'));
     }
 
     public function create()
     {
         $post = new Post;
 
-        return view('post.edit', compact($post));
+        return view('post.edit', compact('post'));
     }
 
     private function validatePost(Request $request)
     {
         $request->validate([
             'title' => 'required|max:255',
-            'date' => 'required|regex:/\d{4}-\d{2}-\d{2}/',
+            'date' => 'required|regex:/^\d{4}-\d{2}-\d{2}$/',
             'photos' => 'required|array',
             'photos.*' => 'integer',
         ]);
@@ -50,7 +50,7 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('post.edit', compact($post));
+        return view('post.edit', compact('post'));
     }
 
     public function update(Post $post, Request $request)

@@ -13,4 +13,8 @@ class Comment extends Model
     public function photo(){
         return $this->belongsTo(Photo::class);
     }
+
+    public function commentHTML(){
+        return nl2br(htmlspecialchars($this->comment));
+    }
 }

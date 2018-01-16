@@ -31,6 +31,11 @@
 
     <link href="https://fonts.googleapis.com/css?family=PT+Mono&amp;subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/pascal.css') }}">
+
+    @auth
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    @endauth
+
 </head>
 <body>
 
@@ -40,6 +45,8 @@
         <a class="{{ Route::is('uploadForm') ? 'nav-link-active' : '' }}" href="{{ route('uploadForm') }}">Upload</a>
         <a class="{{ Route::is('staging') ? 'nav-link-active' : '' }}" href="{{ route('staging') }}">Staging</a>
         <a class="{{ Route::is('createPost') ? 'nav-link-active' : '' }}" href="{{ route('createPost') }}">New Post</a>
+        <a class="{{ Route::is('posts') ? 'nav-link-active' : '' }}" href="{{ route('posts') }}">All Posts</a>
+        <a class="{{ Route::is('photos') ? 'nav-link-active' : '' }}" href="{{ route('photos') }}">All Photos</a>
         <a class="{{ Route::is('tags') ? 'nav-link-active' : '' }}" href="{{ route('tags') }}">Tags</a>
         <a class="{{ Route::is('comments') ? 'nav-link-active' : '' }}" href="{{ route('comments') }}">Comments</a>
         <span>&nbsp;</span>

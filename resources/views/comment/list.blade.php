@@ -13,10 +13,17 @@
                 @endif
             @endauth
             <p>{{ $comment->created_at->format('Y-m-d') }}</p>
-            <p>{{ $comment->comment }}</p>
+            <p>{!! $comment->commentHTML() !!}</p>
 
             @auth
-                <a href="{{ route('deleteComment', compact('comment')) }}"><button class="btn">Delete</button></a>
+                <a href="{{ route('deleteComment', compact('comment')) }}"
+                    class="btn"
+                    data-deletable-comment
+                    data-name="{{ str_replace('"', "'", $comment->name) }}"
+                    data-comment="{{ str_replace('"', "'", $comment->comment) }}"
+                    >
+                    Delete
+                </a>
             @endauth
         </li>
         <br>

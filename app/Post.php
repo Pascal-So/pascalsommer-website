@@ -71,4 +71,13 @@ class Post extends Model
         $position = Post::where('date', '>', $this->date)->count();
         return $position / Post::$posts_per_page + 1;
     }
+
+    public function delete()
+    {
+        $this->photos->each(function($photo){
+            $photo->delete();
+        });
+
+        return parent::delete();
+    }
 }

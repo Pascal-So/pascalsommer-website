@@ -84,6 +84,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/photos', 'PhotoController@adminIndex')
         ->name('photos');
 
+    Route::get('/staging', 'PhotoController@staging')
+        ->name('staging');
+
     Route::get('/photos/{photo}/addTag/{tag}', 'PhotoController@addTag')
         ->name('addTag');
 
@@ -100,11 +103,7 @@ Route::middleware(['auth'])->group(function(){
         ->name('deletePhoto');
 });
 
-
 Route::middleware(['auth'])->group(function(){
-    Route::get('/staging', 'PhotoController@staging')
-        ->name('staging');
-
     Route::get('/upload', 'PhotoController@showUploadForm')
         ->name('uploadForm');
 
