@@ -22,7 +22,7 @@
 
 @include('layouts.admin_nav')
 
-@yield('content')
+@yield('content-base')
 
 
 </body>

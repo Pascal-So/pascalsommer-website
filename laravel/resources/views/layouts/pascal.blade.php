@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('content')
+@section('content-base')
 
 @yield('content')
 

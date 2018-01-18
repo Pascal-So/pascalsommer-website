@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('content')
+@section('content-base')
 
 <div class="fullpage">
     <div class="centered">
@@ -15,7 +15,6 @@
 
 <style type="text/css">
 .centered{
-    //display: inline-block;
     margin: auto;
 }
 
