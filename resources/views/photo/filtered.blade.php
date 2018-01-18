@@ -3,7 +3,7 @@
 @section('content')
 
 <br><br>
-<h1>Pascal Sommer</h1>
+<a href="{{ route('home') }}" class="stealth-link"><h1>Pascal Sommer</h1></a>
 
 <br>
 

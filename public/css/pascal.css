@@ -116,6 +116,8 @@ footer {
 }
 
 .admin-nav {
+  z-index: 2;
+  position: relative;
   background-color: #193d34;
   padding: 0 15px;
 }
@@ -131,6 +133,12 @@ footer {
 
 .comment-form {
   vertical-align: text-top;
+}
+
+.stealth-link,
+.stealth-link:visited {
+  color: #eee;
+  text-decoration: none;
 }
 
 input,
@@ -325,6 +333,16 @@ a.tag:visited,
     margin-top: 5px;
   }
 
+  .comment {
+    width: 300px;
+    margin: 20px 0;
+    padding: 5px;
+  }
+
+  .comment .btn {
+    left: -80px;
+  }
+
   p,
   a {
     font-size: 0.9rem;
@@ -334,7 +352,8 @@ a.tag:visited,
     font-size: 40px;
   }
 
-  h2 {
+  h2,
+  h2 a {
     font-size: 1.3rem;
   }
 }
@@ -374,7 +393,8 @@ a.tag:visited,
     font-size: 33px;
   }
 
-  h2 {
+  h2,
+  h2 a {
     font-size: 1rem;
   }
 }
@@ -398,6 +418,16 @@ a.tag:visited,
 
   .admin-index-panel {
     text-align: center;
+  }
+
+  .comment {
+    width: 300px;
+    margin: 10px 0;
+    padding: 5px;
+  }
+
+  .comment .btn {
+    position: static;
   }
 }
 
@@ -424,6 +454,11 @@ a.tag:visited,
   .arrow-icon-placeholder {
     width: 15px;
     margin: 40px 8px;
+  }
+
+  .comment {
+    width: 270px;
+    margin: 5px 0;
   }
 }
 

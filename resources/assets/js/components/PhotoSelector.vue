@@ -101,4 +101,46 @@
     text-align: left;
 }
 
+@media(max-width: 1100px){
+    .photo-sortable{
+        max-height: 133px;
+        max-width: 200px;
+    }
+
+    .box-sortable{
+        width: 200px;
+        height: 133px;
+        line-height: 133px;
+        margin: 5px;
+        padding: 1px;
+    }
+}
+
+@media(max-width: 740px){
+    .photo-sortable{
+        max-height: 100px;
+        max-width: 150px;
+    }
+
+    .box-sortable{
+        width: 150px;
+        height: 100px;
+        line-height: 100px;
+    }
+}
+
+@media(max-width: 740px){
+    .photo-sortable{
+        max-height: 82px;
+        max-width: 123px;
+    }
+
+    .box-sortable{
+        width: 123px;
+        height: 82px;
+        line-height: 82px;
+        margin: 3px;
+    }
+}
+
 </style>

@@ -7,7 +7,7 @@ use App\Photo;
 
 class Post extends Model
 {
-    public static $posts_per_page = 6;
+    public static $posts_per_page = 1;
 
     protected $guarded = ['id'];
 
@@ -47,6 +47,11 @@ class Post extends Model
     public function formatTitle()
     {
         return $this->title . " - " . $this->date;
+    }
+
+    public function titleSlug()
+    {
+        return str_slug($this->title);
     }
 
     public function scopeBlogOrdered($query, bool $reverse = false)

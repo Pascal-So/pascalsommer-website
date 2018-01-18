@@ -6,13 +6,16 @@
 
 @section('content')
 
-<h2>
-    @if($photo->isPublic() )
+@if($photo->isPublic())
+    <h2><a class="stealth-link"
+        href="{{ route('home') }}?page={{ $photo->post->getPaginationPage() . '#post_' . $photo->post->titleSlug() }}">
         {{ $photo->post->formattitle() }}
-    @else
+    </a></h2>
+@else
+    <h2><a class="stealth-link" href="{{ route('home') }}">
         Unpublished Photo
-    @endif
-</h2>
+    </a></h2>
+@endif
 
 <div class="flex-center-row">
     @if($photo->prevPhoto() == null)

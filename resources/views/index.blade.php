@@ -13,11 +13,13 @@
 </p>
 
 <br>
-<br><br>
+<br>
+@include('layouts.pagination_nav', ['items' => $posts, 'from_page_two' => true])
+<br>
 
 @foreach($posts as $post)
 
-    <h2>{{ $post->formatTitle() }}</h2>
+    <h2 id="post_{{ $post->titleSlug() }}">{{ $post->formatTitle() }}</h2>
 
     @foreach($post->photos()->blogOrdered()->get() as $photo)
         <a href="{{ route('viewPhoto', compact('photo')) }}" class="photolink">
@@ -32,7 +34,7 @@
 
 @endforeach
 
-@include('layouts.pagination_nav', ['items' => $posts])
+@include('layouts.pagination_nav', ['items' => $posts, 'from_page_two' => false])
 
 <br><br><br>
 

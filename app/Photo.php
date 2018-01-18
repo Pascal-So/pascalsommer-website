@@ -154,6 +154,10 @@ class Photo extends Model implements Sortable
 
         $this->tags()->detach();
 
+        $this->comments->each(function($comment){
+            $comment->delete();
+        });
+
         return parent::delete();
     }
 }
