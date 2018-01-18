@@ -7,7 +7,7 @@ use App\Photo;
 
 class Post extends Model
 {
-    public static $posts_per_page = 1;
+    public static $posts_per_page = 6;
 
     protected $guarded = ['id'];
 

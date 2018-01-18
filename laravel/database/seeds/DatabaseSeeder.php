@@ -4,12 +4,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    private function testData()
     {
         DB::table('users')->insert([
             'name' => 'test',
@@ -48,27 +43,39 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        DB::table('tags')->insert([
-            [ 'name' => 'Animals' ],
-            [ 'name' => 'Architecture' ],
-            [ 'name' => 'Birds' ],
-            [ 'name' => 'Landscape' ],
-            [ 'name' => 'Sky' ],
-            [ 'name' => 'People' ],
-            [ 'name' => 'Transport' ],
-            [ 'name' => 'Infrastructure' ],
-            [ 'name' => 'Travel' ],
-            [ 'name' => 'Water' ],
-        ]);
-
         App\Tag::where('name', 'Landscape')->first()->photos()->attach([1,2]);
         App\Tag::where('name', 'Architecture')->first()->photos()->attach([2]);
         App\Tag::where('name', 'Travel')->first()->photos()->attach([1,2,3]);
 
+    }
+
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        //$this->testData();
+
+        DB::table('tags')->insert([
+            [ 'name' => 'Animals' ],
+            [ 'name' => 'Birds' ],
+            [ 'name' => 'People' ],
+            [ 'name' => 'Landscape' ],
+            [ 'name' => 'Trees' ],
+            [ 'name' => 'Sky' ],
+            [ 'name' => 'Water' ],
+            [ 'name' => 'Travel' ],
+            [ 'name' => 'Transport' ],
+            [ 'name' => 'Architecture' ],
+            [ 'name' => 'Infrastructure' ],
+        ]);
+
         DB::table('blacklist')->insert([
             [ 'regex' => '#http://www\.ttk-krasnodar\.ru#' ],
-            [ 'regex' => '#http://создание-сайтов161\.рф#' ],
-            [ 'regex' => '#https://fotograf23\.ru#' ],
+            [ 'regex' => '#http://создание-сайтов\d*\.рф#' ],
+            [ 'regex' => '#https://fotograf\d*\.ru#' ],
             [ 'regex' => '#http://xn--.*\.xn#' ],
             [ 'regex' => '#https://metal-moscow\.ru#' ],
             [ 'regex' => '#https://agrohoztorg\.ru#' ],
