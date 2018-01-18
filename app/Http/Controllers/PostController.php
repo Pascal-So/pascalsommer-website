@@ -26,7 +26,7 @@ class PostController extends Controller
     {
         $post = new Post;
 
-        $staged = Photo::staged()->get();
+        $staged = Photo::staged()->blogOrdered()->get();
 
         return view('post.create', compact('post', 'staged'));
     }

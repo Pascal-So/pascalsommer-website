@@ -27,7 +27,21 @@ $(() => {
         const post = $(obj).data('post');
 
         const message = `Do you really want to delete the photo "${filename}?"`
-            + ((post == null) ? '' : `\n\nWARNING: THIS PHOTO IS PART OF THE POST "${post}"`);
+            + ((post == null) ? '' : `\n\nWARNING: This photo is part of the post "${post}!"`);
+
+        $(obj).click(e => {
+            return confirm(message);
+        });
+    });
+
+    $('*[data-deletable-tag]').each((index, obj) => {
+        const name = $(obj).data('name');
+
+        const photos_live = $(obj).data('photos-live');
+        const photos = $(obj).data('photos');
+
+        const message = `Do you really want to delete the tag "${name}?"`
+            + ((photos > 0) ? `\n\nWARNING: This tag is on ${photos} photos, ${photos_live} of which are live!` : '');
 
         $(obj).click(e => {
             return confirm(message);

@@ -25,8 +25,19 @@
     import draggable from 'vuedraggable'
     import $ from 'jquery';
 
-    const post_photos = JSON.parse($('#post-photos').text());
-    const staged_photos = JSON.parse($('#staged-photos').text());
+    if($('#photo-selector').length){
+        
+    }
+
+    const post_photos_el = $('#post-photos');
+    const post_photos = post_photos_el.length 
+                            ? JSON.parse(post_photos_el.text()) 
+                            : [];
+
+    const staged_photos_el = $('#staged-photos');
+    const staged_photos = staged_photos_el.length
+                            ? JSON.parse(staged_photos_el.text())
+                            : [];
 
     const asset_path = $('#asset-path').text();
     const view_path = $('#view-path').text();
@@ -49,6 +60,7 @@
             },
         },
     }
+
 </script>
 
 <style lang="scss">

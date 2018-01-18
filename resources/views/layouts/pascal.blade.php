@@ -24,8 +24,7 @@
         <a class="{{ Route::is('uploadForm') ? 'nav-link-active' : '' }}" href="{{ route('uploadForm') }}">Upload</a>
         <a class="{{ Route::is('staging') ? 'nav-link-active' : '' }}" href="{{ route('staging') }}">Staging</a>
         <a class="{{ Route::is('createPost') ? 'nav-link-active' : '' }}" href="{{ route('createPost') }}">New Post</a>
-        <a class="{{ Route::is('posts') ? 'nav-link-active' : '' }}" href="{{ route('posts') }}">All Posts</a>
-        <a class="{{ Route::is('photos') ? 'nav-link-active' : '' }}" href="{{ route('photos') }}">All Photos</a>
+        <a class="{{ Route::is('posts') ? 'nav-link-active' : '' }}" href="{{ route('posts') }}">Posts</a>
         <a class="{{ Route::is('tags') ? 'nav-link-active' : '' }}" href="{{ route('tags') }}">Tags</a>
         <a class="{{ Route::is('comments') ? 'nav-link-active' : '' }}" href="{{ route('comments') }}">Comments</a>
         <span>&nbsp;</span>
@@ -36,9 +35,9 @@
 @yield('content')
 <br><br><br><br>
 <footer class="alignright">
-    Copyright &copy;2013-{{ date('Y') }} Pascal Sommer
+    <p>Copyright &copy;2013-{{ date('Y') }} Pascal Sommer
     <br>
-    All Rights Reserved
+    All Rights Reserved</p>
 </footer>
 
 </body>

@@ -9,7 +9,7 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::withCount('photos')->get();
+        $tags = Tag::get();
 
         return view('tag.index', compact('tags'));
     }

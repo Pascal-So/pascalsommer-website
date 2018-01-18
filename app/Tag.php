@@ -11,4 +11,11 @@ class Tag extends Model
     {
         return $this->belongsToMany(Photo::class);
     }
+
+    public function delete()
+    {
+        $this->photos()->detach();
+
+        parent::delete();
+    }
 }

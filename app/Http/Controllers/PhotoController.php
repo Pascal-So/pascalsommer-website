@@ -8,7 +8,6 @@ use App\Post;
 use App\Tag;
 use App\Rules\NoHTML;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 
 
 class PhotoController extends Controller

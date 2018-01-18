@@ -60,111 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(2);
-__webpack_require__(10);
-module.exports = __webpack_require__(11);
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_PhotoSelector__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_PhotoSelector___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_PhotoSelector__);
-__webpack_require__(3);
-
-__webpack_require__(5);
-
-window.Vue = __webpack_require__(6);
-
-
-
-Vue.config.productionTip = false;
-
-/* eslint-disable no-new */
-new Vue({
-    el: '#photo-selector',
-    template: '<PhotoSelector/>',
-    components: { PhotoSelector: __WEBPACK_IMPORTED_MODULE_0__components_PhotoSelector___default.a }
-});
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-//window._ = require('lodash');
-
-
-try {
-    window.$ = window.jQuery = __webpack_require__(4);
-
-    //require('bootstrap-sass');
-} catch (e) {}
-
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-/*
-window.axios = require('axios');
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-*/
-/**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
- */
-/*
-let token = document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
-*/
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10424,6 +10324,108 @@ return jQuery;
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(3);
+__webpack_require__(21);
+module.exports = __webpack_require__(22);
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_PhotoSelector__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_PhotoSelector___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_PhotoSelector__);
+__webpack_require__(4);
+
+__webpack_require__(5);
+
+window.Vue = __webpack_require__(6);
+
+
+
+Vue.config.productionTip = false;
+
+if ($('#photo-selector').length) {
+    /* eslint-disable no-new */
+    new Vue({
+        el: '#photo-selector',
+        template: '<PhotoSelector/>',
+        components: { PhotoSelector: __WEBPACK_IMPORTED_MODULE_0__components_PhotoSelector___default.a }
+    });
+}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+//window._ = require('lodash');
+
+
+try {
+    window.$ = window.jQuery = __webpack_require__(0);
+
+    //require('bootstrap-sass');
+} catch (e) {}
+
+/**
+ * We'll load the axios HTTP library which allows us to easily issue requests
+ * to our Laravel back-end. This library automatically handles sending the
+ * CSRF token as a header based on the value of the "XSRF" token cookie.
+ */
+/*
+window.axios = require('axios');
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+*/
+/**
+ * Next we will register the CSRF Token as a common header with Axios so that
+ * all outgoing HTTP requests automatically have it attached. This is just
+ * a simple convenience so we don't have to attach every token manually.
+ */
+/*
+let token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+*/
+
+/***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
@@ -10455,7 +10457,20 @@ $(function () {
 
         var post = $(obj).data('post');
 
-        var message = 'Do you really want to delete the photo "' + filename + '?"' + (post == null ? '' : '\n\nWARNING: THIS PHOTO IS PART OF THE POST "' + post + '"');
+        var message = 'Do you really want to delete the photo "' + filename + '?"' + (post == null ? '' : '\n\nWARNING: This photo is part of the post "' + post + '!"');
+
+        $(obj).click(function (e) {
+            return confirm(message);
+        });
+    });
+
+    $('*[data-deletable-tag]').each(function (index, obj) {
+        var name = $(obj).data('name');
+
+        var photos_live = $(obj).data('photos-live');
+        var photos = $(obj).data('photos');
+
+        var message = 'Do you really want to delete the tag "' + name + '?"' + (photos > 0 ? '\n\nWARNING: This tag is on ' + photos + ' photos, ' + photos_live + ' of which are live!' : '');
 
         $(obj).click(function (e) {
             return confirm(message);
@@ -21278,7 +21293,7 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(7).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(7).setImmediate))
 
 /***/ }),
 /* 7 */
@@ -21530,7 +21545,7 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(9)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(9)))
 
 /***/ }),
 /* 9 */
@@ -21724,20 +21739,97 @@ process.umask = function() { return 0; };
 
 /***/ }),
 /* 10 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(11)
+}
+var normalizeComponent = __webpack_require__(16)
+/* script */
+var __vue_script__ = __webpack_require__(17)
+/* template */
+var __vue_template__ = __webpack_require__(20)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/PhotoSelector.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-146afb0a", Component.options)
+  } else {
+    hotAPI.reload("data-v-146afb0a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(12);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(14)("6c54d15b", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-146afb0a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PhotoSelector.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-146afb0a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PhotoSelector.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
-/* 12 */,
-/* 13 */,
-/* 14 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(13)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nbody {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  background-color: #19191c;\n  text-align: center;\n  font-family: 'PT Mono', 'Courier New', Courier, monospace;\n  font-weight: 400;\n  color: #eee;\n  padding: 0;\n  margin: 0;\n}\nh1 {\n  font-size: 50px;\n  margin: 80px 0 30px 0;\n}\nh1, h2, h3 {\n  font-weight: normal;\n}\na {\n  color: #89b;\n  -webkit-text-decoration: underline dotted;\n          text-decoration: underline dotted;\n}\na:visited {\n  color: #bbc;\n}\nul {\n  list-style: none;\n  padding-left: 0;\n}\nfooter {\n  padding: 10px;\n}\n.icon {\n  max-width: 20px;\n  max-height: 20px;\n  margin: 0 5px;\n}\n.photo {\n  max-width: 900px;\n  max-height: 900px;\n  display: inline-block;\n}\n.photolink {\n  border: 2px solid #19191c;\n  display: inline-block;\n  margin: 5px 0 50px;\n}\n.photolink:hover {\n  border: 2px solid #aaa;\n}\n.photo-small {\n  width: 300px;\n}\n.photo-gallery {\n  max-width: 300px;\n  max-height: 200px;\n  margin: 10px 5px;\n}\n.photo-large {\n  max-width: 1000px;\n  max-height: 1000px;\n}\n.flex-center-row {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.arrow-icon, .arrow-icon-placeholder {\n  width: 25px;\n  margin: 80px 25px;\n}\n.arrow-icon-small, .arrow-icon-small-placeholder {\n  width: 15px;\n  margin: 0 25px;\n}\n.arrow-icon-placeholder, .arrow-icon-small-placeholder {\n  height: 10px;\n  display: inline-block;\n}\n.alignright {\n  text-align: right;\n}\n.admin-nav {\n  background-color: #193d34;\n  padding: 0 15px;\n}\n.admin-nav a {\n  display: inline-block;\n  padding: 10px 3px;\n}\n.nav-link-active {\n  background-color: #142c27;\n}\n.comment-form {\n  vertical-align: text-top;\n}\ninput, textarea {\n  font-size: 0.85rem;\n}\ninput, textarea, .input, .btn {\n  border: 2px solid #19191c;\n  vertical-align: top;\n  border-right: 2px solid #0f0f11;\n  border-bottom: 2px solid #0f0f11;\n  background-color: #232327;\n  color: #eee;\n  padding: 5px;\n}\n.comment {\n  border-right: 4px solid #0f0f11;\n  border-bottom: 4px solid #0f0f11;\n  width: 400px;\n  margin: 20px 0;\n  padding: 10px;\n  display: inline-block;\n  position: relative;\n}\n.comment .btn {\n  position: absolute;\n  left: -100px;\n  top: 0;\n}\n.btn, .btn:visited {\n  padding: 10px 15px;\n  -webkit-transition: border-color 0.1s linear;\n  transition: border-color 0.1s linear;\n  text-decoration: none;\n  display: inline-block;\n  color: #bbc;\n}\n.btn:hover {\n  border: 2px solid #aaa;\n  background-color: #2c2c32;\n  cursor: default;\n}\n.btn:focus, #photos_upload_button:focus + label {\n  background-color: #27272c;\n}\n.tag {\n  background-color: #2c2c32;\n  padding: 5px 7px;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 5px 0;\n}\n.tag-active {\n  background-color: #5c5c67;\n  color: #19191c;\n  padding: 5px 7px;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 5px 0;\n}\n.tag-active a {\n  color: #19191c;\n}\na.tag, a.tag:visited,\n.tag a, .tag a:visited {\n  color: #89b;\n}\n.hidden {\n  display: none;\n}\n.pretty-much-hidden {\n  width: 0.1px;\n  height: 0.1px;\n  opacity: 0;\n  overflow: hidden;\n  position: absolute;\n  z-index: -1;\n}\n.error-panel {\n  background-color: #933;\n  display: inline-block;\n  text-align: left;\n  padding: 0 15px;\n  border-right: 4px solid #0f0f11;\n  border-bottom: 4px solid #0f0f11;\n}\n.error-panel p {\n  margin-bottom: 6px;\n}\n.error-panel ul {\n  margin-top: 0;\n  list-style: square;\n  padding-left: 16px;\n}\n.admin-index-panel {\n  display: inline-block;\n  vertical-align: top;\n  margin-left: 15px;\n  text-align: left;\n}\n@media (max-width: 1200px) {\n.photo-large {\n    max-width: 800px;\n    max-height: 800px;\n}\n}\n@media (max-width: 1000px) {\n.photo {\n    max-width: 700px;\n    max-height: 700px;\n}\n.photo-large {\n    max-width: 700px;\n    max-height: 700px;\n}\n.arrow-icon, .arrow-icon-placeholder {\n    width: 25px;\n    margin: 60px 20px;\n}\n}\n@media (max-width: 860px) {\n.photo-small {\n    max-width: 250px;\n    max-height: 250px;\n}\n.photo-large {\n    max-width: 620px;\n    max-height: 620px;\n}\n.arrow-icon, .arrow-icon-placeholder {\n    width: 20px;\n    margin: 60px 15px;\n}\n}\n@media (max-width: 740px) {\n.photo-small {\n    max-width: 200px;\n    max-height: 200px;\n}\n.photo {\n    max-width: 500px;\n    max-height: 500px;\n}\n.photo-large {\n    max-width: 450px;\n    max-height: 450px;\n}\n.arrow-icon, .arrow-icon-placeholder {\n    width: 18px;\n    margin: 60px 12px;\n}\n.admin-index-panel {\n    margin-left: 0;\n    margin-top: 5px;\n}\np, a {\n    font-size: 0.9rem;\n}\nh1 {\n    font-size: 40px;\n}\nh2 {\n    font-size: 1.3rem;\n}\n}\n@media (max-width: 539px) {\n.photo {\n    max-width: 430px;\n    max-height: 430px;\n}\n.photo-large {\n    max-width: 375px;\n    max-height: 375px;\n}\n.arrow-icon, .arrow-icon-placeholder {\n    width: 18px;\n    margin: 60px 12px;\n}\np, a {\n    font-size: 0.8rem;\n}\ninput, textarea {\n    font-size: 0.7rem;\n}\nlabel {\n    display: block;\n}\nh1 {\n    font-size: 33px;\n}\nh2 {\n    font-size: 1rem;\n}\n}\n@media (max-width: 469px) {\n.photo {\n    max-width: 300px;\n    max-height: 300px;\n}\n.photo-large {\n    max-width: 330px;\n    max-height: 330px;\n}\n.arrow-icon, .arrow-icon-placeholder {\n    width: 18px;\n    margin: 40px 12px;\n}\n.admin-index-panel {\n    text-align: center;\n}\n}\n@media (max-width: 419px) {\n.photo-large {\n    max-width: 280px;\n    max-height: 280px;\n}\n.arrow-icon, .arrow-icon-placeholder {\n    width: 17px;\n    margin: 40px 10px;\n}\n}\n@media (max-width: 359px) {\n.photo-large {\n    max-width: 240px;\n    max-height: 240px;\n}\n.arrow-icon, .arrow-icon-placeholder {\n    width: 15px;\n    margin: 40px 8px;\n}\n}\n.box-sortable {\n  background-color: #19191c;\n  vertical-align: bottom;\n  width: 300px;\n  height: 200px;\n  line-height: 200px;\n  border-bottom: 3px solid #0f0f11;\n  border-right: 2px solid #0f0f11;\n  display: inline-block;\n  margin: 10px;\n  padding: 2px;\n  text-align: center;\n}\n.sortable-ghost .photo-sortable {\n  opacity: 0.3;\n  -webkit-filter: blur(5px);\n          filter: blur(5px);\n}\n.photo-sortable {\n  vertical-align: middle;\n  max-height: 200px;\n  max-width: 300px;\n}\n.dragArea {\n  background-color: #141417;\n  border-top: 4px solid #0f0f11;\n  border-left: 4px solid #0f0f11;\n  min-height: 80px;\n  margin: 0 5vw;\n  text-align: left;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports) {
 
 /*
@@ -21819,376 +21911,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(27)
-}
-var normalizeComponent = __webpack_require__(24)
-/* script */
-var __vue_script__ = __webpack_require__(25)
-/* template */
-var __vue_template__ = __webpack_require__(26)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/PhotoSelector.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-146afb0a", Component.options)
-  } else {
-    hotAPI.reload("data-v-146afb0a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 25 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuedraggable__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuedraggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuedraggable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-var post_photos = JSON.parse(__WEBPACK_IMPORTED_MODULE_1_jquery___default()('#post-photos').text());
-var staged_photos = JSON.parse(__WEBPACK_IMPORTED_MODULE_1_jquery___default()('#staged-photos').text());
-
-var asset_path = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#asset-path').text();
-var view_path = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#view-path').text();
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            post_photos: post_photos,
-            staged_photos: staged_photos,
-            asset_path: asset_path,
-            view_path: view_path
-        };
-    },
-
-    components: {
-        draggable: __WEBPACK_IMPORTED_MODULE_0_vuedraggable___default.a
-    },
-    computed: {
-        post_photo_ids: function post_photo_ids() {
-            return this.post_photos.map(function (x) {
-                return x.id;
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { attrs: { id: "photo-selector" } },
-    [
-      _c("h2", [_vm._v("Photos in Post")]),
-      _vm._v(" "),
-      _c(
-        "draggable",
-        {
-          staticClass: "dragArea",
-          attrs: { options: { put: true, pull: true, group: "photos" } },
-          model: {
-            value: _vm.post_photos,
-            callback: function($$v) {
-              _vm.post_photos = $$v
-            },
-            expression: "post_photos"
-          }
-        },
-        _vm._l(_vm.post_photos, function(photo) {
-          return _c("div", { staticClass: "box-sortable" }, [
-            _c(
-              "a",
-              { attrs: { href: _vm.view_path + photo.id, target: "blank" } },
-              [
-                _c("img", {
-                  staticClass: "photo-sortable",
-                  attrs: { src: _vm.asset_path + photo.path }
-                })
-              ]
-            )
-          ])
-        })
-      ),
-      _vm._v(" "),
-      _c("h2", [_vm._v("Staged Photos")]),
-      _vm._v(" "),
-      _c(
-        "draggable",
-        {
-          staticClass: "dragArea",
-          attrs: {
-            options: { handle: "img", put: true, pull: true, group: "photos" }
-          },
-          model: {
-            value: _vm.staged_photos,
-            callback: function($$v) {
-              _vm.staged_photos = $$v
-            },
-            expression: "staged_photos"
-          }
-        },
-        _vm._l(_vm.staged_photos, function(photo) {
-          return _c("div", { staticClass: "box-sortable" }, [
-            _c(
-              "a",
-              { attrs: { href: _vm.view_path + photo.id, target: "blank" } },
-              [
-                _c("img", {
-                  staticClass: "photo-sortable",
-                  attrs: { src: _vm.asset_path + photo.path }
-                })
-              ]
-            )
-          ])
-        })
-      ),
-      _vm._v(" "),
-      _vm._l(_vm.post_photo_ids, function(photo_id) {
-        return _c("input", {
-          attrs: { type: "hidden", name: "photos[]", id: "post-photo-ids" },
-          domProps: { value: photo_id }
-        })
-      })
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-146afb0a", module.exports)
-  }
-}
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(28);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(29)("6c54d15b", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-146afb0a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PhotoSelector.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-146afb0a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PhotoSelector.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(14)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nbody {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  background-color: #19191c;\n  text-align: center;\n  font-family: 'PT Mono', 'Courier New', Courier, monospace;\n  font-weight: 400;\n  color: #eee;\n  padding: 0;\n  margin: 0;\n}\nh1 {\n  font-size: 50px;\n  margin: 80px 0 30px 0;\n}\nh1, h2, h3 {\n  font-weight: normal;\n}\na {\n  color: #89b;\n  -webkit-text-decoration: underline dotted;\n          text-decoration: underline dotted;\n}\na:visited {\n  color: #bbc;\n}\nul {\n  list-style: none;\n  padding-left: 0;\n}\nfooter {\n  padding: 10px;\n}\n.icon {\n  max-width: 20px;\n  max-height: 20px;\n  margin: 0 5px;\n}\n.photo {\n  width: 900px;\n  display: inline-block;\n}\n.photolink {\n  border: 2px solid #19191c;\n  display: inline-block;\n  margin: 5px 0 50px;\n}\n.photolink:hover {\n  border: 2px solid #aaa;\n}\n.photo-small {\n  width: 300px;\n}\n.photo-gallery {\n  max-width: 300px;\n  max-height: 200px;\n  margin: 10px 5px;\n}\n.photo-large {\n  width: 1000px;\n}\n.flex-center-row {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.arrow-icon, .arrow-icon-placeholder {\n  width: 25px;\n  margin: 40px 25px;\n}\n.arrow-icon-small, .arrow-icon-small-placeholder {\n  width: 15px;\n  margin: 0 25px;\n}\n.arrow-icon-placeholder, .arrow-icon-small-placeholder {\n  height: 10px;\n  display: inline-block;\n}\n.alignright {\n  text-align: right;\n}\n.admin-nav {\n  background-color: #193d34;\n  padding: 0 15px;\n}\n.admin-nav a {\n  display: inline-block;\n  padding: 10px 3px;\n}\n.nav-link-active {\n  background-color: #142c27;\n}\n.comment-form {\n  vertical-align: text-top;\n}\ninput, textarea {\n  font-size: 14px;\n}\ninput, textarea, .input, .btn {\n  border: 2px solid #19191c;\n  vertical-align: top;\n  border-right: 2px solid #0f0f11;\n  border-bottom: 2px solid #0f0f11;\n  background-color: #232327;\n  color: #eee;\n  padding: 5px;\n}\n.comment {\n  border-right: 4px solid #0f0f11;\n  border-bottom: 4px solid #0f0f11;\n  width: 400px;\n  margin: 20px 0;\n  padding: 10px;\n  display: inline-block;\n  position: relative;\n}\n.comment .btn {\n  position: absolute;\n  left: -100px;\n  top: 0;\n}\n.btn, .btn:visited {\n  padding: 10px 15px;\n  -webkit-transition: border-color 0.1s linear;\n  transition: border-color 0.1s linear;\n  text-decoration: none;\n  display: inline-block;\n  color: #bbc;\n}\n.btn:hover {\n  border: 2px solid #aaa;\n  background-color: #2c2c32;\n  cursor: default;\n}\n.btn:focus, #photos_upload_button:focus + label {\n  background-color: #27272c;\n}\n.tag {\n  background-color: #2c2c32;\n  padding: 5px 7px;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 5px 0;\n}\n.tag-active {\n  background-color: #5c5c67;\n  color: #19191c;\n  padding: 5px 7px;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 5px 0;\n}\n.tag-active a {\n  color: #19191c;\n}\na.tag, a.tag:visited,\n.tag a, .tag a:visited {\n  color: #89b;\n}\n.hidden {\n  display: none;\n}\n.pretty-much-hidden {\n  width: 0.1px;\n  height: 0.1px;\n  opacity: 0;\n  overflow: hidden;\n  position: absolute;\n  z-index: -1;\n}\n.error-panel {\n  background-color: #933;\n  display: inline-block;\n  text-align: left;\n  padding: 0 15px;\n  border-right: 4px solid #0f0f11;\n  border-bottom: 4px solid #0f0f11;\n}\n.error-panel p {\n  margin-bottom: 6px;\n}\n.error-panel ul {\n  margin-top: 0;\n  list-style: square;\n  padding-left: 16px;\n}\n.box-sortable {\n  background-color: #19191c;\n  vertical-align: bottom;\n  width: 300px;\n  height: 200px;\n  line-height: 200px;\n  border-bottom: 3px solid #0f0f11;\n  border-right: 2px solid #0f0f11;\n  display: inline-block;\n  margin: 10px;\n  padding: 2px;\n  text-align: center;\n}\n.sortable-ghost .photo-sortable {\n  opacity: 0.3;\n  -webkit-filter: blur(5px);\n          filter: blur(5px);\n}\n.photo-sortable {\n  vertical-align: middle;\n  max-height: 200px;\n  max-width: 300px;\n}\n.dragArea {\n  background-color: #141417;\n  border-top: 4px solid #0f0f11;\n  border-left: 4px solid #0f0f11;\n  min-height: 80px;\n  margin: 0 5vw;\n  text-align: left;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 29 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -22207,7 +21930,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(30)
+var listToStyles = __webpack_require__(15)
 
 /*
 type StyleObject = {
@@ -22409,7 +22132,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 30 */
+/* 15 */
 /***/ (function(module, exports) {
 
 /**
@@ -22442,7 +22165,186 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 31 */
+/* 16 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuedraggable__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuedraggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuedraggable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+if (__WEBPACK_IMPORTED_MODULE_1_jquery___default()('#photo-selector').length) {}
+
+var post_photos_el = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#post-photos');
+var post_photos = post_photos_el.length ? JSON.parse(post_photos_el.text()) : [];
+
+var staged_photos_el = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#staged-photos');
+var staged_photos = staged_photos_el.length ? JSON.parse(staged_photos_el.text()) : [];
+
+var asset_path = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#asset-path').text();
+var view_path = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#view-path').text();
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            post_photos: post_photos,
+            staged_photos: staged_photos,
+            asset_path: asset_path,
+            view_path: view_path
+        };
+    },
+
+    components: {
+        draggable: __WEBPACK_IMPORTED_MODULE_0_vuedraggable___default.a
+    },
+    computed: {
+        post_photo_ids: function post_photo_ids() {
+            return this.post_photos.map(function (x) {
+                return x.id;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22842,7 +22744,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
 
   if (true) {
-    var Sortable = __webpack_require__(32);
+    var Sortable = __webpack_require__(19);
     module.exports = buildDraggable(Sortable);
   } else if (typeof define == "function" && define.amd) {
     define(['sortablejs'], function (Sortable) {
@@ -22855,7 +22757,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 })();
 
 /***/ }),
-/* 32 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
@@ -24403,6 +24305,114 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 	return Sortable;
 });
 
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "photo-selector" } },
+    [
+      _c("h2", [_vm._v("Photos in Post")]),
+      _vm._v(" "),
+      _c(
+        "draggable",
+        {
+          staticClass: "dragArea",
+          attrs: { options: { put: true, pull: true, group: "photos" } },
+          model: {
+            value: _vm.post_photos,
+            callback: function($$v) {
+              _vm.post_photos = $$v
+            },
+            expression: "post_photos"
+          }
+        },
+        _vm._l(_vm.post_photos, function(photo) {
+          return _c("div", { staticClass: "box-sortable" }, [
+            _c(
+              "a",
+              { attrs: { href: _vm.view_path + photo.id, target: "blank" } },
+              [
+                _c("img", {
+                  staticClass: "photo-sortable",
+                  attrs: { src: _vm.asset_path + photo.path }
+                })
+              ]
+            )
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _c("h2", [_vm._v("Staged Photos")]),
+      _vm._v(" "),
+      _c(
+        "draggable",
+        {
+          staticClass: "dragArea",
+          attrs: {
+            options: { handle: "img", put: true, pull: true, group: "photos" }
+          },
+          model: {
+            value: _vm.staged_photos,
+            callback: function($$v) {
+              _vm.staged_photos = $$v
+            },
+            expression: "staged_photos"
+          }
+        },
+        _vm._l(_vm.staged_photos, function(photo) {
+          return _c("div", { staticClass: "box-sortable" }, [
+            _c(
+              "a",
+              { attrs: { href: _vm.view_path + photo.id, target: "blank" } },
+              [
+                _c("img", {
+                  staticClass: "photo-sortable",
+                  attrs: { src: _vm.asset_path + photo.path }
+                })
+              ]
+            )
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.post_photo_ids, function(photo_id) {
+        return _c("input", {
+          attrs: { type: "hidden", name: "photos[]", id: "post-photo-ids" },
+          domProps: { value: photo_id }
+        })
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-146afb0a", module.exports)
+  }
+}
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Post;
 use App\Comment;
 use App\Tag;
+use Illuminate\Support\Facades\Storage;
 
 use JMauerhan\EloquentSortable\Sortable;
 use JMauerhan\EloquentSortable\SortableTrait;
@@ -52,7 +53,7 @@ class Photo extends Model implements Sortable
         $desc = $reverse ? 'asc' : 'desc';
         $asc = $reverse ? 'desc' : 'asc';
 
-        return $query->orderByRaw('CASE WHEN post_id IS NULL THEN 1 ELSE 2 END ASC')
+        return $query->orderByRaw('CASE WHEN post_id IS NULL THEN photos.weight + 1 ELSE 1 END DESC')
                      ->leftJoin('posts as p', 'photos.post_id', '=', 'p.id')
                      ->orderBy('p.date', $desc)
                      ->orderBy('p.id', $desc)
@@ -149,7 +150,9 @@ class Photo extends Model implements Sortable
 
     public function delete()
     {
-        //Storage::delete($this->path);
+        Storage::delete($this->path);
+
+        $this->tags()->detach();
 
         return parent::delete();
     }

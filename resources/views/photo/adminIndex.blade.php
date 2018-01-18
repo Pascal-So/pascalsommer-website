@@ -19,7 +19,7 @@
 
 @foreach($photos as $photo)
     <a href="{{ asset($photo->path) }}" target="blank"><img style="vertical-align: top;" class="photo-small" src="{{ asset($photo->path) }}"></a>
-    <div style="display: inline-block; vertical-align: top; margin-left: 15px; text-align: left">
+    <div class="admin-index-panel">
         <a class="btn" href="{{ route('editPhoto', compact('photo')) }}">Edit Photo</a>
         <a class="btn" href="{{ route('viewPhoto', compact('photo')) }}">View Photo</a>
         <a data-deletable-photo data-filename="{{ basename($photo->path) }}"
