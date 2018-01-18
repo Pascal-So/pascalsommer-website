@@ -467,16 +467,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.29",
+            "version": "v5.5.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "c58b6ff96fb56cc92e24545870be13cdcfcbc43a"
+                "reference": "a47b50a5981c0cf0139939dfaea4191784b65acb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/c58b6ff96fb56cc92e24545870be13cdcfcbc43a",
-                "reference": "c58b6ff96fb56cc92e24545870be13cdcfcbc43a",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a47b50a5981c0cf0139939dfaea4191784b65acb",
+                "reference": "a47b50a5981c0cf0139939dfaea4191784b65acb",
                 "shasum": ""
             },
             "require": {
@@ -597,7 +597,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-01-15T14:07:47+00:00"
+            "time": "2018-01-16T15:39:45+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3915,21 +3915,21 @@
         },
         {
             "name": "symfony/thanks",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/thanks.git",
-                "reference": "b637913a92664571afd1067fc645ecb30c9cf5b2"
+                "reference": "0621e9e403cbae531165c98c99f05221bf3b9dba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/thanks/zipball/b637913a92664571afd1067fc645ecb30c9cf5b2",
-                "reference": "b637913a92664571afd1067fc645ecb30c9cf5b2",
+                "url": "https://api.github.com/repos/symfony/thanks/zipball/0621e9e403cbae531165c98c99f05221bf3b9dba",
+                "reference": "0621e9e403cbae531165c98c99f05221bf3b9dba",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.1",
-                "php": "^5.5.9|^7.0.8"
+                "php": "^5.5.9|^7.0.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -3954,7 +3954,7 @@
                 }
             ],
             "description": "Give thanks (in the form of a GitHub ⭐) to your fellow PHP package maintainers (not limited to Symfony components)!",
-            "time": "2018-01-03T09:30:52+00:00"
+            "time": "2018-01-10T15:41:47+00:00"
         },
         {
             "name": "theseer/tokenizer",
