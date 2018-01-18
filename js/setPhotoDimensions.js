@@ -4,7 +4,17 @@ photo.classList.remove("photo-large");
 var orig_width = document.getElementById("photo_width").innerHTML;
 var orig_height = document.getElementById("photo_height").innerHTML;
 
-var screen_width = window.innerWidth;
+function screenWidth(){
+    // from https://stackoverflow.com/a/26191207
+
+    return window.innerWidth && document.documentElement.clientWidth ?
+            Math.min(window.innerWidth, document.documentElement.clientWidth) :
+            window.innerWidth ||
+            document.documentElement.clientWidth ||
+            document.getElementsByTagName('body')[0].clientWidth;
+}
+
+var screen_width = screenWidth();
 
 var computed_width = 1000;
 
