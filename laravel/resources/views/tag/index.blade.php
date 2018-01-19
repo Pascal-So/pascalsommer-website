@@ -43,7 +43,7 @@
     <label for="name">Name</label>
     <input type="text" name="name" id="name">
     <br><br>
-    <button class="btn">Save</button>
+    <button class="btn">Add Tag</button>
 </form>
 
 @endsection

@@ -38,6 +38,8 @@
 <a class="btn" href="{{ route('home') }}" title="Home">Return to overview</a>
 <br>
 <br>
+@include('layouts.pagination_nav', ['items' => $photos, 'from_page_two' => true])
+<br>
 
 @if($photos->isEmpty())
     <br><br>

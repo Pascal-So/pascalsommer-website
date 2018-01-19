@@ -133,14 +133,14 @@ class PhotoController extends Controller
     {
         $photo->tags()->attach($tag);
 
-        return redirect(route('editPhoto', compact('photo')) . '#tags');
+        return redirect(route('editPhoto', compact('photo')) . '#photo');
     }
 
     public function removeTag(Photo $photo, Tag $tag)
     {
         $photo->tags()->detach($tag);
 
-        return redirect(route('editPhoto', compact('photo')) . '#tags');
+        return redirect(route('editPhoto', compact('photo')) . '#photo');
     }
 
     public function gallery()

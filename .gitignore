@@ -8,3 +8,4 @@
 /laravel/npm-debug.log
 /laravel/yarn-error.log
 /laravel/.env
+/data_old/*

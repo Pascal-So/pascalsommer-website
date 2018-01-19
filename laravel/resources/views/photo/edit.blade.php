@@ -13,7 +13,19 @@
 <br>
 <br>
 <br>
-<img src="{{ asset($photo->path) }}" class="photo">
+<div class="flex-center-row" id="photo">
+    @if($photo->prevPhoto() == null)
+        <div class="arrow-icon-placeholder"></div>
+    @else
+        <a id="link-left" href="{{ route('editPhoto', ['photo' => $photo->prevPhoto()]) }}#photo"><img class="arrow-icon" src="{{ asset('img/icons/larrow.svg') }}"></a>
+    @endif
+    <img src="{{ asset($photo->path) }}" class="photo" id="photo">
+    @if($photo->nextPhoto() == null)
+        <div class="arrow-icon-placeholder"></div>
+    @else
+        <a id="link-right" href="{{ route('editPhoto', ['photo' => $photo->nextPhoto()]) }}#photo"><img class="arrow-icon" src="{{ asset('img/icons/rarrow.svg') }}"></a>
+    @endif
+</div>
 
 <br><br>
 
@@ -26,25 +38,7 @@
     @endif
 @endforeach
 </div>
-{{-- 
-<label id="tags">Remove Tags </label>
 
-@foreach($photo->tags as $tag)
-    <span class="tag-active">
-        -&nbsp;<a href="{{ route('removeTag', compact('photo', 'tag')) }}">{{ $tag->name }}</a>
-    </span>
-@endforeach
-
-<br>
-
-<label>Add Tags </label>
-
-@foreach($other_tags as $tag)
-    <span class="tag">
-        +&nbsp;<a href="{{ route('addTag', compact('photo', 'tag')) }}">{{ $tag->name }}</a>
-    </span>
-@endforeach
- --}}
 <br><br>
 
 <form method="POST" action="{{ route('updatePhoto', compact('photo')) }}">
