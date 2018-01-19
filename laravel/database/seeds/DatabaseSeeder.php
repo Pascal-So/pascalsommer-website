@@ -26,8 +26,7 @@ class DatabaseSeeder extends Seeder
         $posts = DB::connection('sqlite')->table('posts')->select(['id', 'title', DB::raw('created as date')])->get();
         $photos = DB::connection('sqlite')->table('photos')->select(['id','post_id','description', 'path'])->get();
         $staging = DB::connection('sqlite')->table('staging')->select(['description', 'path'])->orderBy('ordering', 'desc')->get();
-        $comments = DB::connection('sqlite')->table('comments')->select(['id', 'photo_id', 'name', 'comment', 'created'])->get();
-
+        $comments = DB::connection('sqlite')->table('comments')->select(['id', 'photo_id', 'name', 'comment', DB::raw('created as created_at')])->get();
 
         $posts = $posts->map(function($x){ return (array) $x; });
 
@@ -64,6 +63,10 @@ class DatabaseSeeder extends Seeder
             $photo->setHighestOrderNumber();
             $photo->save();
         });
+
+        $comments = $comments->map(function($comment){ return (array) $comment; });
+
+        DB::table('comments')->insert($comments->toArray());
     }
 
     private function testData()

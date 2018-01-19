@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     @include('layouts.meta')
 
-    <title>Pascal Sommer</title>
-
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=PT+Mono&amp;subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/pascal.css') }}">
+    
+    <title>Pascal Sommer</title>
 
     @yield('head')
 

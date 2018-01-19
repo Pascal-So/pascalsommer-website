@@ -1,3 +1,6 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <meta name='keywords' content='photography, blog, photos, pictures, camera'>
 <meta name='description' content='{{ config('constants.page_description') }}'>
 <meta name='subject' content='Photography'>
