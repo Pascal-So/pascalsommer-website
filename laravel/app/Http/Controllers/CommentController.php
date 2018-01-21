@@ -50,7 +50,10 @@ class CommentController extends Controller
         }
 
         if(config('constants.push_notifications')){
-            \Simplepush::send(env('SIMPLEPUSH_KEY'), $request->name, $request->comment, 'Comment');
+            $message_title = $photo->isPublic() ? "{$request->name} in '{$photo->post->title}'" : $request->name;
+            $message_content = $request->comment;
+
+            \Simplepush::send(env('SIMPLEPUSH_KEY'), $message_title, $message_content, 'Comment');
         }
 
         $photo->comments()->create($request->only(['name', 'comment']));
