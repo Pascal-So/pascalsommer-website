@@ -6,8 +6,8 @@
             @else
                 <span class="arrow-icon-small-placeholder"></span>
             @endif
-            
-            {{ $items->currentPage() }}
+
+            {{ $items->currentPage() }} / {{ $items->lastPage() }}
 
             @if($items->hasMorePages())
                 <a href="{{ $items->nextPageUrl() }}" style="display: inline-block;"><img class="arrow-icon-small" src="{{ asset('img/icons/rarrow.svg') }}"></a>
