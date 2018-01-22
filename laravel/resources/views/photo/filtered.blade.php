@@ -7,36 +7,30 @@
 
 <br>
 
-<h2 style="display: inline-block;">Tags: </h2>
+<h2>Filter by Tags</h2>
 
+@foreach($tags as $tag)
+    @if($tags_arr->contains($tag->name))
+        @php
+            $tags_str = implode(',', $tags_arr->diff([$tag->name])->toArray());
+            $link = route('filtered', ['tags' => $tags_str]);
+        @endphp
+        <a class="tag-active" title="Click to remove tag" href="{{ $link }}">{{ $tag->name }}</a>
+    @else
+        @php
+            $tags_str = implode(',', collect($tags_arr)->push($tag->name)->sort()->toArray());
+            $link = route('filtered', ['tags' => $tags_str]);
+        @endphp
+        <a class="tag" title="Click to add tag" href="{{ $link }}">{{ $tag->name }}</a>
+    @endif
+@endforeach
+<br>
+<br>
 @if($tags_arr->isEmpty())
-    <span>no tags selected</span>
+    <p>no tags selected</p>
 @endif
-@foreach($tags_arr as $tag)
-    @php
-        $tags_str = implode(',', $tags_arr->diff([$tag])->toArray());
-        
-        $link = route('filtered', ['tags' => $tags_str]);
-    @endphp
-    <span class="tag" title="Click to remove a tag">-&nbsp;<a href="{{ $link }}">{{ $tag }}</a></span>
-@endforeach
 
-<br><br>
-@if($unused_tags_arr->isNotEmpty())
-    <span>Other tags: </span>
-@endif
-@foreach($unused_tags_arr as $tag)
-    @php
-        $tags_str = implode(',', collect($tags_arr)->push($tag)->sort()->toArray());
-        $link = route('filtered', ['tags' => $tags_str]);
-    @endphp
-    <span class="tag" title="Click to add a tag">+&nbsp;<a href="{{ $link }}">{{ $tag }}</a></span>
-@endforeach
 
-<br>
-<br>
-<a class="btn" href="{{ route('home') }}" title="Home">Return to overview</a>
-<br>
 <br>
 @include('layouts.pagination_nav', ['items' => $photos, 'from_page_two' => true])
 <br>
@@ -54,5 +48,10 @@
 @endforeach
 
 @include('layouts.pagination_nav', ['items' => $photos])
+
+<br><br>
+
+<a class="btn" href="{{ route('home') }}" title="Home">Return to overview</a>
+<a  class="btn" href="#">Scroll to top</a>
 
 @endsection

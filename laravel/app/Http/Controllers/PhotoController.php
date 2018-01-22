@@ -34,7 +34,8 @@ class PhotoController extends Controller
     {
         $tags_arr = collect(explode(',', $tags))->filter(function($str){return $str != '';});
 
-        $unused_tags_arr = Tag::has('photos')->get()->pluck('name')->diff($tags_arr)->sort();
+        //$unused_tags_arr = Tag::has('photos')->get()->pluck('name')->diff($tags_arr)->sort();
+        $tags = Tag::get();
 
         // The has('tags') call is redundant, it's just here to get a query builder object we can work with
         $query = Photo::published();
@@ -49,7 +50,7 @@ class PhotoController extends Controller
 
         $photos = $query->blogOrdered()->paginate(10);
 
-        return view('photo.filtered', compact('tags_arr', 'photos', 'unused_tags_arr'));
+        return view('photo.filtered', compact('tags_arr', 'photos', 'tags'));
     }
 
     public function adminIndex(bool $only_staging = false)
