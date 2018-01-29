@@ -8,7 +8,7 @@
 
 @if($photo->isPublic())
     <h2><a class="stealth-link"
-        href="{{ route('home') }}?page={{ $photo->post->getPaginationPage() . '#post_' . $photo->post->titleSlug() }}">
+        href="{{ $photo->post->url() }}">
         {{ $photo->post->formattitle() }}
     </a></h2>
 @else

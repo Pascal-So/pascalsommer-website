@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Mono&amp;subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/pascal.css') }}">
     
+    <link rel="alternate" type="application/rss+xml" href="{{ asset('feed') }}" title="{{ config('feed.feeds.posts.title') }}">
+
     <title>Pascal Sommer</title>
 
     @yield('head')

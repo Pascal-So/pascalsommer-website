@@ -4,12 +4,43 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Photo;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 
-class Post extends Model
+class Post extends Model implements Feedable
 {
     public static $posts_per_page = 6;
 
     protected $guarded = ['id'];
+
+    public function toFeedItem()
+    {
+        return FeedItem::create()
+            ->id($this->id)
+            ->title($this->formatTitle())
+            ->summary($this->rssSummary())
+            ->updated(new \Carbon\Carbon($this->date))
+            ->link($this->url())
+            ->author('Pascal Sommer');
+    }
+
+    public function getFeedItems()
+    {
+        return Post::blogOrdered()->take(20)->get();
+    }
+
+    private function rssSummary(): string
+    {
+        $photos = $this->photos()->blogOrdered()->get();
+        $post = $this;
+
+        return view('rss_summary', compact('post', 'photos'))->render();
+    }
+
+    public function url(): string
+    {
+        return route('home') . '?page=' . $this->getPaginationPage() . '#post_' . $this->titleSlug();
+    }
 
     public function photos()
     {

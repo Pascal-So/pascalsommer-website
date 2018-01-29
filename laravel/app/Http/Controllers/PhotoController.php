@@ -48,7 +48,7 @@ class PhotoController extends Controller
             });
         }
 
-        $photos = $query->blogOrdered()->paginate(10);
+        $photos = $query->blogOrdered()->paginate(15);
 
         return view('photo.filtered', compact('tags_arr', 'photos', 'tags'));
     }

@@ -10,6 +10,7 @@
     <a title="Github" href="https://github.com/pascal-so"><img alt="Icon Github" class="icon" src="{{ asset('img/icons/github.svg') }}"></a>
     <a title="Medium" href="https://medium.com/@pascal.sommer.ch"><img alt="Social Media Icon Medium" class="icon" src="{{ asset('img/icons/medium-m.svg') }}"></a>
     <a title="Youtube" href="https://youtube.com/pascalsommermovies"><img alt="Social Media Icon Youtube" class="icon" src="{{ asset('img/icons/youtube.svg') }}"></a>
+    <a title="RSS feed - {{ config('feed.feeds.posts.title') }}" type="application/atom+xml" href="{{ asset('feed') }}"><img alt="Icon RSS Feed" class="icon" src="{{ asset('img/icons/rss.svg') }}"></a>
 </p>
 
 <br>

@@ -153,3 +153,5 @@ Route::get('/logout', 'Auth\LoginController@logout')
 
 Route::view('/about', 'about')
     ->name('about');
+
+Route::feeds();
