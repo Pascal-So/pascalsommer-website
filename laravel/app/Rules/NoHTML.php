@@ -33,8 +33,8 @@ class NoHTML implements Rule
             '/<\s*style.*>/',
         ];
 
-        foreach($regexes as $regex){
-            if(preg_match($regex, $value)){
+        foreach ($regexes as $regex) {
+            if (preg_match($regex, $value)) {
                 return false;
             }
         }

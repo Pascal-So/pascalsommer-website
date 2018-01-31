@@ -41,7 +41,7 @@ class TagController extends Controller
             'tags.*.name' => 'required|max:32|regex:/[a-z]+/',
         ]);
 
-        foreach($request->tags as $id => $tag){
+        foreach ($request->tags as $id => $tag) {
             Tag::where('id', $id)->update(['name' => $tag['name']]);
         }
 

@@ -40,7 +40,7 @@ class Post extends Model implements Feedable
     public function url(): string
     {
         return route('home')
-                . '?page=' . $this->getPaginationPage() 
+                . '?page=' . $this->getPaginationPage()
                 . '&meta_img=' . $this->photos()->blogOrdered()->first()->id
                 . '#post_' . $this->titleSlug();
     }
@@ -53,7 +53,7 @@ class Post extends Model implements Feedable
     public function scopeBefore($query)
     {
         return $query->where('date', '<', $this->date)
-                     ->orWhere(function($query){
+                     ->orWhere(function ($query) {
                         $query->where('date', $this->date)
                               ->where('id', '<', $this->id);
                      });
@@ -62,7 +62,7 @@ class Post extends Model implements Feedable
     public function scopeAfter($query)
     {
         return $query->where('date', '>', $this->date)
-                     ->orWhere(function($query){
+                     ->orWhere(function ($query) {
                         $query->where('date', $this->date)
                               ->where('id', '>', $this->id);
                      });
@@ -108,7 +108,7 @@ class Post extends Model implements Feedable
             'weight' => 0,
         ]);
 
-        foreach($photo_ids as $photo_id){
+        foreach ($photo_ids as $photo_id) {
             $photo = Photo::find($photo_id);
             $photo->setHighestOrderNumber();
             $photo->save();
@@ -128,10 +128,10 @@ class Post extends Model implements Feedable
                 'weight' => 0,
             ]);
 
-        foreach($photo_ids as $photo_id){
+        foreach ($photo_ids as $photo_id) {
             $photo = Photo::find($photo_id);
 
-            if($photo != null){
+            if ($photo != null) {
                 $photo->setHighestOrderNumber();
                 $photo->save();
             }
@@ -150,7 +150,7 @@ class Post extends Model implements Feedable
 
     public function delete()
     {
-        $this->photos->each(function($photo){
+        $this->photos->each(function ($photo) {
             $photo->delete();
         });
 

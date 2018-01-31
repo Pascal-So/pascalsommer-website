@@ -54,21 +54,26 @@ class Photo extends Model implements Sortable
         $asc = $reverse ? 'desc' : 'asc';
 
         return $query->orderByRaw('CASE WHEN post_id IS NULL THEN photos.weight + 1 ELSE 1 END DESC')
-                     ->leftJoin('posts as p', 'photos.post_id', '=', 'p.id')
-                     ->orderBy('p.date', $desc)
-                     ->orderBy('p.id', $desc)
-                     ->orderBy('weight', $asc)
-                       // the explicit select statement is necessary, because otherwise, the
-                       // photo id gets overwritten by the post id.
-                     ->select('photos.id', 'photos.path',
-                              'photos.description', 'photos.weight',
-                              'photos.post_id', 'photos.created_at',
-                              'photos.updated_at');
+                    ->leftJoin('posts as p', 'photos.post_id', '=', 'p.id')
+                    ->orderBy('p.date', $desc)
+                    ->orderBy('p.id', $desc)
+                    ->orderBy('weight', $asc)
+                      // the explicit select statement is necessary, because otherwise, the
+                      // photo id gets overwritten by the post id.
+                    ->select(
+                        'photos.id',
+                        'photos.path',
+                        'photos.description',
+                        'photos.weight',
+                        'photos.post_id',
+                        'photos.created_at',
+                        'photos.updated_at'
+                    );
     }
 
     public function prevPhoto()
     {
-        if(! $this->isPublic()){
+        if (! $this->isPublic()) {
             return Photo::staged()
                         ->where('weight', '<', $this->weight)
                         ->orderBy('weight', 'desc')
@@ -77,9 +82,9 @@ class Photo extends Model implements Sortable
 
         $before_in_post = $this->post->photos->where('weight', '<', $this->weight);
 
-        if($before_in_post->isEmpty()){
+        if ($before_in_post->isEmpty()) {
             $prevPost = $this->post->nextPost();
-            if(isset($prevPost)){
+            if (isset($prevPost)) {
                 return $prevPost->photos->sortBy('weight')->last();
             }
             return null;
@@ -90,7 +95,7 @@ class Photo extends Model implements Sortable
 
     public function nextPhoto()
     {
-        if(! $this->isPublic()){
+        if (! $this->isPublic()) {
             return Photo::staged()
                         ->where('weight', '>', $this->weight)
                         ->orderBy('weight', 'asc')
@@ -99,9 +104,9 @@ class Photo extends Model implements Sortable
 
         $after_in_post = $this->post->photos->where('weight', '>', $this->weight);
 
-        if($after_in_post->isEmpty()){
+        if ($after_in_post->isEmpty()) {
             $nextPost = $this->post->prevPost();
-            if(isset($nextPost)){
+            if (isset($nextPost)) {
                 return $nextPost->photos->sortBy('weight')->first();
             }
             return null;
@@ -122,7 +127,7 @@ class Photo extends Model implements Sortable
 
     public function alttext():string
     {
-        if($this->description == ""){
+        if ($this->description == "") {
             return "Photo by Pascal Sommer";
         }
 
@@ -131,7 +136,7 @@ class Photo extends Model implements Sortable
 
     public function getPaginationPage()
     {
-        if(! $this->isPublic()){
+        if (! $this->isPublic()) {
             return null;
         }
 
@@ -154,7 +159,7 @@ class Photo extends Model implements Sortable
 
         $this->tags()->detach();
 
-        $this->comments->each(function($comment){
+        $this->comments->each(function ($comment) {
             $comment->delete();
         });
 

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
 use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Photo;
 use App\Comment;
 use App\Blacklist;
@@ -12,6 +12,11 @@ use App\Rules\NoHTML;
 
 class CommentController extends Controller
 {
+    private function logBlockedComment(string $name, string $comment)
+    {
+        Log::info('Blocked comment: ' . json_encode(compact('author', 'comment')));
+    }
+
     public function postComment(Photo $photo, Request $request)
     {
         // when validating incoming comments, we only validate basic stuff first,
@@ -34,7 +39,9 @@ class CommentController extends Controller
         }
 
 
-        if(!Blacklist::checkComment($request->comment)){
+        if (!Blacklist::checkComment($request->comment)) {
+            $this->logBlockedComment($request->name, $request->comment);
+
             return redirect()->route('viewPhoto', compact('photo'));
         }
 
@@ -44,12 +51,14 @@ class CommentController extends Controller
         ]);
 
         if ($validator->fails()) {
+            $this->logBlockedComment($request->name, $request->comment);
+
             return redirect($back_url)
                         ->withErrors($validator)
                         ->withInput();
         }
 
-        if(config('constants.push_notifications')){
+        if (config('constants.push_notifications')) {
             $message_title = $photo->isPublic() ? "{$request->name} in '{$photo->post->title}'" : $request->name;
             $message_content = $request->comment;
 
@@ -61,13 +70,15 @@ class CommentController extends Controller
         return redirect()->route('viewPhoto', compact('photo'));
     }
 
-    public function delete(Comment $comment){
+    public function delete(Comment $comment)
+    {
         $comment->delete();
 
         return back();
     }
 
-    public function adminIndex(){
+    public function adminIndex()
+    {
         $comments = Comment::latest()->get();
         
         return view('comment.index', compact('comments'));

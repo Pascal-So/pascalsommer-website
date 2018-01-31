@@ -36,7 +36,7 @@ class BlacklistController extends Controller
             'entries.*.regex' => ['required', new IsRegex],
         ]);
 
-        foreach($request->entries as $entry){
+        foreach ($request->entries as $entry) {
             Blacklist->where('id', $entry->id)
                      ->update(['regex' => $entry->regex]);
         }

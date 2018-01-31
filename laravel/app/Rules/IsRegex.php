@@ -19,9 +19,9 @@ class IsRegex implements Rule
     public static function isRegex($string): bool
     {
         // roughly from https://gist.github.com/smichaelsen/717fae9055ae83ed8e15
-        try{
-            return preg_match($string, "") !== FALSE;
-        }catch(\Exception $e){
+        try {
+            return preg_match($string, "") !== false;
+        } catch (\Exception $e) {
             return false;
         }
     }

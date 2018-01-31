@@ -9,7 +9,6 @@ use App\Tag;
 use App\Rules\NoHTML;
 use Illuminate\Support\Str;
 
-
 class PhotoController extends Controller
 {
     public function index()
@@ -22,17 +21,19 @@ class PhotoController extends Controller
     public function view(Photo $photo)
     {
         // not logged in users aren't allowed to see unpublished photos
-        if( ! $photo->isPublic() && ! \Auth::check()){
+        if (! $photo->isPublic() && ! \Auth::check()) {
             abort(404);
         }
 
         return view('photo.view', compact('photo'));
-
     }
 
     public function filtered(string $tags = '')
     {
-        $tags_arr = collect(explode(',', $tags))->filter(function($str){return $str != '';});
+        $tags_arr = collect(explode(',', $tags))
+                        ->filter(function ($str) {
+                            return $str != '';
+                        });
 
         //$unused_tags_arr = Tag::has('photos')->get()->pluck('name')->diff($tags_arr)->sort();
         $tags = Tag::get();
@@ -42,8 +43,8 @@ class PhotoController extends Controller
 
         // This might get inefficient as the amount of tags filtered for grows, but that's ok,
         // because usually count($tags_arr) is just 1.
-        foreach($tags_arr as $tag){
-            $query->whereHas('tags', function($q) use ($tag){
+        foreach ($tags_arr as $tag) {
+            $query->whereHas('tags', function ($q) use ($tag) {
                 $q->where('name', $tag);
             });
         }
@@ -97,7 +98,7 @@ class PhotoController extends Controller
 
         $photo->delete();
 
-        if($public && $post->photos->isEmpty()){
+        if ($public && $post->photos->isEmpty()) {
             $post->delete();
         }
 
@@ -116,7 +117,7 @@ class PhotoController extends Controller
             'photos.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        foreach($request->photos as $photo){
+        foreach ($request->photos as $photo) {
             $generated_name = Str::random(10) . '-' . $photo->getClientOriginalName();
 
             $filename = $photo->storeAs(config('constants.photos_path'), $generated_name);

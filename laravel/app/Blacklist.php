@@ -14,8 +14,8 @@ class Blacklist extends Model
     {
         $regexes = self::pluck('regex');
 
-        foreach($regexes as $regex){
-            if(preg_match($regex, $comment)){
+        foreach ($regexes as $regex) {
+            if (preg_match($regex, $comment)) {
                 return false;
             }
         }
