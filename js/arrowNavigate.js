@@ -3,6 +3,14 @@ var left_el = document.getElementById('link-left');
 var right_el = document.getElementById('link-right');
 
 document.addEventListener('keydown', function(e){
+    if(document.activeElement){
+        var tagName = document.activeElement.tagName.toLowerCase();
+
+        if(tagName == 'input' || tagName == 'textarea'){
+            return;
+        }
+    }
+
     switch(e.keyCode){
     case 37: //left
         if(left_el != null){
