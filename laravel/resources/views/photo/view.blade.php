@@ -45,7 +45,7 @@
     <a class="tag" href="{{ route('filtered', ['tags' => $tag->name]) }}">{{ $tag->name }}</a>
 @endforeach
 
-<p>{!! $photo->descriptionHTML() !!}</p>
+<p class="photo-description">{!! $photo->descriptionHTML() !!}</p>
 
 <br><br>
 

@@ -91,6 +91,13 @@ footer{
     max-height: 1000px;
 }
 
+.photo-description{
+    max-width: 600px;
+    text-align: left;
+    margin: 10px auto;
+    padding: 0 10px;
+}
+
 .flex-center-row{
     display: flex;
     justify-content: center;
@@ -257,6 +264,36 @@ a.tag, a.tag:visited,
     vertical-align: top;
     margin-left: 15px;
     text-align: left;
+}
+
+.social-media-link{
+    display: inline-block;
+
+    vertical-align: bottom;
+
+    margin: 0 3px;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    line-height: 30px;
+    white-space: nowrap;
+    border-radius: 1px;
+    text-align: center;
+
+    svg{
+        width: 20px;
+
+        path{
+            fill: #666;
+        }
+    }
+}
+
+.social-media-link:hover{
+    background-color: #666;
+    path{
+        fill: $body-bg;
+    }
 }
 
 @media(max-width: 1300px){
