@@ -201,6 +201,27 @@ input, textarea, .input, .btn{
     background-color: $button-focus-color;
 }
 
+.toggle{
+    padding: 5px;
+    transition: border-color 0.1s linear;
+    text-decoration: none;
+    display: inline-block;
+    color: $link-visited-color;
+    border: 1px solid $body-bg;
+}
+.toggle:before{
+    content: '☐';
+    padding: 0 5px;
+}
+
+.toggle-active:before{
+    content: '☒';
+}
+
+.toggle:hover{
+    border: 1px solid $border-color;
+}
+
 .tag{
     background-color: $tag-color;
     padding: 5px 7px;

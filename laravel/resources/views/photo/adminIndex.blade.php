@@ -3,19 +3,24 @@
 @section('content')
 
 <h1>
-    @if($only_staging)
-        Staged 
-    @endif
     Photos
 </h1>
 
-@if($only_staging)
-    <a class="btn" href="{{ route('photos') }}">View all Photos</a>
+<a class="toggle {{ $staged_photos ? 'toggle-active' : ''}}" href="{{ route('photos') . '?published-photos=' . $published_photos . '&staged-photos=' . !$staged_photos . '&no-desc=' . $no_desc }}">Include Staged</a>
+<br><br>
+<a class="toggle {{ $published_photos ? 'toggle-active' : ''}}" href="{{ route('photos') . '?published-photos=' . !$published_photos . '&staged-photos=' . $staged_photos . '&no-desc=' . $no_desc }}">Include Published</a>
+<br><br>
+<a class="toggle {{ $no_desc ? 'toggle-active' : ''}}" href="{{ route('photos') . '?published-photos=' . $published_photos . '&staged-photos=' . $staged_photos . '&no-desc=' . !$no_desc }}">Missing Description</a>
+
+<br><br>
+
+@if($photos->isEmpty())
+    <p>No photos.</p>
 @else
-    <a class="btn" href="{{ route('staging') }}">View only staged Photos</a>
+    <p>{{ $photos->count() }} photos</p>
 @endif
 
-<br><br><br>
+<br>
 
 @foreach($photos as $photo)
     <a href="{{ asset($photo->path) }}" target="blank"><img style="vertical-align: top;" class="photo-small" src="{{ asset($photo->path) }}"></a>

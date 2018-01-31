@@ -54,18 +54,31 @@ class PhotoController extends Controller
         return view('photo.filtered', compact('tags_arr', 'photos', 'tags'));
     }
 
-    public function adminIndex(bool $only_staging = false)
+    public function adminIndex()
     {
-        $photos_query = $only_staging ? Photo::staged() : Photo::query();
+        $published_photos = request()->query('published-photos', false);
+
+        $staged_photos = request()->query('staged-photos', true);
+
+        $no_desc = request()->query('no-desc', false);
+
+        $photos_query = Photo::query();
+
+        if ($published_photos && !$staged_photos) {
+            $photos_query->published();
+        } else if (!$published_photos && $staged_photos) {
+            $photos_query->staged();
+        } else if (!$published_photos && !$staged_photos) {
+            $photos_query->limit(0);
+        }
+
+        if ($no_desc) {
+            $photos_query->where('description', '');
+        }
 
         $photos = $photos_query->blogOrdered()->get();
 
-        return view('photo.adminIndex', compact('photos', 'only_staging'));
-    }
-
-    public function staging()
-    {
-        return $this->adminIndex(true);
+        return view('photo.adminIndex', compact('photos', 'published_photos', 'staged_photos', 'no_desc'));
     }
 
     public function edit(Photo $photo)

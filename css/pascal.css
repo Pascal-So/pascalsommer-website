@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -206,6 +208,29 @@ textarea,
 .btn:focus,
 #photos_upload_button:focus + label {
   background-color: #27272c;
+}
+
+.toggle {
+  padding: 5px;
+  -webkit-transition: border-color 0.1s linear;
+  transition: border-color 0.1s linear;
+  text-decoration: none;
+  display: inline-block;
+  color: #bbc;
+  border: 1px solid #19191c;
+}
+
+.toggle:before {
+  content: '\2610';
+  padding: 0 5px;
+}
+
+.toggle-active:before {
+  content: '\2612';
+}
+
+.toggle:hover {
+  border: 1px solid #aaa;
 }
 
 .tag {

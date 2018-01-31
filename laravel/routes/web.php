@@ -85,10 +85,7 @@ Route::get('/gallery', 'PhotoController@gallery')
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/photos', 'PhotoController@adminIndex')
-        ->name('photos');        
-
-    Route::get('/staging', 'PhotoController@staging')
-        ->name('staging');
+        ->name('photos');
 
     Route::get('/photos/{photo}/addTag/{tag}', 'PhotoController@addTag')
         ->name('addTag');
