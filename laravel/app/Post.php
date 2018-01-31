@@ -19,7 +19,7 @@ class Post extends Model implements Feedable
             ->id($this->id)
             ->title($this->formatTitle())
             ->summary($this->rssSummary())
-            ->updated(new \Carbon\Carbon($this->date))
+            ->updated($this->created_at ?: new \Carbon\Carbon($this->date))
             ->link($this->url())
             ->author('Pascal Sommer');
     }
@@ -39,7 +39,10 @@ class Post extends Model implements Feedable
 
     public function url(): string
     {
-        return route('home') . '?page=' . $this->getPaginationPage() . '#post_' . $this->titleSlug();
+        return route('home')
+                . '?page=' . $this->getPaginationPage() 
+                . '&meta_img=' . $this->photos()->blogOrdered()->first()->id
+                . '#post_' . $this->titleSlug();
     }
 
     public function photos()

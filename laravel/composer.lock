@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "66aa578533416e8f66419064fe55ff30",
+    "content-hash": "419481ba81415d2b6f2edd1353672e1f",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -467,16 +467,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.32",
+            "version": "v5.5.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "254e4c3e133f5bc8d6068cdf28ea062abc10adf2"
+                "reference": "ef7880e665390f999f4def7c9f78133636f973cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/254e4c3e133f5bc8d6068cdf28ea062abc10adf2",
-                "reference": "254e4c3e133f5bc8d6068cdf28ea062abc10adf2",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ef7880e665390f999f4def7c9f78133636f973cf",
+                "reference": "ef7880e665390f999f4def7c9f78133636f973cf",
                 "shasum": ""
             },
             "require": {
@@ -597,7 +597,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-01-18T13:27:23+00:00"
+            "time": "2018-01-30T15:06:13+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1355,16 +1355,16 @@
         },
         {
             "name": "spatie/laravel-feed",
-            "version": "dev-implement-array-access",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Pascal-So/laravel-feed.git",
-                "reference": "215166e9ec236af653ddbcadcabd611706832afd"
+                "url": "https://github.com/spatie/laravel-feed.git",
+                "reference": "d89a39353ba28390703fcc9d8bdfab339ca8418e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Pascal-So/laravel-feed/zipball/215166e9ec236af653ddbcadcabd611706832afd",
-                "reference": "215166e9ec236af653ddbcadcabd611706832afd",
+                "url": "https://api.github.com/repos/spatie/laravel-feed/zipball/d89a39353ba28390703fcc9d8bdfab339ca8418e",
+                "reference": "d89a39353ba28390703fcc9d8bdfab339ca8418e",
                 "shasum": ""
             },
             "require": {
@@ -1390,23 +1390,14 @@
                     "Spatie\\Feed\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Spatie\\Feed\\Test\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
-                    "name": "Jolita Grazyte",
-                    "email": "jolita@spatie.be",
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
                     "homepage": "https://spatie.be",
                     "role": "Developer"
                 },
@@ -1417,8 +1408,8 @@
                     "role": "Developer"
                 },
                 {
-                    "name": "Sebastian De Deyne",
-                    "email": "sebastian@spatie.be",
+                    "name": "Jolita Grazyte",
+                    "email": "jolita@spatie.be",
                     "homepage": "https://spatie.be",
                     "role": "Developer"
                 }
@@ -1431,10 +1422,7 @@
                 "rss",
                 "spatie"
             ],
-            "support": {
-                "source": "https://github.com/Pascal-So/laravel-feed/tree/implement-array-access"
-            },
-            "time": "2018-01-29T23:02:25+00:00"
+            "time": "2018-01-30T22:14:02+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -4133,8 +4121,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "jmauerhan/eloquent-sortable": 20,
-        "simplepush/simplepush-php": 20,
-        "spatie/laravel-feed": 20
+        "simplepush/simplepush-php": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -1,5 +1,18 @@
 @extends('layouts.base')
 
+@php
+    $social_image = 'img/pascalsommerphotography.jpg';
+    if(request()->has('meta_img')){
+        $id = request()->query('meta_img');
+
+        if($photo = \App\Photo::find($id)){
+            $social_image = $photo->path;
+        }
+    }
+@endphp
+
+@section('social_image', asset($social_image))
+
 @section('content-base')
 
 @yield('content')
