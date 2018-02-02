@@ -4,10 +4,12 @@
 
 <h1>Comments</h1>
 
-@include('comment.list', ['comments' => $comments, 'admin_overview' => true])
-
 @if($comments->isEmpty())
     <p>No comments.</p>
+@else
+    <p>{{ $comments->count() }} comments</p>
 @endif
+
+@include('comment.list', ['comments' => $comments, 'admin_overview' => true])
 
 @endsection
