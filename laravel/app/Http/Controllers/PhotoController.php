@@ -66,9 +66,9 @@ class PhotoController extends Controller
 
         if ($published_photos && !$staged_photos) {
             $photos_query->published();
-        } else if (!$published_photos && $staged_photos) {
+        } elseif (!$published_photos && $staged_photos) {
             $photos_query->staged();
-        } else if (!$published_photos && !$staged_photos) {
+        } elseif (!$published_photos && !$staged_photos) {
             $photos_query->limit(0);
         }
 

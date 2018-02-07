@@ -148,9 +148,19 @@ class Photo extends Model implements Sortable
         return $this->post !== null;
     }
 
+    public function replaceLinks(string $text, string $link_options = ""):string
+    {
+        return preg_replace(
+            "~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~",
+            "<a {$link_options} href=\"\\0\">\\0</a>",
+            $text
+        );
+    }
+
     public function descriptionHTML():string
     {
-        return nl2br(htmlspecialchars($this->description));
+        $with_br = nl2br(htmlspecialchars($this->description));
+        return $this->replaceLinks($with_br, "target=blank");
     }
 
     public function delete()
