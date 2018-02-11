@@ -14,6 +14,8 @@
 <meta name='MobileOptimized' content='320'>
 <meta name='medium' content='blog'>
 
+<meta name="pinterest" content="nopin" />
+
 <meta property="og:title" content="Pascal Sommer Photography">
 <meta property="og:description" content="@yield('social_description', config('constants.page_description'))">
 <meta property="og:image" content="@yield('social_image', asset('img/pascalsommerphotography.jpg'))">
