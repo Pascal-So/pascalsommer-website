@@ -22,7 +22,7 @@
 
 @foreach($posts as $post)
 
-    <h2 id="post_{{ $post->titleSlug() }}">{{ $post->formatTitle() }}</h2>
+    <h2 id="post_{{ $post->titleSlug() }}"><a title="permalink" href="{{ $post->url() }}">#</a> {{ $post->formatTitle() }}</h2>
 
     @foreach($post->photos()->blogOrdered()->get() as $photo)
         <a href="{{ route('viewPhoto', compact('photo')) }}" class="photolink">
