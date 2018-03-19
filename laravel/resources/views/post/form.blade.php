@@ -32,9 +32,9 @@
 
     <br><br>
 
-    <div id="photo-selector"></div>
+    <button class="btn">Save Post</button>
 
     <br><br><br>
 
-    <button class="btn">Save Post</button>
+    <div id="photo-selector"></div>
 </form>
