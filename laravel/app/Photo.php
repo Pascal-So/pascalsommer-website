@@ -7,6 +7,7 @@ use App\Post;
 use App\Comment;
 use App\Tag;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 use JMauerhan\EloquentSortable\Sortable;
 use JMauerhan\EloquentSortable\SortableTrait;
@@ -157,10 +158,59 @@ class Photo extends Model implements Sortable
         );
     }
 
+    public function replaceInternalLinks(string $text, string $link_options = ""):string
+    {
+        $photo_ids = [];
+
+        preg_match_all("/#photo(\d+)#/", $text, $photo_ids, PREG_PATTERN_ORDER);
+
+        $patterns = [];
+        $replacements = [];
+        foreach ($photo_ids[1] as $match_id => $id) {
+            $patterns[] = '/' . $photo_ids[0][$match_id] . '/';
+
+            $id = intval($id);
+            $photo = self::find($id);
+
+            if ($photo === null) {
+                Log::error("Description of photo {$this->id} links to unknown photo ${id}.");
+                $replacements[] = $photo_ids[0][$match_id];
+            } elseif (! $photo->isPublic()) {
+                Log::error("Description of photo {$this->id} links to unpublished photo ${id}.");
+                $replacements[] = $photo_ids[0][$match_id];
+            } else {
+                $replacements[] = "<a ${link_options} href=\""
+                                . route('viewPhoto', ['photo' => $photo])
+                                . "\">${id}</a>";
+            }
+        }
+
+        $post_ids = [];
+        preg_match_all('/#post(\d+)#/', $text, $post_ids, PREG_PATTERN_ORDER);
+
+        foreach ($post_ids[1] as $match_id => $id) {
+            $patterns[] = '/' . $post_ids[0][$match_id] . '/';
+
+            $id = intval($id);
+            $post = Post::find($id);
+
+            if ($post === null) {
+                Log::error("Description of photo {$this->id} links to unknown post ${id}.");
+                $replacements[] = $post_ids[0][$match_id];
+            } else {
+                $replacements[] = "<a ${link_options} href=\"" . $post->url() . "\">\"{$post->title}\"</a>";
+            }
+        }
+
+        //dd($replacements);
+
+        return preg_replace($patterns, $replacements, $text);
+    }
+
     public function descriptionHTML():string
     {
         $with_br = nl2br(htmlspecialchars($this->description));
-        return $this->replaceLinks($with_br, "target=blank");
+        return $this->replaceInternalLinks($this->replaceLinks($with_br, "target=blank"));
     }
 
     public function delete()
