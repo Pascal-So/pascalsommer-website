@@ -210,12 +210,12 @@ input, textarea, .input, .btn{
     border: 1px solid $body-bg;
 }
 .toggle:before{
-    content: '☐';
+    content: '□';
     padding: 0 5px;
 }
 
 .toggle-active:before{
-    content: '☒';
+    content: '▣';
 }
 
 .toggle:hover{
