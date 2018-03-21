@@ -26,13 +26,18 @@
     <a href="{{ asset($photo->path) }}" target="blank"><img style="vertical-align: top;" class="photo-small" src="{{ asset($photo->path) }}"></a>
     <div class="admin-index-panel">
         <a class="btn" href="{{ route('editPhoto', compact('photo')) }}">Edit Photo</a>
-        <a class="btn" href="{{ route('viewPhoto', compact('photo')) }}">View Photo</a>
+        <a class="btn" href="{{ route('viewPhoto', compact('photo')) }}">View</a>
         <a data-deletable-photo data-filename="{{ basename($photo->path) }}"
             @if( $photo->isPublic() )
                 data-post="{{ str_replace('"', "'", $photo->post->title) }}"
             @endif
-            class="btn" href="{{ route('deletePhoto', compact('photo')) }}">Delete Photo</a>
+            class="btn" href="{{ route('deletePhoto', compact('photo')) }}">Delete</a>
         <br>
+        <div style="max-width: 310px;">
+            @foreach($photo->tags as $tag)
+                <a class="tag" href="{{ route('filtered', ['tags' => $tag->name]) }}">{{ $tag->name }}</a>
+            @endforeach
+        </div>
         <p>
             @if($photo->isPublic())
                 in "{{ $photo->post->title }}"
