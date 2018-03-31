@@ -26,7 +26,7 @@
     <a href="{{ asset($photo->path) }}" target="blank"><img style="vertical-align: top;" class="photo-small" src="{{ asset($photo->path) }}"></a>
     <div class="admin-index-panel">
         <a class="btn" href="{{ route('editPhoto', compact('photo')) }}">Edit Photo</a>
-        <a class="btn" href="{{ route('viewPhoto', compact('photo')) }}">View</a>
+        <a class="btn" href="{{ $photo->url() }}">View</a>
         <a data-deletable-photo data-filename="{{ basename($photo->path) }}"
             @if( $photo->isPublic() )
                 data-post="{{ str_replace('"', "'", $photo->post->title) }}"

@@ -7,7 +7,8 @@
 @section('content')
 
 @if($photo->isPublic())
-    <h2><a class="stealth-link"
+    <h2><a title="photo permalink" href="{{ $photo->url() }}">#</a>
+        <a class="stealth-link"
         href="{{ $photo->post->permalink() }}">
         {{ $photo->post->formattitle() }}
     </a></h2>
@@ -21,7 +22,7 @@
     @if($photo->prevPhoto() == null)
         <div class="arrow-icon-placeholder"></div>
     @else
-        <a id="link-left" href="{{ route('viewPhoto', ['photo' => $photo->prevPhoto()]) }}"><img class="arrow-icon" src="{{ asset('img/icons/larrow.svg') }}"></a>
+        <a id="link-left" href="{{ $photo->prevPhoto()->url() }}"><img class="arrow-icon" src="{{ asset('img/icons/larrow.svg') }}"></a>
     @endif
     <a href="{{ asset($photo->path) }}" target="blank">
         <img id="photo" class="photo-large" src="{{ asset($photo->path) }}" alt="{{ $photo->alttext() }}">
@@ -29,7 +30,7 @@
     @if($photo->nextPhoto() == null)
         <div class="arrow-icon-placeholder"></div>
     @else
-        <a id="link-right" href="{{ route('viewPhoto', ['photo' => $photo->nextPhoto()]) }}"><img class="arrow-icon" src="{{ asset('img/icons/rarrow.svg') }}"></a>
+        <a id="link-right" href="{{ $photo->nextPhoto()->url() }}"><img class="arrow-icon" src="{{ asset('img/icons/rarrow.svg') }}"></a>
     @endif
 </div>
 

@@ -9,7 +9,7 @@
         (live in "{{ $photo->post->title }}")
     @endif
 </h2>
-<a class="btn" href="{{ route('viewPhoto', compact('photo')) }}">View Photo</a>
+<a class="btn" href="{{ $photo->url() }}">View Photo</a>
 <br>
 <br>
 <br>

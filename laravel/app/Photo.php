@@ -180,7 +180,7 @@ class Photo extends Model implements Sortable
                 $replacements[] = $photo_ids[0][$match_id];
             } else {
                 $replacements[] = "<a ${link_options} href=\""
-                                . route('viewPhoto', ['photo' => $photo])
+                                . $photo->url()
                                 . "\">${id}</a>";
             }
         }
@@ -211,6 +211,11 @@ class Photo extends Model implements Sortable
     {
         $with_br = nl2br(htmlspecialchars($this->description));
         return $this->replaceInternalLinks($this->replaceLinks($with_br, "target=blank"));
+    }
+
+    public function url():string
+    {
+        return route('viewPhoto', ['photo' => $this]);
     }
 
     public function delete()

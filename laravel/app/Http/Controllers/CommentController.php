@@ -25,7 +25,7 @@ class CommentController extends Controller
         // error messages, but other stuff that contains html or so can get an
         // error message back.
 
-        $back_url = route('viewPhoto', compact('photo')) . '#comment-form';
+        $back_url = $photo->url() . '#comment-form';
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
@@ -42,7 +42,7 @@ class CommentController extends Controller
         if (!Blacklist::checkComment($request->comment)) {
             $this->logBlockedComment($request->name, $request->comment);
 
-            return redirect()->route('viewPhoto', compact('photo'));
+            return redirect($photo->url());
         }
 
         $validator = Validator::make($request->all(), [
@@ -67,7 +67,7 @@ class CommentController extends Controller
 
         $photo->comments()->create($request->only(['name', 'comment']));
 
-        return redirect()->route('viewPhoto', compact('photo'));
+        return redirect($photo->url());
     }
 
     public function delete(Comment $comment)
