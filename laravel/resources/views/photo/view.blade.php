@@ -8,7 +8,7 @@
 
 @if($photo->isPublic())
     <h2><a class="stealth-link"
-        href="{{ $photo->post->url() }}">
+        href="{{ $photo->post->permalink() }}">
         {{ $photo->post->formattitle() }}
     </a></h2>
 @else

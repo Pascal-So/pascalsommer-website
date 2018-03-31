@@ -18,6 +18,9 @@
 Route::get('/', 'PostController@index')
     ->name('home');
 
+Route::get('/post/{post}', 'PostController@permalink')
+    ->name('permalink');
+
 Route::middleware(['auth'])->group(function(){
     Route::get('/posts', 'PostController@adminIndex')
         ->name('posts');

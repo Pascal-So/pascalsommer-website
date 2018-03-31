@@ -15,6 +15,11 @@ class PostController extends Controller
         return view('index', compact('posts'));
     }
 
+    public function permalink(Post $post)
+    {
+        return redirect($post->url());
+    }
+
     public function adminIndex()
     {
         $posts = Post::blogOrdered()->get();

@@ -198,7 +198,7 @@ class Photo extends Model implements Sortable
                 Log::error("Description of photo {$this->id} links to unknown post ${id}.");
                 $replacements[] = $post_ids[0][$match_id];
             } else {
-                $replacements[] = "<a ${link_options} href=\"" . $post->url() . "\">\"{$post->title}\"</a>";
+                $replacements[] = "<a ${link_options} href=\"" . $post->permalink() . "\">\"{$post->title}\"</a>";
             }
         }
 

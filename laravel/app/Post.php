@@ -20,7 +20,7 @@ class Post extends Model implements Feedable
             ->title($this->formatTitle())
             ->summary($this->rssSummary())
             ->updated($this->created_at ?: new \Carbon\Carbon($this->date))
-            ->link($this->url())
+            ->link($this->permalink())
             ->author('Pascal Sommer');
     }
 
@@ -43,6 +43,11 @@ class Post extends Model implements Feedable
                 . '?page=' . $this->getPaginationPage()
                 . '&meta_img=' . $this->photos()->blogOrdered()->first()->id
                 . '#post_' . $this->titleSlug();
+    }
+
+    public function permalink(): string
+    {
+        return route('permalink', ['post' => $this]);
     }
 
     public function photos()
