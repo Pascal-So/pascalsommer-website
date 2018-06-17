@@ -5,12 +5,7 @@
 <br><br>
 <h1>Pascal Sommer</h1>
 
-<p>
-    <a title="Twitter" href="https://twitter.com/sommerpascal"><img class="icon" src="{{ asset('img/icons/twitter.svg') }}"></a>
-    <a title="Github" href="https://github.com/pascal-so"><img class="icon" src="{{ asset('img/icons/github.svg') }}"></a>
-    <a title="Medium" href="https://medium.com/@pascal.sommer.ch"><img class="icon" src="{{ asset('img/icons/medium-m.svg') }}"></a>
-    <a title="Youtube" href="https://youtube.com/pascalsommermovies"><img class="icon" src="{{ asset('img/icons/youtube.svg') }}"></a>
-</p>
+@include('layouts.social-links')
 
 <br><br>
 
