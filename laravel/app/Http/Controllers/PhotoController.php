@@ -35,18 +35,22 @@ class PhotoController extends Controller
                             return $str != '';
                         });
 
-        //$unused_tags_arr = Tag::has('photos')->get()->pluck('name')->diff($tags_arr)->sort();
         $tags = Tag::get();
-
-        // The has('tags') call is redundant, it's just here to get a query builder object we can work with
-        $query = Photo::published();
 
         // This might get inefficient as the amount of tags filtered for grows, but that's ok,
         // because usually count($tags_arr) is just 1.
+        $query = Photo::published();
         foreach ($tags_arr as $tag) {
-            $query->whereHas('tags', function ($q) use ($tag) {
-                $q->where('name', $tag);
-            });
+            if ($tag[0] === '!') {
+                $pure_tag = substr($tag, 1);
+                $query->whereDoesntHave('tags', function ($q) use ($pure_tag) {
+                    $q->where('name', $pure_tag);
+                });
+            } else {
+                $query->whereHas('tags', function ($q) use ($tag) {
+                    $q->where('name', $tag);
+                });
+            }
         }
 
         $photos = $query->blogOrdered()->paginate(15);

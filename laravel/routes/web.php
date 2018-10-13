@@ -122,7 +122,7 @@ Route::middleware(['auth'])->group(function(){
 */
 Route::get('/tag/{tags?}', 'PhotoController@filtered')
     ->name('filtered')
-    ->where('tags', '[A-Za-z]+(,[A-Za-z]+)*');
+    ->where('tags', '!?[A-Za-z]+(,!?[A-Za-z]+)*');
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/tags', 'TagController@index')
