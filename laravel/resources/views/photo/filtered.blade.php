@@ -15,7 +15,13 @@
             $tags_str = implode(',', $tags_arr->diff([$tag->name])->toArray());
             $link = route('filtered', ['tags' => $tags_str]);
         @endphp
-        <a class="tag-active" title="Click to remove tag" href="{{ $link }}">{{ $tag->name }}</a>
+        <a class="tag tag-active" title="Click to remove tag" href="{{ $link }}">{{ $tag->name }}</a>
+    @elseif ($tags_arr->contains('!' . $tag->name))
+        @php
+            $tags_str = implode(',', $tags_arr->diff(['!'. $tag->name])->toArray());
+            $link = route('filtered', ['tags' => $tags_str]);
+        @endphp
+        <a class="tag tag-active-not" title="Click to remove tag" href="{{ $link }}">!{{ $tag->name }}</a>
     @else
         @php
             $tags_str = implode(',', collect($tags_arr)->push($tag->name)->sort()->toArray());

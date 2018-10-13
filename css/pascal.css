@@ -244,21 +244,22 @@ textarea,
 .tag-active {
   background-color: #5c5c67;
   color: #19191c;
-  padding: 5px 7px;
-  border-radius: 3px;
-  display: inline-block;
-  margin: 5px 0;
 }
 
-.tag-active a {
-  color: #19191c;
+.tag-active-not {
+  background-color: #5f5150;
 }
 
 a.tag,
-a.tag:visited,
-.tag a,
-.tag a:visited {
+a.tag:visited {
   color: #89b;
+}
+
+a.tag-active,
+a.tag-active:visited,
+a.tag-active-not,
+a.tag-active-not:visited {
+  color: #19191c;
 }
 
 .hidden {
