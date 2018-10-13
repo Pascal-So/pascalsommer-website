@@ -32,7 +32,7 @@
 <div id="tags">
 @foreach($tags as $tag)
     @if($photo->tags->contains($tag))
-        <a class="tag-active" href="{{ route('removeTag', compact('photo', 'tag')) }}">{{ $tag->name }}</a>
+        <a class="tag tag-active" href="{{ route('removeTag', compact('photo', 'tag')) }}">{{ $tag->name }}</a>
     @else
         <a class="tag" href="{{ route('addTag', compact('photo', 'tag')) }}">{{ $tag->name }}</a>
     @endif
