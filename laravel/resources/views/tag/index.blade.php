@@ -10,24 +10,32 @@
     <form method="POST" action="{{ route('updateAllTags') }}">
         {{ csrf_field() }}
 
-        <ul>
+        <table class="inline-block">
             @foreach($tags as $tag)
-                <li>
-                    <input style="vertical-align: baseline" type="text" name="tags[{{$tag->id}}][name]" value="{{ $tag->name }}">
-                    <a data-deletable-tag data-name="{{ $tag->name }}"
-                        data-photos-live="{{ $tag->photos()->published()->count() }}"
-                        data-photos="{{ $tag->photos()->count() }}"
-                        style="vertical-align: baseline"
-                        class="btn"
-                        href="{{ route('deleteTag', compact('tag')) }}">
-                        Delete
-                    </a>
-                    <span>&nbsp;</span>
-                    <a href="{{ route('filtered', ['tags' => $tag->name]) }}">{{ $tag->photos()->published()->count() }} / {{ $tag->photos()->count() }}</a>
-                    <br><br>
-                </li>
+                <tr>
+                    <td style="text-align: right">
+                        <a href="{{ route('filtered', ['tags' => $tag->name]) }}">{{ $tag->photos()->published()->count() }} / {{ $tag->photos()->count() }}</a>
+                    </td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input style="vertical-align: baseline" type="text" name="tags[{{$tag->id}}][name]" value="{{ $tag->name }}">
+                    </td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <a data-deletable-tag data-name="{{ $tag->name }}"
+                            data-photos-live="{{ $tag->photos()->published()->count() }}"
+                            data-photos="{{ $tag->photos()->count() }}"
+                            style="vertical-align: baseline"
+                            class="btn"
+                            href="{{ route('deleteTag', compact('tag')) }}">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
             @endforeach
-        </ul>
+        </table>
+
+        <br><br>
 
         <button class="btn">Save Changes</button>
     </form>

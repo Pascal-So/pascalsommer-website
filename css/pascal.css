@@ -275,6 +275,10 @@ a.tag-active-not:visited {
   z-index: -1;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .error-panel {
   background-color: #933;
   display: inline-block;
