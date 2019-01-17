@@ -151,7 +151,14 @@ Route::post('/login', 'Auth\LoginController@login')->middleware('guest');
 Route::get('/logout', 'Auth\LoginController@logout')
     ->name('logout');
 
+/*
+|  Other Routes
+*/
+
 Route::view('/about', 'about')
     ->name('about');
+
+Route::get('/stats', 'StatsController@index')
+    ->name('stats');
 
 Route::feeds();
