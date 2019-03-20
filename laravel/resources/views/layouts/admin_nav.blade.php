@@ -7,6 +7,7 @@
         <a class="{{ Route::is('posts') ? 'nav-link-active' : '' }}" href="{{ route('posts') }}">Posts</a>
         <a class="{{ Route::is('tags') ? 'nav-link-active' : '' }}" href="{{ route('tags') }}">Tags</a>
         <a class="{{ Route::is('comments') ? 'nav-link-active' : '' }}" href="{{ route('comments') }}">Comments</a>
+        <a class="{{ Route::is('stats') ? 'nav-link-active' : '' }}" href="{{ route('stats') }}">Stats</a>
         <span>&nbsp;</span>
         <a href="{{ route('logout') }}">Logout</a>
     </nav>
