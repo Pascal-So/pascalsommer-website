@@ -25,7 +25,11 @@ class StatsController extends Controller
         $nr_photos_per_week = Photo::whereHas('post', function($query) use ($start_date) {
             $query->where('date', '>=', $start_date);
         })->count() / $nr_weeks_for_stat;
-        $years_until_1k = (1000 - $nr_photos_published) / $nr_photos_per_week / 52.18;
+
+        $years_until_1k = 0;
+        if ($nr_photos_per_week > 0) {
+            $years_until_1k = (1000 - $nr_photos_published) / $nr_photos_per_week / (365.25 / 7);
+        }
 
         $nr_comments = Comment::count();
 
