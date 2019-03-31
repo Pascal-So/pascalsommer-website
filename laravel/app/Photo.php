@@ -21,7 +21,7 @@ class Photo extends Model implements Sortable
         'sort_when_creating' => true,
         'sort_by_group_column' => 'post_id',
     ];
-    
+
     protected $guarded = ['id'];
 
     public function post()
@@ -112,7 +112,7 @@ class Photo extends Model implements Sortable
             }
             return null;
         }
-    
+
         return $after_in_post->sortBy('weight')->first();
     }
 
@@ -126,13 +126,22 @@ class Photo extends Model implements Sortable
         return getimagesize($this->path)[1];
     }
 
-    public function alttext():string
+    public function titletext():string
     {
         if ($this->description == "") {
             return "Photo by Pascal Sommer";
         }
 
         return "Photo by Pascal Sommer - " . $this->description;
+    }
+
+    public function alttext():string
+    {
+        if ($this->description == "") {
+            return "Photo by Pascal Sommer";
+        }
+
+        return $this->description;
     }
 
     public function getPaginationPage()
