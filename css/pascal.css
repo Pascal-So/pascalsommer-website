@@ -157,7 +157,9 @@ footer {
 
 input,
 textarea {
-  font-size: 0.85rem;
+  width: 250px;
+  font-size: 14px;
+  font-family: monospace;
 }
 
 input,

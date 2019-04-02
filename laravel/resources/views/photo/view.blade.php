@@ -41,7 +41,6 @@
 
 <br>
 
-<span>Tags:</span>
 @foreach($photo->tags as $tag)
     <a class="tag" href="{{ route('filtered', ['tags' => $tag->name]) }}">{{ $tag->name }}</a>
 @endforeach
@@ -65,7 +64,6 @@
 
 @include('comment.list', ['comments' => $photo->comments->sortByDesc('created_at')])
 
-<br>
 <br>
 
 @if($photo->isPublic())
