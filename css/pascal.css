@@ -157,9 +157,8 @@ footer {
 
 input,
 textarea {
-  width: 250px;
-  font-size: 14px;
-  font-family: monospace;
+  font-family: 'PT Mono', 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
 }
 
 input,
@@ -171,7 +170,7 @@ textarea,
   border-right: 2px solid #0f0f11;
   border-bottom: 2px solid #0f0f11;
   background-color: #232327;
-  color: #eee;
+  color: #f3f3f3;
   padding: 5px;
 }
 
@@ -488,7 +487,7 @@ a.tag-active-not:visited {
 
   input,
   textarea {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
   label {

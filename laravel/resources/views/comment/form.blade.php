@@ -5,10 +5,16 @@
 
     <br><br>
 
-    <input type="text" placeholder="Name" id="name" name="name" maxlength="255" style="margin-bottom: 5px" required value="{{ old('name') }}">
+    <input
+        type="text"placeholder="Name" id="name-field" name="name"
+        maxlength="255" style="margin-bottom: 5px" required
+        value="{{ old('name') }}">
     <br>
 
-    <textarea name="comment" id="comment" placeholder="Comment" maxlength="5000" required rows="4">{{ old('comment') }}</textarea>
+    <textarea
+        name="comment" id="comment-field" placeholder="Comment"
+        maxlength="5000" required
+        rows="4">{{ old('comment') }}</textarea>
 
     <br><br>
     <button class="btn">Post Comment</button>
