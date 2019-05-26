@@ -4,6 +4,7 @@ My personal website, now written in Laravel
 
 ## Todo
 * add alttext field to photos table, add alttext missing filter to staging view
+* replace photo from file
 * maybe change how the filters work in staging view
 * pagination for staging view?
 * thumbnails for gallery and staging view
@@ -13,3 +14,4 @@ My personal website, now written in Laravel
 * clean up photo view page, e.g. spacing around tags and description, back to overview button
 * add location information to photos?
 * remove exif from photos
+* make posts page load quicker
