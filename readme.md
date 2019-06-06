@@ -12,7 +12,7 @@ My personal website, now written in Laravel
 - [ ] pagination for staging view?
 - [ ] check if title is unique in "new post" frontend via some js or something like that
 - [x] get old frontends of the website to work with the current database
-- [ ] tag filter reset button
+- [x] tag filter reset button
 - [ ] unify look of description with comments
 - [ ] clean up photo view page, e.g. spacing around tags and description, back to overview button
 - [ ] add location information to photos?
