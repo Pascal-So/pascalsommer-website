@@ -7,7 +7,7 @@ My personal website, now written in Laravel
 - [ ] thumbnails for gallery and staging view -- will probably require GD
 - [ ] remove exif from photos
 - [ ] replace uploaded photo from file, keeping all other data
-- [ ] add alttext field to photos table, add alttext missing filter to staging view
+- [ ] add alt-text according to [these guidelines](https://axesslab.com/alt-texts/) to photos, add alt-text missing filter to staging view
 - [ ] maybe change how the filters work in staging view
 - [ ] pagination for staging view?
 - [ ] check if title is unique in "new post" frontend via some js or something like that
