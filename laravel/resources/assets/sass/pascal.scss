@@ -1,18 +1,4 @@
-$body-bg: #19191c;
-$text-color: #eee;
-
-$border-color: #aaa;
-$darker-border-color: darken($body-bg, 4%);
-$input-color: lighten($body-bg, 4%);
-$button-active-color: lighten($body-bg, 8%);
-$button-focus-color: lighten($body-bg, 6%);
-
-$tag-color: lighten($body-bg, 8%);
-
-$link-color: #89b;
-$link-visited-color: #bbc;
-
-$errors-color: #933;
+@import "pascal_variables";
 
 body{
     box-sizing: border-box;
@@ -154,7 +140,8 @@ footer{
 }
 
 input, textarea{
-    font-size: 0.85rem;
+    font-family: 'PT Mono', 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
 }
 
 input, textarea, .input, .btn{
@@ -163,7 +150,7 @@ input, textarea, .input, .btn{
     border-right: 2px solid $darker-border-color;
     border-bottom: 2px solid $darker-border-color;
     background-color: $input-color;
-    color: $text-color;
+    color: $input-text-color;
     padding: 5px;
 }
 
@@ -222,7 +209,7 @@ input, textarea, .input, .btn{
     border: 1px solid $border-color;
 }
 
-.tag{
+.tag {
     background-color: $tag-color;
     padding: 5px 7px;
     border-radius: 3px;
@@ -230,22 +217,24 @@ input, textarea, .input, .btn{
     margin: 5px 0;
 }
 
-.tag-active{
-    background-color: lighten($tag-color, 20%);
-    color: $body-bg;
-    padding: 5px 7px;
-    border-radius: 3px;
-    display: inline-block;
-    margin: 5px 0;
+.tag-active {
+  background-color: lighten($tag-color, 20%);
 }
 
-.tag-active a{
-    color: $body-bg;
+.tag-active-not {
+  background-color: #5f5150;
 }
 
-a.tag, a.tag:visited,
-.tag a, .tag a:visited{
-    color: $link-color;
+a.tag,
+a.tag:visited {
+  color: #89b;
+}
+
+a.tag-active,
+a.tag-active:visited,
+a.tag-active-not,
+a.tag-active-not:visited {
+  color: $body-bg;
 }
 
 .hidden{
@@ -259,6 +248,10 @@ a.tag, a.tag:visited,
     overflow: hidden;
     position: absolute;
     z-index: -1;
+}
+
+.inline-block {
+  display: inline-block;
 }
 
 .error-panel{
@@ -461,7 +454,7 @@ a.tag, a.tag:visited,
     }
 
     input, textarea{
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 
     label{

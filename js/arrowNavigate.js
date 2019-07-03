@@ -1,4 +1,3 @@
-
 var left_el = document.getElementById('link-left');
 var right_el = document.getElementById('link-right');
 

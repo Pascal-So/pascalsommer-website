@@ -9,3 +9,7 @@
 /laravel/yarn-error.log
 /laravel/.env
 /data_old/*
+
+/css
+/js/admin.js
+/fonts

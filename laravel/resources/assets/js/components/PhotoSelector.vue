@@ -26,12 +26,12 @@
     import $ from 'jquery';
 
     if($('#photo-selector').length){
-        
+
     }
 
     const post_photos_el = $('#post-photos');
-    const post_photos = post_photos_el.length 
-                            ? JSON.parse(post_photos_el.text()) 
+    const post_photos = post_photos_el.length
+                            ? JSON.parse(post_photos_el.text())
                             : [];
 
     const staged_photos_el = $('#staged-photos');
@@ -65,7 +65,7 @@
 
 <style lang="scss">
 
-@import "../../sass/pascal.scss";
+@import "../../sass/pascal_variables.scss";
 
 .box-sortable{
     background-color: $body-bg;

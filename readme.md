@@ -2,7 +2,21 @@
 
 My personal website, now written in Laravel
 
+## Development
+
+The js and sass source files are located in `laravel/resources/assets/`, and the generated output will go to the `/js`, `/css`, and `/fonts` directories. To compile, type:
+
+```bash
+yarn
+npm run prod
+```
+
+Note that `/js/arrowNavigate.js` and `/js/setPhotoDimensions.js` are currently not generated, but rather developed there in place. This will hopefully change soon(ish).
+
 ## Todo
+- [x] clean up css
+- [ ] generate arrowNavigate.js and setPhotoDimensions.js through typescript
+- [ ] replace default laravel login page with something fitting the overall design
 - [ ] remove path from filename in photos table
 - [ ] thumbnails for gallery and staging view -- will probably require GD
 - [ ] remove exif from photos

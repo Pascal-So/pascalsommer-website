@@ -1,0 +1,16 @@
+$body-bg: #19191c;
+$text-color: #eee;
+
+$border-color: #aaa;
+$darker-border-color: darken($body-bg, 4%);
+$input-color: lighten($body-bg, 4%);
+$input-text-color: lighten($text-color, 2%);
+$button-active-color: lighten($body-bg, 8%);
+$button-focus-color: lighten($body-bg, 6%);
+
+$tag-color: lighten($body-bg, 8%);
+
+$link-color: #89b;
+$link-visited-color: #bbc;
+
+$errors-color: #933;
