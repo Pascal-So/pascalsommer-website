@@ -1,0 +1,5 @@
+css/:laravel/resources/assets/
+js/admin.js:laravel/resources/assets/
+fonts/:laravel/resources/assets/
+
+laravel/vendor/:laravel/composer.lock

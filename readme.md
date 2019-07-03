@@ -7,6 +7,7 @@ My personal website, now written in Laravel
 The js and sass source files are located in `laravel/resources/assets/`, and the generated output will go to the `/js`, `/css`, and `/fonts` directories. To compile, type:
 
 ```bash
+cd laravel
 yarn
 npm run prod
 ```
