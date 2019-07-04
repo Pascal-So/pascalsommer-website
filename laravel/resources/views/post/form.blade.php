@@ -1,5 +1,5 @@
 @php
-    
+
     $post->title = old("title", $post->title);
     $post->date = old("date", $post->date ?: date('Y-m-d'));
 
@@ -28,7 +28,7 @@
     <input id="title" type="text" name="title" value="{{ $post->title }}" required>
     <br><br>
     <label for="date">Date </label>
-    <input type="text" name="date" placeholder="YYYY-MM-DD" value="{{ $post->date }}" required>
+    <input id="date" type="text" name="date" placeholder="YYYY-MM-DD" value="{{ $post->date }}" required>
 
     <br><br>
 

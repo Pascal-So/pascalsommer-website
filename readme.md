@@ -17,10 +17,12 @@ Note that `/js/arrowNavigate.js` and `/js/setPhotoDimensions.js` are currently n
 ## Todo
 - [x] clean up css
 - [ ] generate arrowNavigate.js and setPhotoDimensions.js through typescript
-- [ ] replace default laravel login page with something fitting the overall design
+- [x] replace default laravel login page with something fitting the overall design
 - [ ] remove path from filename in photos table
+- [ ] store photo dimensions in db or cache them somewhere
 - [ ] thumbnails for gallery and staging view -- will probably require GD
 - [ ] remove exif from photos
+- [ ] reencode images with progressive jpg
 - [ ] replace uploaded photo from file, keeping all other data
 - [ ] add alt-text according to [these guidelines](https://axesslab.com/alt-texts/) to photos, add alt-text missing filter to staging view
 - [ ] maybe change how the filters work in staging view

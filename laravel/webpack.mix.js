@@ -14,5 +14,4 @@ let mix = require('laravel-mix');
 mix.setPublicPath('..');
 
 mix.js('resources/assets/js/admin.js', 'js')
-   .sass('resources/assets/sass/login_page.scss', 'css')
    .sass('resources/assets/sass/pascal.scss', 'css');
