@@ -33,10 +33,10 @@
         <a id="link-right" href="{{ $photo->nextPhoto()->url() }}"><img class="arrow-icon" src="{{ asset('img/icons/rarrow.svg') }}"></a>
     @endif
 </div>
+<script type="text/javascript" src="{{ asset('js/arrowNavigate.js')}}" defer></script>
 
 <div class="hidden" id="photo_width">{{$photo->width()}}</div>
 <div class="hidden" id="photo_height">{{$photo->height()}}</div>
-
 <script type="text/javascript" src="{{ asset('js/setPhotoDimensions.js') }}" async></script>
 
 <br>
@@ -58,9 +58,7 @@
     </a>
 @endauth
 
-
 <br><br>
-
 
 @include('comment.list', ['comments' => $photo->comments->sortByDesc('created_at')])
 
@@ -69,8 +67,5 @@
 @if($photo->isPublic())
     @include('comment.form')
 @endif
-
-
-<script type="text/javascript" src="{{ asset('js/arrowNavigate.js')}}" defer></script>
 
 @endsection

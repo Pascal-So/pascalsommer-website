@@ -1,6 +1,6 @@
 # Pascal Sommer Photography website
 
-My personal website, now written in Laravel
+[My photography blog](https://photography.pascalsommer.ch), now written in Laravel
 
 ## Development
 

@@ -26,6 +26,7 @@
         <a id="link-right" href="{{ route('editPhoto', ['photo' => $photo->nextPhoto()]) }}#photo"><img class="arrow-icon" src="{{ asset('img/icons/rarrow.svg') }}"></a>
     @endif
 </div>
+<script type="text/javascript" src="{{ asset('js/arrowNavigate.js')}}" defer></script>
 
 <br><br>
 
