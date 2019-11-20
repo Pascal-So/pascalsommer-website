@@ -128,11 +128,7 @@ class Photo extends Model implements Sortable
 
     public function titletext():string
     {
-        if ($this->description == "") {
-            return "Photo by Pascal Sommer";
-        }
-
-        return "Photo by Pascal Sommer - " . $this->description;
+        return $this->description;
     }
 
     public function alttext():string
