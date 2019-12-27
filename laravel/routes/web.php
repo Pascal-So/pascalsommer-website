@@ -80,6 +80,9 @@ Route::middleware(['auth'])->group(function(){
 |  Photo Routes
 */
 
+Route::get('/photos/random', 'PhotoController@random')
+    ->name('randomPhoto');
+
 Route::get('/photos/{photo}', 'PhotoController@view')
     ->name('viewPhoto');
 

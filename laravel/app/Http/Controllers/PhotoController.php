@@ -28,6 +28,12 @@ class PhotoController extends Controller
         return view('photo.view', compact('photo'));
     }
 
+    public function random()
+    {
+        $photo = Photo::published()->inRandomOrder()->first();
+        return view('photo.view', compact('photo'));
+    }
+
     public function filtered(string $tags = '')
     {
         $tags_arr = collect(explode(',', $tags))

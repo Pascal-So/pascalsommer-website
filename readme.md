@@ -15,6 +15,8 @@ npm run prod
 Note that `/js/arrowNavigate.js` and `/js/setPhotoDimensions.js` are currently not generated, but rather developed there in place. This will hopefully change soon(ish).
 
 ## Todo
+- [x] random photo button
+- [ ] test blacklist (see error at 2018-05-12 21:19:36)
 - [x] clean up css
 - [ ] generate arrowNavigate.js and setPhotoDimensions.js through typescript
 - [x] replace default laravel login page with something fitting the overall design
