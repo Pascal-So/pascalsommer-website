@@ -17,7 +17,7 @@
 
             @auth
                 <a href="{{ route('deleteComment', compact('comment')) }}"
-                    class="btn"
+                    class="btn btn_comment_delete"
                     data-deletable-comment
                     data-name="{{ str_replace('"', "'", $comment->name) }}"
                     data-comment="{{ str_replace('"', "'", $comment->comment) }}"

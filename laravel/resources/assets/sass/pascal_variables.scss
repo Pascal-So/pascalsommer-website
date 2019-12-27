@@ -3,7 +3,7 @@ $text-color: #eee;
 
 $border-color: #aaa;
 $darker-border-color: darken($body-bg, 4%);
-$input-color: lighten($body-bg, 4%);
+$input-color: lighten($body-bg, 3%);
 $input-text-color: lighten($text-color, 2%);
 $button-active-color: lighten($body-bg, 8%);
 $button-focus-color: lighten($body-bg, 6%);

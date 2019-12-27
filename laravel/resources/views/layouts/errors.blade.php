@@ -1,6 +1,6 @@
 @if($errors->any())
 
-    <div class="error-panel">
+    <div class="error-panel fill-parent">
         <p><b>Errors</b></p>
         <ul>
             @foreach($errors->all() as $error)

@@ -45,12 +45,62 @@
     <a class="tag" href="{{ route('filtered', ['tags' => $tag->name]) }}">{{ $tag->name }}</a>
 @endforeach
 
-<p class="photo-description">{!! $photo->descriptionHTML() !!}</p>
+<ul>
+    @if($photo->description != '')
+        <li class="comment">
+            <p class="photo-description">Photo {{ $photo->id }}: {!! $photo->descriptionHTML() !!}</p>
+        </li>
+        <br>
+    @endif
+
+    @php
+    $comments = $photo->comments->sortByDesc('created_at');
+    @endphp
+
+    @forelse($comments as $comment)
+        <li class="comment" id="comment_{{ $comment->id }}">
+            <h2>
+                <a href="{{ $comment->photo->url() }}#comment_{{ $comment->id }}">
+                    {{ $comment->name }}
+                </a>
+            </h2>
+
+            <p>{{ $comment->created_at->format('Y-m-d') }}</p>
+            <p>{!! $comment->commentHTML() !!}</p>
+
+            @auth
+                <a href="{{ route('deleteComment', compact('comment')) }}"
+                    class="btn btn_comment_delete"
+                    data-deletable-comment
+                    data-name="{{ str_replace('"', "'", $comment->name) }}"
+                    data-comment="{{ str_replace('"', "'", $comment->comment) }}"
+                    >
+                    Delete
+                </a>
+            @endauth
+        </li>
+        <br>
+    @empty
+        <li class="comment" id="comment_none">
+            <p class="photo-description">No comments yet</p>
+        </li>
+        <br>
+    @endforelse
+
+    <li class="comment" id="comment_form">
+        @if($photo->isPublic())
+            @include('comment.form')
+        @endif
+    </li>
+</ul>
 
 <br><br>
 
 <a class="btn" href="{{ route('home') }}?page={{ $photo->getPaginationPage() }}#photo_{{ $photo->id }}" title="Home">
-    Return to overview
+    Return to Overview
+</a>
+<a class="btn" href="{{ route('randomPhoto') }}" title="Show a random photo">
+    Random Photo
 </a>
 @auth
     <a class="btn" href="{{ route('editPhoto', compact('photo')) }}">
@@ -58,14 +108,7 @@
     </a>
 @endauth
 
-<br><br>
-
-@include('comment.list', ['comments' => $photo->comments->sortByDesc('created_at')])
-
 <br>
 
-@if($photo->isPublic())
-    @include('comment.form')
-@endif
 
 @endsection

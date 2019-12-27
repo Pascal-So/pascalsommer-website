@@ -1,22 +1,40 @@
 <form id="comment-form" class="comment-form" action="{{ route('postComment', compact('photo')) }}" method="post">
     {{ csrf_field() }}
 
-    @include('layouts.errors')
-
-    <br><br>
+    @if ($errors->any())
+        @include('layouts.errors')
+        <br>
+    @endif
 
     <input
-        type="text"placeholder="Name" id="name-field" name="name"
-        maxlength="255" style="margin-bottom: 5px" required
-        value="{{ old('name') }}">
+        type="text"
+        placeholder="Name"
+        id="name-field"
+        class="fill-parent"
+        name="name"
+        maxlength="255"
+        style="margin: 5px 0"
+        required
+        value="{{ old('name') }}"
+    >
+
     <br>
 
     <textarea
-        name="comment" id="comment-field" placeholder="Comment"
-        maxlength="5000" required
-        rows="4">{{ old('comment') }}</textarea>
+        name="comment"
+        id="comment-field"
+        class="fill-parent"
+        placeholder="Comment"
+        maxlength="5000"
+        required
+        rows="4"
+    >{{ old('comment') }}</textarea>
 
-    <br><br>
-    <button class="btn">Post Comment</button>
+    <br>
+
+    <button
+        style="margin: 5px 0"
+        class="btn fill-parent"
+    >Post Comment</button>
 
 </form>
