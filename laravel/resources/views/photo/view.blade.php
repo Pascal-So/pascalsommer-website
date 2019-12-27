@@ -57,7 +57,7 @@
     $comments = $photo->comments->sortByDesc('created_at');
     @endphp
 
-    @forelse($comments as $comment)
+    @foreach($comments as $comment)
         <li class="comment" id="comment_{{ $comment->id }}">
             <h2>
                 <a href="{{ $comment->photo->url() }}#comment_{{ $comment->id }}">
@@ -80,12 +80,7 @@
             @endauth
         </li>
         <br>
-    @empty
-        <li class="comment" id="comment_none">
-            <p class="photo-description">No comments yet</p>
-        </li>
-        <br>
-    @endforelse
+    @endforeach
 
     <li class="comment" id="comment_form">
         @if($photo->isPublic())
