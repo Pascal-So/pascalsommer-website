@@ -32,7 +32,6 @@ Note that `/js/arrowNavigate.js` and `/js/setPhotoDimensions.js` are currently n
 - [ ] check if title is unique in "new post" frontend via some js or something like that
 - [x] get old frontends of the website to work with the current database
 - [x] tag filter reset button
-- [ ] unify look of description with comments
-- [ ] clean up photo view page, e.g. spacing around tags and description, back to overview button. Description could look like a comment (copying a bit of instagram's aesthetic), also make sure to use the horizontal space.
+- [x] clean up photo view page, e.g. spacing around tags and description, back to overview button. Description could look like a comment (copying a bit of instagram's aesthetic), also make sure to use the horizontal space.
 - [ ] add location information to photos?
 - [ ] make posts page load quicker

@@ -94,8 +94,6 @@
     </li>
 </ul>
 
-<br><br>
-
 <a class="btn" href="{{ route('home') }}?page={{ $photo->getPaginationPage() }}#photo_{{ $photo->id }}" title="Home">
     Return to Overview
 </a>
@@ -109,6 +107,5 @@
 @endauth
 
 <br>
-
 
 @endsection
