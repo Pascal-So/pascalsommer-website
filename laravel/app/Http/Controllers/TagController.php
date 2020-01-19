@@ -11,6 +11,12 @@ class TagController extends Controller
     {
         $tags = Tag::get();
 
+        foreach ($tags as $tag) {
+            $tag->nr_published = $tag->photos()->published()->count();
+            $tag->nr_staged = $tag->photos()->staged()->count();
+            $tag->nr_total = $tag->photos()->count();
+        }
+
         return view('tag.index', compact('tags'));
     }
 
