@@ -1,5 +1,7 @@
 @extends('layouts.pascal')
 
+@section('title', 'Stats - Pascal Sommer')
+
 @section('content')
 
 <h1>Stats</h1>

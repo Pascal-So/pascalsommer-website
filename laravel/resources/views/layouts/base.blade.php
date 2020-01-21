@@ -9,7 +9,7 @@
 
     <link rel="alternate" type="application/rss+xml" href="{{ asset('feed') }}" title="{{ config('feed.feeds.posts.title') }}">
 
-    <title>Pascal Sommer</title>
+    <title>@yield('title', 'Pascal Sommer')</title>
 
     @yield('head')
 

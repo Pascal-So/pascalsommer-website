@@ -1,5 +1,7 @@
 @extends('layouts.pascal')
 
+@section('title', 'About - Pascal Sommer')
+
 @section('content')
 
 <br><br>

@@ -1,5 +1,7 @@
 @extends('layouts.pascal')
 
+@section('title', 'Tag Filter - Pascal Sommer')
+
 @section('content')
 
 <br><br>

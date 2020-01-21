@@ -1,5 +1,7 @@
 @extends('layouts.pascal')
 
+@section('title', 'Upload - Pascal Sommer')
+
 @section('content')
 
 <h1>Photo Upload</h1>

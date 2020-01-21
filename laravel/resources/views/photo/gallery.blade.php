@@ -1,5 +1,7 @@
 @extends('layouts.pascal')
 
+@section('title', 'Gallery - Pascal Sommer')
+
 @section('content')
 
 <h1>Gallery</h1>

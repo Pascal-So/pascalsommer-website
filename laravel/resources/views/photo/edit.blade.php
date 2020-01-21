@@ -1,5 +1,7 @@
 @extends('layouts.pascal')
 
+@section('title', 'Edit Photo ' . $photo->id . ' - Pascal Sommer')
+
 @section('content')
 
 <h1>Edit Photo</h1>

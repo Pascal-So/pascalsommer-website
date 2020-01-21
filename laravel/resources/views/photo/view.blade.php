@@ -4,6 +4,8 @@
 
 @section('social_description', $photo->description ?: config('constants.page_description'))
 
+@section('title', 'Photo ' . $photo->id . ' - Pascal Sommer')
+
 @section('content')
 
 @if($photo->isPublic())
