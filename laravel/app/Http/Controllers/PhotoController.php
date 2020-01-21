@@ -31,7 +31,17 @@ class PhotoController extends Controller
     public function random()
     {
         $photo = Photo::published()->inRandomOrder()->first();
-        return view('photo.view', compact('photo'));
+
+        // Use the following line to show the random photo while leaving
+        // the url at /random. This has the advantage that the user can
+        // simply refresh the page to see a new random photo. However the
+        // disadvantage is that you can't use the browser's back button
+        // to get to the last random photo.
+        // return view('photo.view', compact('photo'));
+
+        // Instead, we now redirect the user to the photo once we have
+        // determined a random photo.
+        return redirect()->route('viewPhoto', compact('photo'));
     }
 
     public function filtered(string $tags = '')
