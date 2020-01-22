@@ -14,7 +14,7 @@ class CommentController extends Controller
 {
     private function logBlockedComment(string $name, string $comment)
     {
-        Log::info('Blocked comment: ' . json_encode(compact('author', 'comment')));
+        Log::info('Blocked comment: ' . json_encode(compact('name', 'comment')));
     }
 
     public function postComment(Photo $photo, Request $request)
@@ -80,7 +80,7 @@ class CommentController extends Controller
     public function adminIndex()
     {
         $comments = Comment::latest()->get();
-        
+
         return view('comment.index', compact('comments'));
     }
 }
