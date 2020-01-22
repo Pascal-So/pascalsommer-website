@@ -12,9 +12,9 @@ use App\Rules\NoHTML;
 
 class CommentController extends Controller
 {
-    private function logBlockedComment(string $name, string $comment)
+    private function logBlockedComment(string $name, string $comment, int $photo_id)
     {
-        Log::info('Blocked comment: ' . json_encode(compact('name', 'comment')));
+        Log::info('Blocked comment: ' . json_encode(compact('name', 'comment', 'photo_id')));
     }
 
     public function postComment(Photo $photo, Request $request)
@@ -40,7 +40,7 @@ class CommentController extends Controller
 
 
         if (!Blacklist::checkComment($request->comment)) {
-            $this->logBlockedComment($request->name, $request->comment);
+            $this->logBlockedComment($request->name, $request->comment, $photo->id);
 
             return redirect($photo->url());
         }
@@ -51,12 +51,14 @@ class CommentController extends Controller
         ]);
 
         if ($validator->fails()) {
-            $this->logBlockedComment($request->name, $request->comment);
+            $this->logBlockedComment($request->name, $request->comment, $photo->id);
 
             return redirect($back_url)
                         ->withErrors($validator)
                         ->withInput();
         }
+
+        $photo->comments()->create($request->only(['name', 'comment']));
 
         if (config('constants.push_notifications')) {
             $message_title = $photo->isPublic() ? "{$request->name} in '{$photo->post->title}'" : $request->name;
@@ -64,8 +66,6 @@ class CommentController extends Controller
 
             \Simplepush::send(env('SIMPLEPUSH_KEY'), $message_title, $message_content, 'Comment');
         }
-
-        $photo->comments()->create($request->only(['name', 'comment']));
 
         return redirect($photo->url());
     }
