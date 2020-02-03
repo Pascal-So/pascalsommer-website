@@ -56,7 +56,7 @@
     @endif
 
     @php
-    $comments = $photo->comments->sortByDesc('created_at');
+    $comments = $photo->comments->sortBy('created_at');
     @endphp
 
     @foreach($comments as $comment)
