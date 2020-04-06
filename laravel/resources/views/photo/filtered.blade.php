@@ -9,7 +9,7 @@
 
 <br>
 
-<h2>Filter by Tags</h2>
+<h2 id="start-content">Filter by Tags</h2>
 
 @foreach($tags as $tag)
     @if($tags_arr->contains($tag->name))
@@ -39,7 +39,7 @@
 @if($tags_arr->isEmpty())
     <p>no tags selected</p>
 @else
-    <p><a href="{{ route('filtered') }}">clear tags</a></p>
+    <p><a href="{{ route('filtered') }}" data-shortcutkeycode="67" title="(shortcut: c)">clear tags</a></p>
 @endif
 
 @include('layouts.pagination_nav', ['items' => $photos, 'from_page_two' => true])
@@ -61,7 +61,9 @@
 
 <br><br>
 
-<a class="btn" href="{{ route('home') }}" title="Home">Return to overview</a>
-<a  class="btn" href="#">Scroll to top</a>
+<a class="btn" data-shortcutkeycode="72" href="{{ route('home') }}" title="Go back to the list of all photos (shortcut: h)">
+    Return to Overview
+</a>
+<a class="btn" href="#">Scroll to top</a>
 
 @endsection

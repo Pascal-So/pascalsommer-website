@@ -24,7 +24,12 @@
     @if($photo->prevPhoto() == null)
         <div class="arrow-icon-placeholder"></div>
     @else
-        <a id="link-left" href="{{ $photo->prevPhoto()->url() }}"><img class="arrow-icon" src="{{ asset('img/icons/larrow.svg') }}"></a>
+        <a  id="link-left"
+            href="{{ $photo->prevPhoto()->url() }}"
+            data-shortcutkeycode="37"
+            title="Show the previous photo (shortcut: left arrow)">
+            <img class="arrow-icon" src="{{ asset('img/icons/larrow.svg') }}">
+        </a>
     @endif
     <a href="{{ asset($photo->path) }}" target="blank">
         <img id="photo" class="photo-large" src="{{ asset($photo->path) }}" alt="{{ $photo->alttext() }}">
@@ -32,10 +37,14 @@
     @if($photo->nextPhoto() == null)
         <div class="arrow-icon-placeholder"></div>
     @else
-        <a id="link-right" href="{{ $photo->nextPhoto()->url() }}"><img class="arrow-icon" src="{{ asset('img/icons/rarrow.svg') }}"></a>
+        <a  id="link-right"
+            href="{{ $photo->nextPhoto()->url() }}"
+            data-shortcutkeycode="39"
+            title="Show the next photo (shortcut: right arrow)">
+            <img class="arrow-icon" src="{{ asset('img/icons/rarrow.svg') }}">
+        </a>
     @endif
 </div>
-<script type="text/javascript" src="{{ asset('js/arrowNavigate.js')}}" defer></script>
 
 <div class="hidden" id="photo_width">{{$photo->width()}}</div>
 <div class="hidden" id="photo_height">{{$photo->height()}}</div>
@@ -84,24 +93,37 @@
         <br>
     @endforeach
 
-    <li class="comment" id="comment_form">
-        @if($photo->isPublic())
+    @if($photo->isPublic())
+        <li class="comment" id="comment_form">
             @include('comment.form')
-        @endif
-    </li>
+        </li>
+    @endif
 </ul>
 
-<a class="btn" href="{{ route('home') }}?page={{ $photo->getPaginationPage() }}#photo_{{ $photo->id }}" title="Home">
+<a class="btn" data-shortcutkeycode="72" href="{{ route('home') }}?page={{ $photo->getPaginationPage() }}#photo_{{ $photo->id }}" title="Go back to the list of all photos (shortcut: h)">
     Return to Overview
 </a>
-<a class="btn" href="{{ route('randomPhoto') }}" title="Show a random photo">
+
+<a class="btn" data-shortcutkeycode="82" id="link-random" href="{{ route('randomPhoto') }}" title="Show a random photo (shortcut: r)">
     Random Photo
 </a>
+
 @auth
-    <a class="btn" href="{{ route('editPhoto', compact('photo')) }}">
+    <a class="btn" data-shortcutkeycode="69" href="{{ route('editPhoto', compact('photo')) }}" title="(shortcut: e)">
         Edit Photo
     </a>
 @endauth
+
+@php
+    $tags_str = implode(',', $photo->tags->pluck('name')->toArray());
+    $filter_by_tag_url = route('filtered', ['tags' => $tags_str]);
+@endphp
+<a  class="btn"
+    data-shortcutkeycode="70"
+    href="{{ $filter_by_tag_url }}#start-content"
+    title="Show all photos that have the same tags as this one does (shortcut: f)">
+    Filter by Tags
+</a>
 
 <br>
 

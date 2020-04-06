@@ -3,13 +3,13 @@
 @section('content')
 
 <br><br>
-<h1>Pascal Sommer</h1>
+<a class="stealth-link" href="{{ route('home') }}" data-shortcutkeycode="72"><h1>Pascal Sommer</h1></a>
 
 @include('layouts.social-links')
 
 <br><br>
 
-@include('layouts.pagination_nav', ['items' => $posts, 'from_page_two' => true])
+@include('layouts.pagination_nav', ['items' => $posts, 'from_page_two' => true, 'element_id' => 'start-content'])
 <br>
 
 @foreach($posts as $post)
@@ -36,7 +36,11 @@
 <div>
     <a class="btn" href="{{ route('about') }}">About</a>
     <span>&nbsp;</span>
-    <a class="btn" href="{{ route('filtered') }}">Filter by Tags</a>
+    <a class="btn" data-shortcutkeycode="70" href="{{ route('filtered') }}#start-content" title="(shortcut: f)">Filter by Tags</a>
+    <span>&nbsp;</span>
+    <a class="btn" data-shortcutkeycode="82" href="{{ route('randomPhoto') }}" title="Show a random photo (shortcut: r)">
+        Random Photo
+    </a>
     <span>&nbsp;</span>
     @guest
         <a class="btn" href="{{ route('login') }}">Login</a>

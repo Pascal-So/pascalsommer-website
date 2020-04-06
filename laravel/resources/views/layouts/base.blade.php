@@ -23,6 +23,7 @@
 
 @yield('content-base')
 
+<script type="text/javascript" src="{{ asset('js/keyboardShortcuts.js')}}" defer></script>
 
 </body>
 </html>
