@@ -14,7 +14,9 @@ class CommentController extends Controller
 {
     private function logBlockedComment(string $name, string $comment, int $photo_id)
     {
-        Log::info('Blocked comment: ' . json_encode(compact('name', 'comment', 'photo_id')));
+        $json = json_encode(compact('name', 'comment', 'photo_id'),
+                            JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+        Log::info('Blocked comment: ' . $json);
     }
 
     public function postComment(Photo $photo, Request $request)
