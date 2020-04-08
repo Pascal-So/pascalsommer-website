@@ -50,7 +50,7 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => public_path(),
+            'root' => base_path().DIRECTORY_SEPARATOR.'..',
             //'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

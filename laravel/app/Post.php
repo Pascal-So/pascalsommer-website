@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use App\Photo;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
@@ -90,7 +91,7 @@ class Post extends Model implements Feedable
 
     public function titleSlug()
     {
-        return str_slug($this->title);
+        return Str::slug($this->title);
     }
 
     public function scopeBlogOrdered($query, bool $reverse = false)

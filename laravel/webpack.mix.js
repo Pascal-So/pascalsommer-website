@@ -13,5 +13,5 @@ let mix = require('laravel-mix');
 
 mix.setPublicPath('..');
 
-mix.js('resources/assets/js/admin.js', 'js')
-   .sass('resources/assets/sass/pascal.scss', 'css');
+mix.js('resources/js/admin.js', 'js')
+   .sass('resources/sass/pascal.scss', 'css');

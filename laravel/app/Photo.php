@@ -9,8 +9,8 @@ use App\Tag;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 
-use JMauerhan\EloquentSortable\Sortable;
-use JMauerhan\EloquentSortable\SortableTrait;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
 class Photo extends Model implements Sortable
 {
@@ -19,8 +19,14 @@ class Photo extends Model implements Sortable
     public $sortable = [
         'order_column_name' => 'weight',
         'sort_when_creating' => true,
-        'sort_by_group_column' => 'post_id',
     ];
+
+    public function buildSortQuery()
+    {
+        // Overwrite the buildSortQuery method from the SortableTrait
+        // in order to only apply the sorting within a post.
+        return static::query()->where('post_id', $this->post_id);
+    }
 
     protected $guarded = ['id'];
 

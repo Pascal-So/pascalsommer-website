@@ -4,7 +4,7 @@
 
 ## Development
 
-The js and sass source files are located in `laravel/resources/assets/`, and the generated output will go to the `/js`, `/css`, and `/fonts` directories. To compile, type:
+The js and sass source files are located in `laravel/resources/`, and the generated output will go to the `/js`, `/css`, and `/fonts` directories. To compile, type:
 
 ```bash
 cd laravel
@@ -16,7 +16,7 @@ Note that `/js/keyboardShortcuts.js` and `/js/setPhotoDimensions.js` are current
 
 ## Todo
 - [x] random photo button
-- [ ] test blacklist (see error at 2018-05-12 21:19:36)
+- [ ] test blacklist (see error at 2018-05-12 21:19:36, unexpected '->' at BlacklistController.php:40)
 - [x] clean up css
 - [ ] generate keyboardShortcuts.js and setPhotoDimensions.js through typescript
 - [x] replace default laravel login page with something fitting the overall design

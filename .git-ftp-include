@@ -1,5 +1,5 @@
-css/:laravel/resources/assets/
-js/admin.js:laravel/resources/assets/
-fonts/:laravel/resources/assets/
+css/:laravel/resources/
+js/admin.js:laravel/resources/
+fonts/:laravel/resources/
 
 laravel/vendor/:laravel/composer.lock
