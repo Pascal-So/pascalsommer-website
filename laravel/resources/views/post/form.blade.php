@@ -15,7 +15,7 @@
 <div id="post-photos" class="hidden">{{ json_encode($post_photos) }}</div>
 <div id="staged-photos" class="hidden">{{ json_encode($staged) }}</div>
 <div id="asset-path" class="hidden">{{ asset('') }}</div>
-<div id="view-path" class="hidden">{{ route('viewPhoto', ['photo' => '']) . '/' }}</div>
+<div id="view-path" class="hidden">{{ str_replace('dummy_photo', '', route('viewPhoto', ['photo' => 'dummy_photo'])) }}</div>
 
 <form method="POST" action="{{ $action }}">
     {{ csrf_field() }}

@@ -16,6 +16,7 @@ Note that `/js/keyboardShortcuts.js` and `/js/setPhotoDimensions.js` are current
 
 ## Todo
 - [x] random photo button
+- [ ] check if we can actually entirely remove the dependency on eloquent-sortable
 - [ ] test blacklist (see error at 2018-05-12 21:19:36, unexpected '->' at BlacklistController.php:40)
 - [x] clean up css
 - [ ] generate keyboardShortcuts.js and setPhotoDimensions.js through typescript
