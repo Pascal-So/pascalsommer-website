@@ -12,11 +12,20 @@ use App\Rules\NoHTML;
 
 class CommentController extends Controller
 {
-    private function logBlockedComment(string $name, string $comment, int $photo_id)
+    private function logComment(string $name, string $comment, Photo $photo, $log_to_telegram=false, $blocked=false)
     {
-        $json = json_encode(compact('name', 'comment', 'photo_id'),
+        $post_title = $photo->isPublic() ? $photo->post->title : 'unpublished';
+        $photo_id = $photo->id;
+
+        if ($log_to_telegram) {
+            $message = "*{$name}* in \"{$post_title}\" - {$photo_id}\n\n{$comment}";
+            Log::channel('telegram_comments_channel')->info($message);
+        }
+
+        $json = json_encode(compact('name', 'comment', 'post_title', 'photo_id'),
                             JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
-        Log::info('Blocked comment: ' . $json);
+
+        Log::info(($blocked ? 'Blocked comment: ' : 'New comment: ') . $json);
     }
 
     public function postComment(Photo $photo, Request $request)
@@ -42,7 +51,7 @@ class CommentController extends Controller
 
 
         if (!Blacklist::checkComment($request->comment)) {
-            $this->logBlockedComment($request->name, $request->comment, $photo->id);
+            $this->logComment($request->name, $request->comment, $photo, false, true);
 
             return redirect($photo->url());
         }
@@ -53,7 +62,7 @@ class CommentController extends Controller
         ]);
 
         if ($validator->fails()) {
-            $this->logBlockedComment($request->name, $request->comment, $photo->id);
+            $this->logComment($request->name, $request->comment, $photo, false, true);
 
             return redirect($back_url)
                         ->withErrors($validator)
@@ -62,12 +71,7 @@ class CommentController extends Controller
 
         $photo->comments()->create($request->only(['name', 'comment']));
 
-        if (config('constants.push_notifications')) {
-            $message_title = $photo->isPublic() ? "{$request->name} in '{$photo->post->title}'" : $request->name;
-            $message_content = $request->comment;
-
-            \Simplepush::send(env('SIMPLEPUSH_KEY'), $message_title, $message_content, 'Comment');
-        }
+        $this->logComment($request->name, $request->comment, $photo, true);
 
         return redirect($photo->url());
     }

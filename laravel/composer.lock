@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6ed0fa034372b81ec369de08a63b60f",
+    "content-hash": "e1e828d30b27b41a1c3cbf5301cc84f9",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -975,16 +975,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.3.0",
+            "version": "v4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "9a9981c347c5c49d6dfe5cf826bb882b824080dc"
+                "reference": "bd43ec7152eaaab3bd8c6d0aa95ceeb1df8ee120"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/9a9981c347c5c49d6dfe5cf826bb882b824080dc",
-                "reference": "9a9981c347c5c49d6dfe5cf826bb882b824080dc",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/bd43ec7152eaaab3bd8c6d0aa95ceeb1df8ee120",
+                "reference": "bd43ec7152eaaab3bd8c6d0aa95ceeb1df8ee120",
                 "shasum": ""
             },
             "require": {
@@ -1023,7 +1023,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-11-08T13:50:10+00:00"
+            "time": "2020-04-10T16:34:50+00:00"
         },
         {
             "name": "opis/closure",
@@ -1490,43 +1490,6 @@
                 "uuid"
             ],
             "time": "2020-02-21T04:36:14+00:00"
-        },
-        {
-            "name": "simplepush/simplepush-php",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Pascal-So/simplepush-php.git",
-                "reference": "5e216f2a32d847298c9faa94531c333ed635a147"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Pascal-So/simplepush-php/zipball/5e216f2a32d847298c9faa94531c333ed635a147",
-                "reference": "5e216f2a32d847298c9faa94531c333ed635a147",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/Simplepush/Simplepush-PHP/Simplepush.php"
-                ]
-            },
-            "description": "Send push notifications to your smartphone with simplepush.io",
-            "homepage": "https://simplepush.io",
-            "keywords": [
-                "android",
-                "app",
-                "notification",
-                "push",
-                "simplepush"
-            ],
-            "support": {
-                "source": "https://github.com/Pascal-So/simplepush-php/tree/master"
-            },
-            "time": "2018-01-14T13:35:35+00:00"
         },
         {
             "name": "spatie/eloquent-sortable",
@@ -5172,9 +5135,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "simplepush/simplepush-php": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -37,7 +37,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'telegram_log_channel'],
             'ignore_exceptions' => false,
         ],
 
@@ -45,6 +45,31 @@ return [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
             'level' => 'debug',
+        ],
+
+        'telegram_log_channel' => [
+            'driver'  => 'monolog',
+            'handler' => App\Logging\TelegramBotHandler::class,
+            'with' => [
+                'apiKey' => env('TELEGRAM_BOT_API_KEY'),
+                'channel' => env('TELEGRAM_LOG_CHANNEL_ID'),
+            ],
+            'level' => 'notice',
+        ],
+
+        'telegram_comments_channel' => [
+            'driver'  => 'monolog',
+            'handler' => App\Logging\TelegramBotHandler::class,
+            'with' => [
+                'apiKey' => env('TELEGRAM_BOT_API_KEY'),
+                'channel' => env('TELEGRAM_COMMENTS_CHANNEL_ID'),
+                'parseMode' => 'Markdown',
+            ],
+            'formatter' => Monolog\Formatter\LineFormatter::class,
+            'formatter_with' => [
+                'format' => '%message%',
+                'allowInlineLineBreaks' => true,
+            ],
         ],
 
         'daily' => [

@@ -10,7 +10,6 @@
         "spatie/eloquent-sortable": "^3.8",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "simplepush/simplepush-php": "dev-master#5e216f2a32d847298c9faa94531c333ed635a147",
         "spatie/laravel-feed": "^2.0"
     },
     "require-dev": {
@@ -57,9 +56,5 @@
         "optimize-autoloader": true
     },
     "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Pascal-So/simplepush-php"
-        }
     ]
 }
