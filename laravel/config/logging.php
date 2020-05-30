@@ -49,7 +49,7 @@ return [
 
         'telegram_log_channel' => [
             'driver'  => 'monolog',
-            'handler' => App\Logging\TelegramBotHandler::class,
+            'handler' => Monolog\Handler\TelegramBotHandler::class,
             'with' => [
                 'apiKey' => env('TELEGRAM_BOT_API_KEY'),
                 'channel' => env('TELEGRAM_LOG_CHANNEL_ID'),
@@ -59,7 +59,7 @@ return [
 
         'telegram_comments_channel' => [
             'driver'  => 'monolog',
-            'handler' => App\Logging\TelegramBotHandler::class,
+            'handler' => Monolog\Handler\TelegramBotHandler::class,
             'with' => [
                 'apiKey' => env('TELEGRAM_BOT_API_KEY'),
                 'channel' => env('TELEGRAM_COMMENTS_CHANNEL_ID'),
