@@ -13,3 +13,5 @@
 /css
 /js/admin.js*
 /fonts
+
+.phpunit.result.cache

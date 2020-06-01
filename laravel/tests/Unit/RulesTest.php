@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App;
 
-class ExampleTest extends TestCase
+class RulesTest extends TestCase
 {
 
     public function testHTMLChecker()
