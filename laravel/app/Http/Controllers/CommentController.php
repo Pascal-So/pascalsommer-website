@@ -9,16 +9,19 @@ use App\Photo;
 use App\Comment;
 use App\Blacklist;
 use App\Rules\NoHTML;
+use App\Util;
 
 class CommentController extends Controller
 {
     private function logComment(string $name, string $comment, Photo $photo, $log_to_telegram=false, $blocked=false)
     {
-        $post_title = $photo->isPublic() ? $photo->post->title : 'unpublished';
+        $post_title = Util::escapeMarkdown($photo->isPublic() ? $photo->post->title : 'unpublished');
+        $name = Util::escapeMarkdown($name);
+        $comment = Util::escapeMarkdown($comment);
         $photo_id = $photo->id;
 
         if ($log_to_telegram) {
-            $message = "*{$name}* in \"{$post_title}\" - {$photo_id}\n\n{$comment}";
+            $message = "*{$name}* in \"{$post_title}\" \\- {$photo_id}\n\n{$comment}";
             Log::channel('telegram_comments_channel')->info($message);
         }
 

@@ -38,7 +38,7 @@ return [
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single', 'telegram_log_channel'],
-            'ignore_exceptions' => false,
+            'ignore_exceptions' => true, // avoid an infinite loop of exceptions
         ],
 
         'single' => [
@@ -55,6 +55,12 @@ return [
                 'channel' => env('TELEGRAM_LOG_CHANNEL_ID'),
             ],
             'level' => 'notice',
+            'formatter' => App\Logging\ShortLineFormatter::class,
+            'formatter_with' => [
+                'allowInlineLineBreaks' => true,
+                'maxLength' => 4096,
+                'suffix' => "...\n",
+            ],
         ],
 
         'telegram_comments_channel' => [
@@ -63,7 +69,7 @@ return [
             'with' => [
                 'apiKey' => env('TELEGRAM_BOT_API_KEY'),
                 'channel' => env('TELEGRAM_COMMENTS_CHANNEL_ID'),
-                'parseMode' => 'Markdown',
+                'parseMode' => 'MarkdownV2',
             ],
             'formatter' => Monolog\Formatter\LineFormatter::class,
             'formatter_with' => [
