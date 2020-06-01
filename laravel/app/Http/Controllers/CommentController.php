@@ -39,8 +39,8 @@ class CommentController extends Controller
         $back_url = $photo->url() . '#comment-form';
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            'comment' => 'required',
+            'name' => 'required|max:' . strval(config('constants.max_comment_author_length')),
+            'comment' => 'required|max:' . strval(config('constants.max_comment_length')),
         ]);
 
         if ($validator->fails()) {
@@ -58,7 +58,7 @@ class CommentController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => [new NoHTML],
-            'comment' => ['max:10000', new NoHTML],
+            'comment' => [new NoHTML],
         ]);
 
         if ($validator->fails()) {

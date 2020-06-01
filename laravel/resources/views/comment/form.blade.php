@@ -12,7 +12,7 @@
         id="name-field"
         class="fill-parent"
         name="name"
-        maxlength="255"
+        maxlength="{{ config('constants.max_comment_author_length') }}"
         style="margin: 5px 0"
         required
         value="{{ old('name') }}"
@@ -25,7 +25,7 @@
         id="comment-field"
         class="fill-parent"
         placeholder="Comment"
-        maxlength="5000"
+        maxlength="{{ config('constants.max_comment_length') }}"
         required
         rows="4"
     >{{ old('comment') }}</textarea>
