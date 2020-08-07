@@ -18,6 +18,11 @@
             </td>
         </tr>
     @endforeach
+
 </table>
 
+<br><br><br>
+
+<p><b>Reference for stuff that I tend to forget</b></p>
+<p>Hotlink syntax: #photo812#</p>
 @endsection
