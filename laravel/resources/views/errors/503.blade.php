@@ -10,10 +10,9 @@
 <br><br>
 
 <div class="centered-text">
-    <h2>404</h2>
+    <h2>503</h2>
 
-    <p>There is nothing here.</p>
-    <a href="{{ route('home') }}">Home</a>
+    <p>The website is temporarily down for maintenance. Meanwhile you could check out some of my other projects here: <a href="https://codelis.ch">codelis.ch</a></p>
 
     <br>
     <br>
