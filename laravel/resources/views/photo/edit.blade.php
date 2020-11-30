@@ -15,7 +15,7 @@
 <br>
 <br>
 <br>
-<div class="flex-center-row" id="photo">
+<div class="flex-row flex-center" id="photo">
     @if($photo->prevPhoto() == null)
         <div class="arrow-icon-placeholder"></div>
     @else
@@ -31,7 +31,7 @@
 
 <br><br>
 
-<div id="tags">
+<div id="tags" class="flex-row flex-center flex-wrap photo" style="margin: auto;">
 @foreach($tags as $tag)
     @if($photo->tags->contains($tag))
         <a class="tag tag-active" href="{{ route('removeTag', compact('photo', 'tag')) }}">{{ $tag->name }}</a>

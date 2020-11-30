@@ -138,11 +138,6 @@ class PhotoController extends Controller
         return redirect()->back();
     }
 
-    public function showUploadForm()
-    {
-        return view('photo.uploadForm');
-    }
-
     public function upload(Request $request)
     {
         $request->validate([

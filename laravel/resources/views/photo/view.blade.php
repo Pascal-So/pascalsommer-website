@@ -20,7 +20,7 @@
     </a></h2>
 @endif
 
-<div class="flex-center-row">
+<div class="flex-row flex-center">
     @if($photo->prevPhoto() == null)
         <div class="arrow-icon-placeholder"></div>
     @else
@@ -52,9 +52,11 @@
 
 <br>
 
-@foreach($photo->tags as $tag)
-    <a class="tag" href="{{ route('filtered', ['tags' => $tag->name]) }}">{{ $tag->name }}</a>
-@endforeach
+<div class="flex-row flex-center flex-wrap">
+    @foreach($photo->tags as $tag)
+        <a class="tag" href="{{ route('filtered', ['tags' => $tag->name]) }}">{{ $tag->name }}</a>
+    @endforeach
+</div>
 
 <ul>
     @if($photo->description != '')

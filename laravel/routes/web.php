@@ -110,13 +110,8 @@ Route::middleware(['auth'])->group(function(){
 });
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/upload', 'PhotoController@showUploadForm')
-        ->name('uploadForm');
-
     Route::post('/upload', 'PhotoController@upload')
         ->name('upload');
-
-
 });
 
 

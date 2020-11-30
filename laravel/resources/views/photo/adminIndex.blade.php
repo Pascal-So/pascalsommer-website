@@ -8,48 +8,95 @@
     Photos
 </h1>
 
-<a class="toggle {{ $staged_photos ? 'toggle-active' : ''}}" href="{{ route('photos') . '?published-photos=' . $published_photos . '&staged-photos=' . !$staged_photos . '&no-desc=' . $no_desc }}">Include Staged</a>
-<br><br>
-<a class="toggle {{ $published_photos ? 'toggle-active' : ''}}" href="{{ route('photos') . '?published-photos=' . !$published_photos . '&staged-photos=' . $staged_photos . '&no-desc=' . $no_desc }}">Include Published</a>
-<br><br>
-<a class="toggle {{ $no_desc ? 'toggle-active' : ''}}" href="{{ route('photos') . '?published-photos=' . $published_photos . '&staged-photos=' . $staged_photos . '&no-desc=' . !$no_desc }}">Missing Description</a>
+<div class="staging-view-grid">
+    <div class="staging-view-controls">
+        <h2><small>Upload</small></h2>
+        <form method="POST" action="{{ route('upload') }}" enctype="multipart/form-data">
+            {{ csrf_field() }}
 
-<br><br>
+            <input role="button" class="pretty-much-hidden" type="file" name="photos[]" id="photos_input" multiple>
+            <label class="btn" for="photos_input">Select photos</label>
+            <button class="btn" id="photos_upload_button" disabled>Upload</button>
+        </form>
+        <p style="word-wrap: break-word;" id="files_selected_text">No files selected.</p>
 
-@if($photos->isEmpty())
-    <p>No photos.</p>
-@else
-    <p>{{ $photos->count() }} photos</p>
-@endif
+        <script type="text/javascript">
+            var photos_input = document.getElementById('photos_input');
+            var photos_upload_button = document.getElementById('photos_upload_button');
 
-<br>
+            photos_input.addEventListener('change', function(e) {
+                var text = "No files selected.";
 
-@foreach($photos as $photo)
-    <a href="{{ asset($photo->path) }}" target="blank"><img style="vertical-align: top;" class="photo-small" src="{{ asset($photo->path) }}"></a>
-    <div class="admin-index-panel">
-        <a class="btn" href="{{ route('editPhoto', compact('photo')) }}">Edit Photo</a>
-        <a class="btn" href="{{ $photo->url() }}">View</a>
-        <a data-deletable-photo data-filename="{{ basename($photo->path) }}"
-            @if( $photo->isPublic() )
-                data-post="{{ str_replace('"', "'", $photo->post->title) }}"
-            @endif
-            class="btn" href="{{ route('deletePhoto', compact('photo')) }}">Delete</a>
-        <br>
-        <div style="max-width: 310px;">
-            @foreach($photo->tags as $tag)
-                <a class="tag" href="{{ route('filtered', ['tags' => $tag->name]) }}">{{ $tag->name }}</a>
-            @endforeach
-        </div>
-        <p>
-            @if($photo->isPublic())
-                in "{{ $photo->post->title }}"
-            @else
-                Staged
-            @endif
-        </p>
-        <p style="width: 300px">{!! $photo->descriptionHTML() !!}</p>
+                if (photos_input.files) {
+                    photos_upload_button.removeAttribute("disabled");
+
+                    if (photos_input.files.length > 1) {
+                        text = photos_input.files.length.toString() + " files selected";
+                    } else if (photos_input.files.length > 0) {
+                        text = photos_input.files[0].name;
+                    }
+                }
+
+                document.getElementById('files_selected_text').innerHTML = text;
+            });
+        </script>
     </div>
-    <br><br>
-@endforeach
+
+    <div class="staging-view-controls">
+        <h2><small>Filter</small></h2>
+        <a class="toggle {{ $staged_photos ? 'toggle-active' : ''}}" href="{{ route('photos') . '?published-photos=' . $published_photos . '&staged-photos=' . !$staged_photos . '&no-desc=' . $no_desc }}">Staged</a>
+        <br class="hide-below-469">
+        <a class="toggle {{ $published_photos ? 'toggle-active' : ''}}" href="{{ route('photos') . '?published-photos=' . !$published_photos . '&staged-photos=' . $staged_photos . '&no-desc=' . $no_desc }}">Published</a>
+        <br class="hide-below-469">
+        <a class="toggle {{ $no_desc ? 'toggle-active' : ''}}" href="{{ route('photos') . '?published-photos=' . $published_photos . '&staged-photos=' . $staged_photos . '&no-desc=' . !$no_desc }}">Missing Description</a>
+
+        @if($photos->isEmpty())
+            <p>No photos.</p>
+        @else
+            <p>{{ $photos->count() }} photos</p>
+        @endif
+        <br><br>
+    </div>
+
+    @foreach($photos as $photo)
+        <a href="{{ asset($photo->path) }}" target="blank"><img style="vertical-align: top; max-width: 100%" src="{{ asset($photo->path) }}"></a>
+
+        <div class="staging-view-photo-controls">
+            <div class="flex-row flex-wrap">
+                <a class="btn" href="{{ route('editPhoto', compact('photo')) }}">
+                    Edit
+                </a>
+
+                <a class="btn" href="{{ $photo->url() }}">
+                    View
+                </a>
+
+                <a data-deletable-photo data-filename="{{ basename($photo->path) }}"
+                    @if( $photo->isPublic() )
+                        data-post="{{ str_replace('"', "'", $photo->post->title) }}"
+                    @endif
+                    class="btn" href="{{ route('deletePhoto', compact('photo')) }}">
+                    Delete
+                </a>
+            </div>
+
+            <div class="flex-row flex-wrap">
+                @foreach($photo->tags as $tag)
+                    <a class="tag" href="{{ route('filtered', ['tags' => $tag->name]) }}">{{ $tag->name }}</a>
+                @endforeach
+            </div>
+            <p>
+                @if($photo->isPublic())
+                    public in "{{ $photo->post->title }}"
+                @else
+                    not public
+                @endif
+            </p>
+            <p>{!! $photo->descriptionHTML() !!}</p>
+        </div>
+    @endforeach
+</div>
+
+
 
 @endsection

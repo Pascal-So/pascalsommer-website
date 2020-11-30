@@ -2,7 +2,6 @@
     @php
     $links = [
         ['route' => 'home',       'name' => 'Home',     'shortcut' => 72, 'title' => '(shortcut: h)'],
-        ['route' => 'uploadForm', 'name' => 'Upload'],
         ['route' => 'photos',     'name' => 'Staging',  'shortcut' => 83, 'title' => '(shortcut: s)'],
         ['route' => 'createPost', 'name' => 'New Post'],
         ['route' => 'posts',      'name' => 'Posts'],
