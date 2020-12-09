@@ -42,6 +42,10 @@
         Random Photo
     </a>
     <span>&nbsp;</span>
+    <a class="btn" data-shortcutkeycode="82" href="https://github.com/Pascal-So/pascalsommer-photography" title="Please report problems with this website as GitHub issues">
+        GitHub Repository
+    </a>
+    <span>&nbsp;</span>
     @guest
         <a class="btn" href="{{ route('login') }}">Login</a>
     @endguest
