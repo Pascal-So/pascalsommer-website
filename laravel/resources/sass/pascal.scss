@@ -326,7 +326,7 @@ a.tag-active-not:visited {
     text-align: left;
 }
 
-.social-media-link{
+.external-platform-link{
     display: inline-block;
 
     vertical-align: bottom;
@@ -349,7 +349,7 @@ a.tag-active-not:visited {
     }
 }
 
-.social-media-link:hover{
+.external-platform-link:hover{
     background-color: #666;
     path{
         fill: $body-bg;
