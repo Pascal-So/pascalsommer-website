@@ -15,6 +15,8 @@ npm run prod
 Note that `/js/keyboardShortcuts.js` and `/js/setPhotoDimensions.js` are currently not generated, but rather developed there in place. This will hopefully change soon(ish).
 
 ## Todo
+- [ ] pagination: jump to start/end
+- [ ] visual indication for tags that reduce the nr. of results to zero when selected
 - [x] random photo button
 - [ ] check if we can actually entirely remove the dependency on eloquent-sortable
 - [ ] test blacklist (see error at 2018-05-12 21:19:36, unexpected '->' at BlacklistController.php:40)
