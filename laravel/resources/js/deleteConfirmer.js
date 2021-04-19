@@ -1,5 +1,6 @@
-$(() => {
+import $ from 'jquery';
 
+export default () => {
     $('*[data-deletable-comment]').each((index, obj) => {
         console.log(obj);
         const name = $(obj).data('name');
@@ -47,5 +48,4 @@ $(() => {
             return confirm(message);
         });
     });
-
-});
+};
