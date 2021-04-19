@@ -2,7 +2,28 @@
 
 [My photography blog](https://photography.pascalsommer.ch), now written in Laravel
 
-## Development
+## Development Setup
+
+```bash
+# Create .env file from example
+cp laravel/.env{.example,}
+
+# Let the server write to these directories
+chmod a+w -R laravel/storage/{framework,logs}
+chmod a+w -R img/photos/
+
+# Quickly set up a mysql server
+sudo docker run --rm -d --name blog-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=blog mysql
+sudo docker exec -i blog-mysql sh -c 'exec mysql -uroot -proot blog' < dump.sql
+
+# Start a container in which we can use yarn and npx
+sudo docker run --rm -it --name blog-node -v $PWD/laravel:/home/node/app node bash
+
+# Update php dependencies
+sudo docker run --rm -it --name blog-composer -v $PWD/laravel:/app/ prooph/composer:7.4 update
+```
+
+## Front-End
 
 The js and sass source files are located in `laravel/resources/`, and the generated output will go to the `/js`, `/css`, and `/fonts` directories. To compile, type:
 
