@@ -1,19 +1,12 @@
-try {
-    window.$ = window.jQuery = require('jquery');
-
-    //require('bootstrap-sass');
-} catch (e) {}
-
-require('./deleteConfirmer');
-
-window.Vue = require('vue');
-
 import PhotoSelector from './components/PhotoSelector';
+import setup_delete_confirmers from './deleteConfirmer';
+import Vue from 'vue';
 
-Vue.config.productionTip = false;
+setup_delete_confirmers();
 
+const root = document.getElementById('photo-selector');
 
-if($('#photo-selector').length){
+if(root !== null){
     /* eslint-disable no-new */
     new Vue({
         el: '#photo-selector',
@@ -21,4 +14,3 @@ if($('#photo-selector').length){
         components: { PhotoSelector }
     });
 }
-
