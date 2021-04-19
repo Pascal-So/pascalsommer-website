@@ -14,7 +14,7 @@ class Post extends Model implements Feedable
 
     protected $guarded = ['id'];
 
-    public function toFeedItem()
+    public function toFeedItem(): FeedItem
     {
         return FeedItem::create()
             ->id($this->id)
