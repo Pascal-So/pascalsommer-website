@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -23,14 +25,14 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        $posts = DB::connection('sqlite')->table('posts')->select(['id', 'title', DB::raw('created as date')])->get();
-        $photos = DB::connection('sqlite')->table('photos')->select(['id','post_id','description', 'path'])->get();
-        $staging = DB::connection('sqlite')->table('staging')->select(['description', 'path'])->orderBy('ordering', 'desc')->get();
-        $comments = DB::connection('sqlite')->table('comments')->select(['id', 'photo_id', 'name', 'comment', DB::raw('created as created_at')])->get();
+        $posts = \DB::connection('sqlite')->table('posts')->select(['id', 'title', \DB::raw('created as date')])->get();
+        $photos = \DB::connection('sqlite')->table('photos')->select(['id','post_id','description', 'path'])->get();
+        $staging = \DB::connection('sqlite')->table('staging')->select(['description', 'path'])->orderBy('ordering', 'desc')->get();
+        $comments = \DB::connection('sqlite')->table('comments')->select(['id', 'photo_id', 'name', 'comment', \DB::raw('created as created_at')])->get();
 
         $posts = $posts->map(function($x){ return (array) $x; });
 
-        DB::table('posts')->insert($posts->toArray());
+        \DB::table('posts')->insert($posts->toArray());
 
         $photos = $photos->map(function($photo) use ($data_old_path, $public_photo_path){
             $old_name = $data_old_path . $photo->path;
@@ -56,27 +58,27 @@ class DatabaseSeeder extends Seeder
             return $photo;
         });
 
-        DB::table('photos')->insert($photos->toArray());
-        DB::table('photos')->insert($staging->toArray());
+        \DB::table('photos')->insert($photos->toArray());
+        \DB::table('photos')->insert($staging->toArray());
 
-        App\Photo::published()->orderBy('id', 'desc')->get()->map(function($photo){
+        \App\Photo::published()->orderBy('id', 'desc')->get()->map(function($photo){
             $photo->setHighestOrderNumber();
             $photo->save();
         });
 
         $comments = $comments->map(function($comment){ return (array) $comment; });
 
-        DB::table('comments')->insert($comments->toArray());
+        \DB::table('comments')->insert($comments->toArray());
     }
 
     private function testData()
     {
-        DB::table('users')->insert([
+        \DB::table('users')->insert([
             'name' => 'test',
             'password' => bcrypt('test'),
         ]);
 
-        DB::table('posts')->insert([
+        \DB::table('posts')->insert([
             [
                 'title' => 'Snow',
                 'date' => '2017-12-27',
@@ -87,7 +89,7 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        DB::table('photos')->insert([
+        \DB::table('photos')->insert([
             [
                 'path' => 'img/photos/pascalsommer_9.jpg',
                 'description' => 'photo 1, post 1. Trees. äöü. я не говорю по-русский.',
@@ -108,9 +110,9 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        App\Tag::where('name', 'Landscape')->first()->photos()->attach([1,2]);
-        App\Tag::where('name', 'Architecture')->first()->photos()->attach([2]);
-        App\Tag::where('name', 'Travel')->first()->photos()->attach([1,2,3]);
+        \App\Tag::where('name', 'Landscape')->first()->photos()->attach([1,2]);
+        \App\Tag::where('name', 'Architecture')->first()->photos()->attach([2]);
+        \App\Tag::where('name', 'Travel')->first()->photos()->attach([1,2,3]);
     }
 
     /**
@@ -120,11 +122,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //$this->testData();
+        $this->testData();
 
         //$this->loadOldBlogData();
 
-        DB::table('tags')->insert([
+        \DB::table('tags')->insert([
             [ 'name' => 'Animals' ],
             [ 'name' => 'Birds' ],
             [ 'name' => 'People' ],
@@ -138,7 +140,7 @@ class DatabaseSeeder extends Seeder
             [ 'name' => 'Infrastructure' ],
         ]);
 
-        DB::table('blacklist')->insert([
+        \DB::table('blacklist')->insert([
             [ 'regex' => '#http://www\.ttk-krasnodar\.ru#' ],
             [ 'regex' => '#http://создание-сайтов\d*\.рф#' ],
             [ 'regex' => '#https://fotograf\d*\.ru#' ],
