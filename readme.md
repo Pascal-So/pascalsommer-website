@@ -17,7 +17,15 @@ sudo docker run --rm -d --name blog-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=ro
 sudo docker exec -i blog-mysql sh -c 'exec mysql -uroot -proot blog' < dump.sql
 
 # Start a container in which we can use yarn and npx
-sudo docker run --rm -it --name blog-node -v $PWD/laravel:/home/node/app node bash
+sudo docker run --rm -it --name blog-node -v $PWD:/home/node/app node bash
+# su node
+# cd ~/app/laravel
+# yarn
+# npm run prod
+
+# Generate SVG icons
+cd laravel/tools/generate-icons
+cargo run
 
 # Update php dependencies
 sudo docker run --rm -it --name blog-composer -v $PWD/laravel:/app/ prooph/composer:7.4 update

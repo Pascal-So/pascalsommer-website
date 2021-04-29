@@ -1,3 +1,4 @@
 css/:laravel/resources/
 js/admin.js*:laravel/resources/
 fonts/:laravel/resources/
+laravel/resources/views/icons/:laravel/tools/generate-icons/

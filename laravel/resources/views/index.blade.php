@@ -10,7 +10,6 @@
 <br><br>
 
 @include('layouts.pagination_nav', ['items' => $posts, 'from_page_two' => true, 'element_id' => 'start-content'])
-<br>
 
 @foreach($posts as $post)
 
