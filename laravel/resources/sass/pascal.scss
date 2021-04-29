@@ -104,6 +104,10 @@ footer{
     width: 15px;
     padding: 20px;
 }
+.arrow-icon-small-placeholder {
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
 
 .arrow-icon-placeholder, .arrow-icon-small-placeholder{
     height: 10px;
@@ -531,6 +535,10 @@ a.tag-active-not:visited {
     .arrow-icon-small, .arrow-icon-small-placeholder {
         width: 13px;
         padding: 15px;
+    }
+    .arrow-icon-small-placeholder {
+        padding-top: 1px;
+        padding-bottom: 1px;
     }
 
     .comment{
