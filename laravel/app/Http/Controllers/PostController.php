@@ -12,7 +12,12 @@ class PostController extends Controller
     {
         $posts = Post::blogOrdered()->paginate(Post::$posts_per_page);
 
-        return view('index', compact('posts'));
+        $referrer = request()->server('HTTP_REFERER');
+        $url = request()->url();
+
+        $initial_view = substr($referrer, 0, strlen($url)) !== $url;
+
+        return view('index', compact('posts', 'initial_view'));
     }
 
     public function permalink(Post $post)
