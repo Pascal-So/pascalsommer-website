@@ -42,7 +42,7 @@
     <p><a href="{{ route('filtered') }}" data-shortcutkeycode="67" title="(shortcut: c)">clear tag selection</a></p>
 @endif
 
-@include('layouts.pagination_nav', ['items' => $photos, 'from_page_two' => true])
+@include('layouts.pagination_nav', ['items' => $photos, 'from_page_two' => false])
 <br>
 
 @if($photos->isEmpty())
