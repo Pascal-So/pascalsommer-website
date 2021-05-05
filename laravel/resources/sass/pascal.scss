@@ -95,23 +95,21 @@ footer{
     flex-wrap: wrap;
 }
 
-.arrow-icon, .arrow-icon-placeholder{
-    width: 25px;
-    margin: 80px 25px;
+
+.arrow-icon {
+    padding: 80px 25px;
 }
 
-.arrow-icon-small, .arrow-icon-small-placeholder{
-    width: 15px;
+.arrow-icon svg {
+    width: 25px;
+}
+
+.arrow-icon-small {
     padding: 20px;
 }
-.arrow-icon-small-placeholder {
-    padding-top: 1px;
-    padding-bottom: 1px;
-}
 
-.arrow-icon-placeholder, .arrow-icon-small-placeholder{
-    height: 10px;
-    display: inline-block
+.arrow-icon-small svg {
+    width: 15px;
 }
 
 .alignright{
@@ -401,9 +399,8 @@ a.tag-active-not:visited {
         max-height: 700px;
     }
 
-    .arrow-icon, .arrow-icon-placeholder{
-        width: 25px;
-        margin: 60px 20px;
+    .arrow-icon {
+        padding: 60px 20px;
     }
 }
 
@@ -413,9 +410,12 @@ a.tag-active-not:visited {
         max-height: 620px;
     }
 
-    .arrow-icon, .arrow-icon-placeholder{
+    .arrow-icon {
+        padding: 60px 15px;
+    }
+
+    .arrow-icon svg {
         width: 20px;
-        margin: 60px 15px;
     }
 }
 
@@ -440,11 +440,13 @@ a.tag-active-not:visited {
         max-height: 450px;
     }
 
-    .arrow-icon, .arrow-icon-placeholder{
-        width: 18px;
-        margin: 60px 12px;
+    .arrow-icon {
+        padding: 60px 12px;
     }
 
+    .arrow-icon svg {
+        width: 18px;
+    }
 
     .comment{
         width: 350px;
@@ -484,9 +486,8 @@ a.tag-active-not:visited {
         max-height: 375px;
     }
 
-    .arrow-icon, .arrow-icon-placeholder{
+    .arrow-icon svg {
         width: 18px;
-        margin: 60px 12px;
     }
 
     p,a{
@@ -527,18 +528,16 @@ a.tag-active-not:visited {
         max-height: 330px;
     }
 
-    .arrow-icon, .arrow-icon-placeholder{
-        width: 18px;
-        margin: 40px 12px;
+    .arrow-icon {
+        padding: 40px 12px;
     }
 
-    .arrow-icon-small, .arrow-icon-small-placeholder {
-        width: 13px;
+    .arrow-icon-small {
         padding: 15px;
     }
-    .arrow-icon-small-placeholder {
-        padding-top: 1px;
-        padding-bottom: 1px;
+
+    .arrow-icon-small svg {
+        width: 13px;
     }
 
     .comment{
@@ -566,9 +565,12 @@ a.tag-active-not:visited {
         max-height: 280px;
     }
 
-    .arrow-icon, .arrow-icon-placeholder{
+    .arrow-icon {
+        padding: 40px 10px;
+    }
+
+    .arrow-icon svg {
         width: 17px;
-        margin: 40px 10px;
     }
 }
 
@@ -584,9 +586,12 @@ a.tag-active-not:visited {
         max-height: 240px;
     }
 
-    .arrow-icon, .arrow-icon-placeholder{
+    .arrow-icon {
+        padding: 40px 8px;
+    }
+
+    .arrow-icon svg {
         width: 15px;
-        margin: 40px 8px;
     }
 
     .comment{

@@ -48,4 +48,5 @@ fn main() {
     to_svg(out_dir.join("right_end.blade.php"), &right_end_symbol, stroke_width);
     to_svg(out_dir.join("left.blade.php"), &left_single_symbol, stroke_width);
     to_svg(out_dir.join("left_end.blade.php"), &left_end_symbol, stroke_width);
+    to_svg(out_dir.join("arrow_placeholder.blade.php"), &vec![], stroke_width);
 }

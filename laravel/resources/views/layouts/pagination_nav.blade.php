@@ -9,8 +9,12 @@
                     @include('icons.left')
                 </a>
             @else
-                <span class="arrow-icon-small-placeholder"></span>
-                <span class="arrow-icon-small-placeholder"></span>
+                <span class="arrow-icon-small">
+                    @include('icons.arrow_placeholder')
+                </span>
+                <span class="arrow-icon-small">
+                    @include('icons.arrow_placeholder')
+                </span>
             @endif
 
             <span style="margin: 0 10px">{{ $items->currentPage() }} / {{ $items->lastPage() }}</span>
@@ -23,8 +27,12 @@
                     @include('icons.right_end')
                 </a>
             @else
-                <span class="arrow-icon-small-placeholder"></span>
-                <span class="arrow-icon-small-placeholder"></span>
+                <span class="arrow-icon-small">
+                    @include('icons.arrow_placeholder')
+                </span>
+                <span class="arrow-icon-small">
+                    @include('icons.arrow_placeholder')
+                </span>
             @endif
         </p>
     @endif

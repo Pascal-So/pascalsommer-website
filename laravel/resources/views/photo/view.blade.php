@@ -22,26 +22,32 @@
 
 <div class="flex-row flex-center">
     @if($photo->prevPhoto() == null)
-        <div class="arrow-icon-placeholder"></div>
+        <span class="arrow-icon">
+            @include('icons.arrow_placeholder')
+        </span>
     @else
         <a  id="link-left"
             href="{{ $photo->prevPhoto()->url() }}"
+            class="arrow-icon"
             data-shortcutkeycode="37"
             title="Show the previous photo (shortcut: left arrow)">
-            <img class="arrow-icon" src="{{ asset('img/icons/larrow.svg') }}">
+            @include('icons.left')
         </a>
     @endif
     <a href="{{ asset($photo->path) }}" target="blank">
         <img id="photo" class="photo-large" src="{{ asset($photo->path) }}" alt="{{ $photo->alttext() }}">
     </a>
     @if($photo->nextPhoto() == null)
-        <div class="arrow-icon-placeholder"></div>
+        <span class="arrow-icon">
+            @include('icons.arrow_placeholder')
+        </span>
     @else
         <a  id="link-right"
             href="{{ $photo->nextPhoto()->url() }}"
+            class="arrow-icon"
             data-shortcutkeycode="39"
             title="Show the next photo (shortcut: right arrow)">
-            <img class="arrow-icon" src="{{ asset('img/icons/rarrow.svg') }}">
+            @include('icons.right')
         </a>
     @endif
 </div>

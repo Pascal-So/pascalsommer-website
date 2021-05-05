@@ -17,15 +17,27 @@
 <br>
 <div class="flex-row flex-center" id="photo">
     @if($photo->prevPhoto() == null)
-        <div class="arrow-icon-placeholder"></div>
+        <span class="arrow-icon">
+            @include('icons.arrow_placeholder')
+        </span>
     @else
-        <a id="link-left" href="{{ route('editPhoto', ['photo' => $photo->prevPhoto()]) }}#photo"><img class="arrow-icon" src="{{ asset('img/icons/larrow.svg') }}"></a>
+        <a  id="link-left"
+            class="arrow-icon"
+            href="{{ route('editPhoto', ['photo' => $photo->prevPhoto()]) }}#photo">
+            @include('icons.left')
+        </a>
     @endif
     <img src="{{ asset($photo->path) }}" class="photo" id="photo">
     @if($photo->nextPhoto() == null)
-        <div class="arrow-icon-placeholder"></div>
+        <span class="arrow-icon">
+            @include('icons.arrow_placeholder')
+        </span>
     @else
-        <a id="link-right" href="{{ route('editPhoto', ['photo' => $photo->nextPhoto()]) }}#photo"><img class="arrow-icon" src="{{ asset('img/icons/rarrow.svg') }}"></a>
+        <a  id="link-right"
+            class="arrow-icon"
+            href="{{ route('editPhoto', ['photo' => $photo->nextPhoto()]) }}#photo">
+            @include('icons.right')
+        </a>
     @endif
 </div>
 
